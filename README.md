@@ -21,6 +21,7 @@ If you have `npm` installed, `npm start` works too.
 - `GET /api/research-requests?status=new`
 - `POST /api/research-requests`
 - `PATCH /api/research-requests/:id/status`
+- `POST /api/cloud-readiness`
 - `POST /api/content-strategy`
 - `POST /api/performance-brief`
 - `POST /api/seo-opportunity`
@@ -33,4 +34,4 @@ The content strategy endpoint powers the Content Strategy Agent inside the AI Ag
 
 The agent is tuned around Proplr's public positioning: Google Cloud consulting, managed cloud services, fractional cloud expertise, secure cloud architecture, security and compliance, AI-powered FinOps, and generative AI on Google Cloud.
 
-The AI Agency Toolkit adds practical internship-aligned agents for content strategy, performance briefs, SEO recommendations, campaign QA, and reporting insights.
+The AI Agency Toolkit adds a visitor-facing Cloud Readiness Advisor plus practical internship-aligned agents for content strategy, performance briefs, SEO recommendations, campaign QA, and reporting insights.

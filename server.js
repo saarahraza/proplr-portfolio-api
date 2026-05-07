@@ -200,6 +200,51 @@ function buildContentStrategy(input) {
   };
 }
 
+function buildCloudReadiness(input) {
+  const stage = cleanString(input.stage) || 'Scaleup';
+  const cloudSetup = cleanString(input.cloudSetup) || 'Some Google Cloud usage';
+  const challenge = cleanString(input.challenge) || 'Scaling infrastructure';
+  const securityNeed = cleanString(input.securityNeed) || 'Moderate';
+  const costConcern = cleanString(input.costConcern) || 'Growing concern';
+  const aiInterest = cleanString(input.aiInterest) || 'Exploring AI use cases';
+
+  let score = 45;
+  if (/google cloud|gcp/i.test(cloudSetup)) score += 12;
+  if (/multi|legacy|manual|none/i.test(cloudSetup)) score -= 6;
+  if (/scaling|reliability|architecture/i.test(challenge)) score += 8;
+  if (/high|regulated|compliance/i.test(securityNeed)) score -= 4;
+  if (/growing|high|urgent/i.test(costConcern)) score -= 6;
+  if (/pilot|active|exploring/i.test(aiInterest)) score += 8;
+  score = Math.max(25, Math.min(92, score));
+
+  const maturity = score >= 75 ? 'Strong foundation' : score >= 55 ? 'Ready for a focused cloud roadmap' : 'Needs foundation work first';
+  const bestFit = score >= 75
+    ? 'Managed Cloud Services + AI-powered FinOps'
+    : score >= 55
+      ? 'Fractional Cloud Expertise + Cloud Architecture Foundations'
+      : 'Google Cloud Consulting + Security and Compliance Review';
+
+  return {
+    agent: 'Cloud Readiness Advisor Agent',
+    score,
+    maturity,
+    visitorProfile: `${stage} with ${cloudSetup.toLowerCase()}, focused on ${challenge.toLowerCase()}.`,
+    topRisks: [
+      costConcern.includes('No') ? 'Cloud cost visibility may become a future blind spot.' : 'Cloud spend needs clearer ownership and optimization.',
+      securityNeed === 'High' ? 'Security and compliance should be designed before more systems are added.' : 'Security basics should be checked before scaling.',
+      'Architecture decisions need to connect to speed, reliability, customer experience, and business value.'
+    ],
+    recommendedSteps: [
+      'Map the current cloud environment and the workflows it supports.',
+      'Identify one bottleneck affecting speed, reliability, cost, or security.',
+      'Review tracking, ownership, and cloud spend visibility.',
+      'Choose one practical AI or automation pilot after the foundation is clear.'
+    ],
+    bestFitService: bestFit,
+    callToAction: 'Start with a focused cloud readiness conversation.'
+  };
+}
+
 function buildPerformanceBrief(input) {
   const clientType = cleanString(input.clientType) || 'B2B scaleup';
   const service = cleanString(input.service) || 'Google Cloud consulting';
@@ -353,6 +398,11 @@ async function handleApi(req, res, url) {
   if (req.method === 'POST' && url.pathname === '/api/content-strategy') {
     const body = await readBody(req);
     return sendJson(res, 200, buildContentStrategy(body));
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/cloud-readiness') {
+    const body = await readBody(req);
+    return sendJson(res, 200, buildCloudReadiness(body));
   }
 
   if (req.method === 'POST' && url.pathname === '/api/performance-brief') {

@@ -55,22 +55,43 @@
 <header>
   <div class="brand">
     <strong>Proplr AI Agency Toolkit</strong>
-    <span>Practical agents for content, strategy, SEO, QA, and reporting</span>
+    <span>Try the Cloud Readiness Advisor, then explore marketing agents</span>
   </div>
   <div class="nav">
     <a href="/">Portfolio</a>
+    <a href="#readiness">Cloud Readiness</a>
     <a href="#content">Content</a>
   </div>
 </header>
 
 <main>
   <section class="intro">
-    <div class="eyebrow">AI-powered performance marketing toolkit</div>
-    <h1>Agency agents built for real intern work.</h1>
-    <p>These agents turn Proplr-style cloud and AI consulting inputs into practical deliverables: content calendars, briefs, SEO recommendations, QA checks, and reporting insights. They map directly to creative, strategy, SEO, client service, martech, analytics, and digital experience work.</p>
+    <div class="eyebrow">Try it yourself · Cloud readiness advisor</div>
+    <h1>Find your next cloud move.</h1>
+    <p>Start with the Cloud Readiness Advisor to get a simple score, risks, next steps, and a Proplr-style service match. Then use the marketing agents to turn that recommendation into content, briefs, SEO, QA, and reporting outputs.</p>
   </section>
 
   <section class="grid">
+    <article class="agent" id="readiness">
+      <div class="agent-head">
+        <span class="tag">Priority 1 · Visitor Tool</span>
+        <h2>Cloud Readiness Advisor Agent</h2>
+        <p>Scores a visitor's cloud readiness and recommends practical next steps across Google Cloud, FinOps, security, and AI adoption.</p>
+      </div>
+      <div class="agent-body">
+        <div class="fields">
+          <div class="field"><label>Company stage</label><select id="cr-stage"><option>Startup</option><option selected>Scaleup</option><option>Enterprise team</option><option>Regulated business</option></select></div>
+          <div class="field"><label>Cloud setup</label><select id="cr-cloudSetup"><option>Not sure yet</option><option>Some Google Cloud usage</option><option>Multi-cloud setup</option><option>Legacy/manual infrastructure</option><option>Mostly mature cloud environment</option></select></div>
+          <div class="field"><label>Main challenge</label><select id="cr-challenge"><option>Scaling infrastructure</option><option>Cloud costs rising</option><option>Security and compliance</option><option>Reliability issues</option><option>AI roadmap unclear</option></select></div>
+          <div class="field"><label>Security need</label><select id="cr-securityNeed"><option>Low</option><option selected>Moderate</option><option>High</option><option>Regulated/compliance-heavy</option></select></div>
+          <div class="field"><label>Cost concern</label><select id="cr-costConcern"><option>No concern yet</option><option selected>Growing concern</option><option>High concern</option><option>Urgent cost pressure</option></select></div>
+          <div class="field"><label>AI interest</label><select id="cr-aiInterest"><option>Not yet</option><option selected>Exploring AI use cases</option><option>Planning first pilot</option><option>Active AI/automation roadmap</option></select></div>
+        </div>
+        <div class="run-row"><button class="primary" onclick="runCloudReadiness()">Get Readiness Score</button><span class="status" id="cr-status"></span></div>
+        <div class="output" id="cr-output">Cloud readiness output will appear here.</div>
+      </div>
+    </article>
+
     <article class="agent" id="content">
       <div class="agent-head">
         <span class="tag">Creative · Strategy</span>
@@ -206,6 +227,26 @@ async function callAgent(endpoint, payload, statusId, outputId, formatter) {
 
 function list(items) {
   return items.map(item => `- ${escapeHTML(typeof item === 'string' ? item : `${item.area}: ${item.item} (${item.priority})`)}`).join('\n');
+}
+
+function runCloudReadiness() {
+  callAgent('/api/cloud-readiness', {
+    stage: value('cr-stage'), cloudSetup: value('cr-cloudSetup'), challenge: value('cr-challenge'),
+    securityNeed: value('cr-securityNeed'), costConcern: value('cr-costConcern'), aiInterest: value('cr-aiInterest')
+  }, 'cr-status', 'cr-output', data => `<strong>${escapeHTML(data.agent)}</strong>
+
+Readiness score: ${escapeHTML(data.score)}/100
+Maturity: ${escapeHTML(data.maturity)}
+Profile: ${escapeHTML(data.visitorProfile)}
+Best-fit Proplr service: ${escapeHTML(data.bestFitService)}
+
+Top risks:
+${list(data.topRisks)}
+
+Recommended next steps:
+${list(data.recommendedSteps)}
+
+CTA: ${escapeHTML(data.callToAction)}`);
 }
 
 function runContentStrategy() {
