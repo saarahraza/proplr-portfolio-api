@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proplr × Vaultly — AI Transformation Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #1A56DB; --blue-dark: #0F3898;
+    --navy: #0D1F3C; --silver: #A8B8C8; --white: #FFFFFF;
+    --accent: #00D4AA; --accent2: #FF6B35;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(13,31,60,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--silver); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-badge { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 100px; background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 30%, rgba(26,86,219,0.25) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 20% 70%, rgba(0,212,170,0.12) 0%, transparent 60%), var(--navy); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%); }
+  .hero-tag { position: relative; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; animation: fadeUp 0.6s ease both; }
+  .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .hero-title { position: relative; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(52px, 8vw, 96px); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 32px; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-title .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
+  .hero-title .green { color: var(--accent); }
+  .hero-sub { position: relative; max-width: 560px; font-size: 17px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 40px; animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-ctas { position: relative; display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-p { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; background: var(--blue); color: var(--white); font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-p:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .btn-g { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; background: transparent; color: var(--silver); font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.12); cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-g:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+  .hero-scroll { position: absolute; bottom: 80px; right: 48px; writing-mode: vertical-rl; font-size: 11px; letter-spacing: 0.2em; color: var(--silver); text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
+  .hero-scroll::after { content: ''; display: block; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--silver), transparent); }
+
+  /* SKILL TAGS */
+  .skill-tags { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; animation: fadeUp 0.6s 0.4s ease both; }
+  .stag-pill { font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.04em; }
+  .stag-pill.hi { background: rgba(0,212,170,0.08); color: rgba(0,212,170,0.7); border-color: rgba(0,212,170,0.2); }
+
+  /* STATS */
+  .stats-strip { background: rgba(26,86,219,0.08); border-top: 1px solid rgba(26,86,219,0.2); border-bottom: 1px solid rgba(26,86,219,0.2); padding: 40px 48px; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-item { text-align: center; padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.06); }
+  .stat-item:last-child { border-right: none; }
+  .stat-value { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 12px; color: var(--silver); }
+
+  /* LAYOUT */
+  .sec { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+  .sec-w { padding: 100px 48px; border-top: 1px solid rgba(255,255,255,0.04); }
+  .sec-w .inner { max-width: 1200px; margin: 0 auto; }
+  .stag { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .stag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--blue); }
+  .stitle { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 20px; }
+  .sdesc { font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 540px; margin-bottom: 60px; }
+
+  /* VALUE PROP */
+  .vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
+  .vcard { padding: 40px; background: rgba(255,255,255,0.02); transition: background 0.3s; }
+  .vcard:hover { background: rgba(255,255,255,0.04); }
+  .vcard.feat { background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.25); grid-column: span 2; }
+  .vcard h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .vcard p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.55); font-weight: 300; }
+  .qblock { padding: 36px 44px; border-left: 3px solid var(--blue); background: rgba(26,86,219,0.06); border-radius: 0 12px 12px 0; margin-bottom: 48px; }
+  .qblock p { font-family: 'Syne', sans-serif; font-size: clamp(18px, 2.2vw, 24px); font-weight: 600; line-height: 1.4; }
+  .pcols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .pcol { padding: 28px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+  .pcol h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 16px; }
+  .pcol ul { list-style: none; }
+  .pcol ul li { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.7; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; }
+  .pcol ul li:last-child { border-bottom: none; }
+  .pcol ul li::before { content: '→'; color: var(--blue); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+
+  /* AI TOOLS USED */
+  .ai-tools-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+  .ai-chip { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); font-size: 13px; font-weight: 500; }
+  .ai-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .ai-chip.claude .dot { background: #C084FC; }
+  .ai-chip.gemini .dot { background: #60A5FA; }
+  .ai-chip.chatgpt .dot { background: #34D399; }
+  .ai-chip.perplexity .dot { background: #F59E0B; }
+
+  /* CASE STUDY */
+  .csh { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 60px; }
+  .css { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 60px; }
+  .csi { padding: 28px 24px; border-radius: 12px; background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.2); text-align: center; }
+  .csv { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+  .csl { font-size: 12px; color: var(--silver); }
+  .phases { display: flex; flex-direction: column; gap: 2px; margin-bottom: 60px; }
+  .phase { padding: 24px 28px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; cursor: pointer; transition: all 0.3s; display: grid; grid-template-columns: 44px 1fr; gap: 20px; align-items: start; }
+  .phase:hover { background: rgba(26,86,219,0.08); border-color: rgba(26,86,219,0.2); }
+  .phase.active { background: rgba(26,86,219,0.12); border-color: rgba(26,86,219,0.3); }
+  .pnum { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.12); line-height: 1; }
+  .phase.active .pnum { color: var(--blue); }
+  .ptitle { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .pdesc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .pitems { display: none; margin-top: 14px; list-style: none; }
+  .phase.active .pitems { display: block; }
+  .pitems li { font-size: 13px; color: rgba(255,255,255,0.6); padding: 5px 0; display: flex; gap: 10px; }
+  .pitems li::before { content: '↳'; color: var(--accent); flex-shrink: 0; }
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; margin-bottom: 48px; }
+  .bac { padding: 32px; }
+  .bac.bef { background: rgba(255,107,53,0.06); }
+  .bac.aft { background: rgba(0,212,170,0.06); }
+  .bal { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+  .bac.bef .bal { color: var(--accent2); }
+  .bac.aft .bal { color: var(--accent); }
+  .bac ul { list-style: none; }
+  .bac ul li { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6); padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; }
+  .bac ul li:last-child { border-bottom: none; }
+  .bef li::before { content: '✕'; color: var(--accent2); font-size: 11px; margin-top: 2px; }
+  .aft li::before { content: '✓'; color: var(--accent); font-size: 11px; margin-top: 2px; }
+  .cqt { padding: 44px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; text-align: center; }
+  .cqt blockquote { font-family: 'Syne', sans-serif; font-size: clamp(17px, 2vw, 22px); font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+  .cqt cite { font-size: 13px; color: var(--silver); font-style: normal; }
+
+  /* WORKFLOW */
+  .flow-wrap { display: flex; flex-direction: column; align-items: center; max-width: 600px; margin: 0 auto; }
+  .fn { width: 100%; padding: 18px 24px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.03); display: flex; align-items: center; gap: 20px; transition: all 0.3s; }
+  .fn:hover { background: rgba(26,86,219,0.1); border-color: rgba(26,86,219,0.3); }
+  .fn.hl { background: rgba(26,86,219,0.15); border-color: var(--blue); }
+  .fnn { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: var(--blue); min-width: 24px; }
+  .fnt { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; flex: 1; }
+  .fns { font-size: 12px; color: var(--silver); }
+  .farr { display: flex; justify-content: center; height: 28px; color: rgba(255,255,255,0.2); font-size: 18px; align-items: center; }
+  .fspl { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+  .fsp { padding: 16px 18px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; text-align: center; }
+  .fsp.cl { background: rgba(100,60,220,0.12); border-color: rgba(100,60,220,0.25); }
+  .fsp.gm { background: rgba(26,86,219,0.12); border-color: rgba(26,86,219,0.25); }
+  .fsp h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .fsp p { font-size: 12px; color: var(--silver); }
+
+  /* SEO / ANALYTICS SECTION */
+  .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 48px; }
+  .mcard { padding: 28px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .mcard h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
+  .mcard p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; font-weight: 300; }
+  .kw-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .kw { font-size: 11px; padding: 4px 10px; border-radius: 6px; background: rgba(26,86,219,0.15); color: #93C5FD; border: 1px solid rgba(26,86,219,0.2); }
+
+  /* QA / ITERATION */
+  .qa-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+  .qa-table th { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left; }
+  .qa-table td { font-size: 14px; color: rgba(255,255,255,0.65); padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-weight: 300; line-height: 1.6; }
+  .qa-table tr:last-child td { border-bottom: none; }
+  .qa-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .tag-pill { display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.2); }
+  .tag-pill.blue { background: rgba(26,86,219,0.1); color: #93C5FD; border-color: rgba(26,86,219,0.2); }
+  .tag-pill.orange { background: rgba(255,107,53,0.1); color: #FCA97A; border-color: rgba(255,107,53,0.2); }
+
+  /* CALENDAR */
+  .ctabs { display: flex; gap: 4px; margin-bottom: 32px; flex-wrap: wrap; }
+  .ctab { padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; background: transparent; color: var(--silver); border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .ctab.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .cwk { display: none; }
+  .cwk.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cpost { padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); transition: all 0.3s; }
+  .cpost:hover { background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+  .cday { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .cfmt { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--silver); margin-bottom: 14px; }
+  .cpost h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.5; }
+  .wthm { font-size: 13px; color: var(--silver); margin-bottom: 24px; padding: 12px 20px; border-radius: 8px; background: rgba(255,255,255,0.03); border-left: 2px solid var(--blue); display: none; }
+  .wthm.active { display: block; }
+
+  /* LIVE TOOLS */
+  .tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tcard { border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; }
+  .thead { padding: 28px 28px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .tbadge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
+  .tbadge.ai { background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.25); }
+  .tbadge.calc { background: rgba(26,86,219,0.12); color: #60A5FA; border: 1px solid rgba(26,86,219,0.25); }
+  .tbadge.gen { background: rgba(168,85,247,0.12); color: #C084FC; border: 1px solid rgba(168,85,247,0.25); }
+  .thead h3 { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+  .thead p { font-size: 13px; color: var(--silver); line-height: 1.6; font-weight: 300; }
+  .tbody { padding: 24px 28px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+  .tlbl { font-size: 12px; font-weight: 500; color: var(--silver); margin-bottom: 6px; display: block; }
+  .tinp, .tsel, .ttxt { width: 100%; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; transition: border-color 0.2s; outline: none; }
+  .tinp:focus, .tsel:focus, .ttxt:focus { border-color: var(--blue); background: rgba(26,86,219,0.08); }
+  .tsel option { background: #1a2a45; }
+  .ttxt { resize: vertical; min-height: 80px; line-height: 1.6; }
+  .tbtn { width: 100%; padding: 12px; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; margin-top: auto; }
+  .tbtn.ab { background: var(--accent); color: #0D1F3C; }
+  .tbtn.ab:hover { background: #00bfa0; }
+  .tbtn.cb { background: var(--blue); color: var(--white); }
+  .tbtn.cb:hover { background: var(--blue-dark); }
+  .tbtn.gb { background: rgba(168,85,247,0.85); color: var(--white); }
+  .tbtn.gb:hover { background: rgba(168,85,247,1); }
+  .tbtn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .tout { display: none; margin-top: 8px; padding: 16px; border-radius: 10px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.07); font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.8); white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; }
+  .tout.show { display: block; }
+  .tout.loading { color: var(--silver); font-style: italic; }
+  .oact { display: none; gap: 8px; margin-top: 10px; }
+  .oact.show { display: flex; }
+  .csm { padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; background: rgba(255,255,255,0.06); color: var(--silver); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .csm:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+  .roi-sw { display: flex; flex-direction: column; gap: 4px; }
+  .roi-sr { display: flex; justify-content: space-between; align-items: center; }
+  .roi-v { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent); }
+  input[type=range] { width: 100%; accent-color: var(--blue); cursor: pointer; }
+  .rres { display: none; margin-top: 8px; }
+  .rres.show { display: block; }
+  .rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rbox { padding: 14px; border-radius: 8px; text-align: center; background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.2); }
+  .rbox.hl { background: rgba(0,212,170,0.1); border-color: rgba(0,212,170,0.3); }
+  .rbv { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #60A5FA; line-height: 1; margin-bottom: 4px; }
+  .rbox.hl .rbv { color: var(--accent); }
+  .rbl { font-size: 11px; color: var(--silver); }
+
+  /* VALUES */
+  .vals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .val-card { padding: 28px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; background: rgba(255,255,255,0.02); }
+  .val-card h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--white); }
+  .val-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
+  .val-icon { font-size: 22px; margin-bottom: 14px; display: block; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 13px; color: var(--silver); }
+  .ftag { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── TALENT INTELLIGENCE ── */
+  .ti-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+  .ti-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+  .ti-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; }
+  .ti-card-head { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+  .ti-card-head h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; }
+  .ti-card-head span { font-size: 10px; color: var(--silver); letter-spacing: 0.06em; }
+  .ti-card-body { padding: 20px; }
+  /* audience toggle */
+  .aud-tabs { display: flex; gap: 4px; margin-bottom: 20px; }
+  .aud-tab { padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; background: transparent; color: var(--silver); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .aud-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .aud-view { display: none; }
+  .aud-view.active { display: block; }
+  /* source chips */
+  .src-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .src-chip { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 4px; background: rgba(26,86,219,0.1); color: #93C5FD; border: 1px solid rgba(26,86,219,0.2); cursor: pointer; transition: all 0.15s; }
+  .src-chip.on { background: var(--blue); color: white; border-color: var(--blue); }
+  /* skill bars */
+  .ti-bar-row { display: flex; flex-direction: column; gap: 10px; }
+  .ti-bar-item { display: flex; flex-direction: column; gap: 4px; }
+  .ti-bar-meta { display: flex; justify-content: space-between; font-size: 12px; }
+  .ti-bar-label { color: rgba(255,255,255,0.7); }
+  .ti-bar-pct { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent); }
+  .ti-bar-track { height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .ti-bar-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+  .ti-bar-fill.hot { background: var(--accent2); }
+  /* insight rows */
+  .insight-rows { display: flex; flex-direction: column; gap: 8px; }
+  .insight-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.02); font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.65); }
+  .insight-row .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .dot.red { background: var(--accent2); }
+  .dot.green { background: var(--accent); }
+  .dot.amber { background: #F59E0B; }
+  /* competitor rows */
+  .comp-rows { display: flex; flex-direction: column; gap: 6px; }
+  .comp-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; background: rgba(255,255,255,0.02); border-radius: 6px; }
+  .comp-name { font-size: 13px; font-weight: 500; }
+  .comp-right { display: flex; align-items: center; gap: 8px; }
+  .comp-num { font-size: 12px; color: var(--silver); }
+  .comp-pill { font-size: 9px; font-weight: 600; padding: 3px 7px; border-radius: 3px; letter-spacing: 0.06em; }
+  .comp-pill.active { background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.25); }
+  .comp-pill.freeze { background: rgba(255,107,53,0.12); color: var(--accent2); border: 1px solid rgba(255,107,53,0.25); }
+  .comp-pill.slow { background: rgba(245,158,11,0.12); color: #F59E0B; border: 1px solid rgba(245,158,11,0.25); }
+  /* geo */
+  .geo-rows { display: flex; flex-direction: column; gap: 8px; }
+  .geo-row { display: flex; align-items: center; gap: 10px; }
+  .geo-label { font-size: 12px; color: rgba(255,255,255,0.6); min-width: 96px; }
+  .geo-track { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .geo-fill { height: 100%; border-radius: 3px; background: var(--blue); }
+  .geo-val { font-size: 11px; color: var(--silver); min-width: 28px; text-align: right; }
+  /* summary cards per audience */
+  .summary-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sum-card { padding: 14px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
+  .sum-card h5 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--accent); }
+  .sum-card p { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  /* workflow audit */
+  .wf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+  .wf-col h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid; }
+  .wf-col.bad h4 { color: var(--accent2); border-color: var(--accent2); }
+  .wf-col.good h4 { color: var(--accent); border-color: var(--accent); }
+  .wf-item { display: flex; gap: 12px; padding: 12px 14px; border-radius: 8px; margin-bottom: 8px; }
+  .wf-item.bad { background: rgba(255,107,53,0.07); border-left: 3px solid var(--accent2); }
+  .wf-item.good { background: rgba(0,212,170,0.06); border-left: 3px solid var(--accent); }
+  .wf-icon { font-size: 16px; flex-shrink: 0; }
+  .wf-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .wf-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+  .wf-time { font-size: 11px; font-weight: 600; margin-top: 4px; }
+  .wf-item.bad .wf-time { color: var(--accent2); }
+  .wf-item.good .wf-time { color: var(--accent); }
+  .wf-savings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 48px; }
+  .wf-sav { padding: 18px; background: rgba(0,212,170,0.06); border: 1px solid rgba(0,212,170,0.15); border-radius: 10px; text-align: center; }
+  .wf-sav-val { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .wf-sav-label { font-size: 11px; color: var(--silver); }
+  /* bottleneck flow */
+  .bn-flow { display: flex; align-items: center; overflow-x: auto; gap: 0; padding-bottom: 4px; margin-bottom: 48px; }
+  .bn-step { display: flex; flex-direction: column; align-items: center; min-width: 96px; }
+  .bn-node { width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; text-align: center; line-height: 1.3; border: 2px solid; padding: 6px; }
+  .bn-node.ok { background: rgba(0,212,170,0.1); border-color: var(--accent); color: var(--accent); }
+  .bn-node.block { background: rgba(255,107,53,0.1); border-color: var(--accent2); color: var(--accent2); }
+  .bn-node.warn { background: rgba(245,158,11,0.1); border-color: #F59E0B; color: #F59E0B; }
+  .bn-label { font-size: 9px; color: var(--silver); margin-top: 5px; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; }
+  .bn-arrow { color: rgba(255,255,255,0.2); font-size: 18px; padding: 0 4px; flex-shrink: 0; }
+  /* intake form */
+  .intake-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .intake-form { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; }
+  .intake-form-head { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+  .intake-form-head h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+  .intake-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 3px; background: rgba(26,86,219,0.15); color: #93C5FD; border: 1px solid rgba(26,86,219,0.2); }
+  .intake-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .if-label { font-size: 11px; font-weight: 500; color: var(--silver); margin-bottom: 5px; display: block; }
+  .if-input, .if-select, .if-textarea { width: 100%; padding: 9px 12px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: white; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s; }
+  .if-input:focus, .if-select:focus, .if-textarea:focus { border-color: var(--blue); background: rgba(26,86,219,0.08); }
+  .if-select option { background: #1a2a45; }
+  .if-textarea { resize: vertical; min-height: 70px; line-height: 1.6; }
+  .if-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pri-btns { display: flex; gap: 6px; }
+  .pri-b { flex: 1; padding: 7px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: var(--silver); font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; text-align: center; }
+  .pri-b.lo { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.08); }
+  .pri-b.med { border-color: #F59E0B; color: #F59E0B; background: rgba(245,158,11,0.08); }
+  .pri-b.hi { border-color: var(--accent2); color: var(--accent2); background: rgba(255,107,53,0.08); }
+  .if-submit { width: 100%; padding: 11px; background: var(--blue); color: white; border: none; border-radius: 6px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 4px; }
+  .if-submit:hover { background: var(--blue-dark); }
+  .if-toast { display: none; padding: 10px 14px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); border-radius: 6px; color: var(--accent); font-size: 12px; margin-top: 6px; }
+  .if-toast.show { display: block; }
+  /* tracker */
+  .tracker { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .tracker-head { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+  .tracker-head h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+  .tracker-count { font-size: 11px; color: var(--silver); }
+  .tracker-filters { display: flex; gap: 4px; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .tf { font-size: 11px; padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: var(--silver); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .tf.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .tracker-list { max-height: 400px; overflow-y: auto; }
+  .tr-item { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s; }
+  .tr-item:hover { background: rgba(255,255,255,0.02); }
+  .tr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 5px; }
+  .tr-title { font-size: 13px; font-weight: 500; line-height: 1.4; flex: 1; }
+  .tr-status { font-size: 9px; font-weight: 600; padding: 3px 7px; border-radius: 3px; letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; }
+  .tr-status.new { background: rgba(26,86,219,0.15); color: #93C5FD; }
+  .tr-status.progress { background: rgba(245,158,11,0.12); color: #F59E0B; }
+  .tr-status.done { background: rgba(0,212,170,0.1); color: var(--accent); }
+  .tr-status.blocked { background: rgba(255,107,53,0.1); color: var(--accent2); }
+  .tr-meta { display: flex; gap: 12px; }
+  .tr-meta span { font-size: 10px; color: var(--silver); }
+  .tr-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 3px; }
+  .tr-dot.hi { background: var(--accent2); }
+  .tr-dot.med { background: #F59E0B; }
+  .tr-dot.lo { background: var(--accent); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; } .nav-links { display: none; }
+    .hero, .sec, .sec-w { padding-left: 24px; padding-right: 24px; }
+    .hero-title { font-size: 44px; }
+    .stats-strip, .vgrid, .csh, .pcols, .ba, .tgrid, .css, .metrics-grid, .vals-grid,
+    .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards { grid-template-columns: 1fr; }
+    .vcard.feat { grid-column: span 1; }
+    .cwk.active { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Proplr <span>×</span> Vaultly</div>
+  <div class="nav-links">
+    <a href="#value">Strategy</a>
+    <a href="#casestudy">Case Study</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#calendar">Content</a>
+    <a href="#tools">Live Tools</a>
+    <a href="#talent">Talent Intelligence</a>
+  </div>
+  <div class="nav-badge">Portfolio Project · 2026</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">Digital Innovation & Brand · Proplr (Google Cloud Partner)</div>
+  <h1 class="hero-title">AI That<br><span class="outline">Actually</span><br><span class="green">Ships.</span></h1>
+  <p class="hero-sub">A concept portfolio demonstrating AI workflow design, content strategy, performance analytics, and live tool development — built around Proplr's Google Cloud AI consultancy model.</p>
+  <div class="hero-ctas">
+    <a href="#casestudy" class="btn-p">View Case Study →</a>
+    <a href="#tools" class="btn-g">Try Live AI Tools</a>
+  </div>
+  <div class="skill-tags">
+    <span class="stag-pill hi">Claude by Anthropic</span>
+    <span class="stag-pill hi">Gemini</span>
+    <span class="stag-pill hi">ChatGPT</span>
+    <span class="stag-pill hi">Perplexity</span>
+    <span class="stag-pill">Marketing Technology</span>
+    <span class="stag-pill">Data Analytics</span>
+    <span class="stag-pill">SEO Strategy</span>
+    <span class="stag-pill">CRM & Sales Process</span>
+    <span class="stag-pill">Digital Experience</span>
+    <span class="stag-pill">QA & Iteration</span>
+    <span class="stag-pill">Creative Services</span>
+    <span class="stag-pill">Planning & Design</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-value">62%</div><div class="stat-label">Reduction in manual operations time</div></div>
+  <div class="stat-item"><div class="stat-value">3×</div><div class="stat-label">Faster feature deployment velocity</div></div>
+  <div class="stat-item"><div class="stat-value">$180K</div><div class="stat-label">Projected annual cost savings</div></div>
+  <div class="stat-item"><div class="stat-value">12wk</div><div class="stat-label">Full transformation timeline</div></div>
+</div>
+
+<!-- VALUE PROP -->
+<section id="value" class="sec">
+  <div class="stag">Deliverable 1 · Planning & Design · Business Outcomes</div>
+  <h2 class="stitle">Value Proposition & Brand Strategy</h2>
+  <p class="sdesc">Translating Proplr's AI roadmap into stakeholder messaging that aligns with company values and converts decision-makers.</p>
+
+  <div class="ai-tools-row">
+    <div class="ai-chip claude"><span class="dot"></span>Claude by Anthropic — drafting & refinement</div>
+    <div class="ai-chip gemini"><span class="dot"></span>Gemini — research & competitive analysis</div>
+    <div class="ai-chip perplexity"><span class="dot"></span>Perplexity — real-time market signals</div>
+  </div>
+
+  <div class="qblock"><p>"Most companies don't have a cloud problem. They have a clarity problem. Proplr fixes both."</p></div>
+  <div class="vgrid">
+    <div class="vcard feat">
+      <h3>⚡ Core positioning</h3>
+      <p>Proplr embeds senior Google Cloud practitioners directly into your team — not as consultants who disappear after the deck, but as fractional operators who build, ship, and scale alongside you. Google Cloud architecture for your exact stage. AI tools in real workflows. Measurable ROI in 90 days.</p>
+    </div>
+    <div class="vcard">
+      <h3>📣 LinkedIn hook</h3>
+      <p>"Your team is spending 40% of engineering time on infrastructure. Proplr gives you that time back — and a Google Cloud AI stack that actually works."</p>
+    </div>
+    <div class="vcard">
+      <h3>📊 Value proof point</h3>
+      <p>Vaultly recovered 62% of manual operations time and $180K in annual costs within one 12-week Proplr engagement — without a single full-time cloud hire.</p>
+    </div>
+  </div>
+  <div class="pcols">
+    <div class="pcol"><h4>↗ For CTOs</h4><ul><li>Fractional model = no full-time hiring risk</li><li>Senior practitioners, not junior staff</li><li>Hands-on delivery in 48–72 hours</li><li>Scales with your roadmap, not against it</li></ul></div>
+    <div class="pcol"><h4>↗ For Founders</h4><ul><li>AI transformation without the 6-month timeline</li><li>Google Cloud Partner expertise on demand</li><li>Fixed block-hour pricing — pay for what you use</li><li>ROI visible in the first sprint</li></ul></div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<div class="sec-w" id="casestudy" style="background:rgba(255,255,255,0.01);">
+<div class="inner">
+  <div class="stag">Deliverable 2 · Product Development · Training & Development · Adaptive Project Management</div>
+  <div class="csh">
+    <div>
+      <h2 class="stitle">Client Case Study: Vaultly</h2>
+      <p style="font-size:13px;color:var(--silver);line-height:1.7;font-weight:300;">A concept case study modelled on a realistic Proplr engagement with a Toronto-based fintech SMB.</p>
+    </div>
+    <div style="padding:28px;border:1px solid rgba(255,255,255,0.06);border-radius:12px;background:rgba(255,255,255,0.02);">
+      <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;">Vaultly</div>
+      <div style="font-size:13px;color:var(--silver);margin-bottom:16px;">Toronto, ON · SMB expense management · 22-person team</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;">4,000 SMB clients. Infrastructure built for half that. Manual categorization eating 3 hours/analyst/day. Engineering buried in maintenance, not features.</div>
+    </div>
+  </div>
+  <div class="css">
+    <div class="csi"><div class="csv">62%</div><div class="csl">Manual ops time saved</div></div>
+    <div class="csi"><div class="csv">3×</div><div class="csl">Deployment velocity</div></div>
+    <div class="csi"><div class="csv">$180K</div><div class="csl">Projected annual savings</div></div>
+  </div>
+  <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;color:var(--silver);">The 3-phase engagement</h3>
+  <div class="phases">
+    <div class="phase active" onclick="togglePhase(this)"><div class="pnum">01</div><div><div class="ptitle">Foundation — Weeks 1–3</div><div class="pdesc">Audit, migration planning, and Google Cloud baseline infrastructure.</div><ul class="pitems"><li>Audited existing AWS infrastructure and identified migration path to Google Cloud</li><li>Rebuilt data pipelines on BigQuery — reducing weekly failures to zero</li><li>Established IAM, security, and compliance baselines for fintech requirements</li></ul></div></div>
+    <div class="phase" onclick="togglePhase(this)"><div class="pnum">02</div><div><div class="ptitle">AI Integration — Weeks 4–8</div><div class="pdesc">Deploy Vertex AI, Claude, and anomaly detection into live workflows.</div><ul class="pitems"><li>Deployed Vertex AI to automate expense categorization — replacing 80% of manual review</li><li>Integrated Claude into the internal content pipeline for customer communications</li><li>Built a real-time anomaly detection model for flagging suspicious expense claims</li></ul></div></div>
+    <div class="phase" onclick="togglePhase(this)"><div class="pnum">03</div><div><div class="ptitle">Enablement & Handoff — Weeks 9–12</div><div class="pdesc">Team training, documentation, and 30-day post-handoff support window.</div><ul class="pitems"><li>Delivered documentation, training, and runbooks for Vaultly's internal team</li><li>Set up performance monitoring dashboards so leadership could track AI KPIs in real time</li><li>Established a 30-day post-handoff support window with weekly check-ins</li></ul></div></div>
+  </div>
+  <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;color:var(--silver);">Before & after: Claude-powered content pipeline</h3>
+  <div class="ba">
+    <div class="bac bef"><div class="bal">Before</div><ul class="bef"><li>Analyst writes customer email manually</li><li>2–3 rounds of edits before send</li><li>Average send time: 4 hours after trigger</li><li>Inconsistent tone across team members</li></ul></div>
+    <div class="bac aft"><div class="bal">After</div><ul class="aft"><li>Claude generates first draft from structured data</li><li>Human reviews for brand truth — 1 pass</li><li>Average send time: 18 minutes after trigger</li><li>Consistent brand voice, every time</li></ul></div>
+  </div>
+  <div class="cqt"><blockquote>"Proplr didn't just build us a cloud stack. They built us the team we couldn't afford to hire. We shipped more in 12 weeks than we had in the previous year."</blockquote><cite>Maya Chen, CTO — Vaultly</cite></div>
+</div>
+</div>
+
+<!-- ANALYTICS & SEO -->
+<section id="analytics" class="sec" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="stag">Analytics · SEO · Monitor & Analyze Performance · Reporting</div>
+  <h2 class="stitle">Performance strategy & SEO</h2>
+  <p class="sdesc">How this engagement would be tracked, measured, and optimized — from search discoverability to content performance analytics.</p>
+
+  <div class="metrics-grid">
+    <div class="mcard">
+      <h4>📈 Content performance KPIs</h4>
+      <p>Each LinkedIn post tracked against: impression rate, engagement rate, profile visits, and discovery call bookings. Weekly reporting cadence with iteration based on top-performing hooks.</p>
+      <div class="kw-row">
+        <span class="kw">Impressions</span><span class="kw">Engagement rate</span><span class="kw">CTR</span><span class="kw">Conversion</span>
+      </div>
+    </div>
+    <div class="mcard">
+      <h4>🔍 SEO & keyword strategy</h4>
+      <p>Proplr content mapped to high-intent B2B search terms. Target keywords identified using Perplexity and Google Search Console signals, optimized for technical decision-makers.</p>
+      <div class="kw-row">
+        <span class="kw">fractional cloud engineers</span><span class="kw">google cloud partner canada</span><span class="kw">ai transformation consulting</span><span class="kw">vertex ai integration</span>
+      </div>
+    </div>
+    <div class="mcard">
+      <h4>🤖 AI pipeline monitoring</h4>
+      <p>Claude-generated drafts reviewed for brand alignment before send. Accuracy and tone tracked per campaign. Feedback loop used to refine prompts and improve output quality over time.</p>
+      <div class="kw-row">
+        <span class="kw">Prompt QA</span><span class="kw">Output scoring</span><span class="kw">Iteration log</span>
+      </div>
+    </div>
+    <div class="mcard">
+      <h4>🧩 CRM & sales pipeline integration</h4>
+      <p>Content strategy mapped to Proplr's sales cycle. LinkedIn outreach tracked as top-of-funnel. Discovery calls logged as qualified leads. ROI calculator used as a conversion tool for potential customers.</p>
+      <div class="kw-row">
+        <span class="kw">Lead scoring</span><span class="kw">Pipeline stage</span><span class="kw">Prospect tracking</span><span class="kw">CRM sync</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;color:var(--silver);">QA & iteration process</h3>
+  <table class="qa-table">
+    <thead><tr><th>Stage</th><th>What was tested</th><th>Method</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>AI drafts</td><td>Claude output alignment with Proplr brand voice</td><td>Human review against brand brief</td><td><span class="tag-pill">Passed</span></td></tr>
+      <tr><td>Messaging</td><td>CTO vs founder copy resonance</td><td>A/B split by audience segment</td><td><span class="tag-pill blue">Iterated</span></td></tr>
+      <tr><td>ROI model</td><td>Calculation accuracy across edge cases</td><td>Manual validation with 12 scenarios</td><td><span class="tag-pill">Passed</span></td></tr>
+      <tr><td>SEO keywords</td><td>Search volume & competition balance</td><td>Perplexity + Google Trends cross-reference</td><td><span class="tag-pill blue">Refined</span></td></tr>
+      <tr><td>Content calendar</td><td>Posting cadence fit for B2B LinkedIn algorithm</td><td>Benchmarked against top-performing SaaS accounts</td><td><span class="tag-pill">Passed</span></td></tr>
+      <tr><td>Agent proposals</td><td>Proposal relevance by industry vertical</td><td>Tested across 5 industries, reviewed for accuracy</td><td><span class="tag-pill orange">Ongoing</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- WORKFLOW -->
+<div class="sec-w" id="workflow" style="background:rgba(26,86,219,0.03);">
+<div class="inner">
+  <div class="stag">AI Workflow Map · Visual Design · Process</div>
+  <h2 class="stitle">The transformation journey</h2>
+  <p class="sdesc">The 6-stage process Proplr runs for every client — from brief to measurable ROI.</p>
+  <div class="flow-wrap">
+    <div class="fn"><div class="fnn">01</div><div><div class="fnt">Client brief</div><div class="fns">Goals, pain points, current stack</div></div></div>
+    <div class="farr">↓</div>
+    <div class="fn"><div class="fnn">02</div><div><div class="fnt">Discovery & assessment</div><div class="fns">Audit tools, team readiness, migration path</div></div></div>
+    <div class="farr">↓</div>
+    <div class="fn hl"><div class="fnn">03</div><div><div class="fnt">Google Cloud architecture design</div><div class="fns">Foundation, security, scalability roadmap</div></div></div>
+    <div class="farr">↓</div>
+    <div class="fspl">
+      <div class="fsp cl"><h4>Claude</h4><p>Content & messaging pipeline</p></div>
+      <div class="fsp gm"><h4>Gemini</h4><p>Data, analytics & categorization</p></div>
+    </div>
+    <div class="farr">↓</div>
+    <div class="fn"><div class="fnn">05</div><div><div class="fnt">Team enablement & coaching</div><div class="fns">Training, docs, runbooks, mentoring</div></div></div>
+    <div class="farr">↓</div>
+    <div class="fn hl"><div class="fnn">06</div><div><div class="fnt">ROI measurement & reporting</div><div class="fns">KPIs, cost savings, velocity gains, disclosure</div></div></div>
+  </div>
+</div>
+</div>
+
+<!-- CALENDAR -->
+<div class="sec-w" id="calendar">
+<div class="inner">
+  <div class="stag">Deliverable 3 · Marketing Tools · Digital Experience · Creative Services</div>
+  <h2 class="stitle">LinkedIn Content Calendar</h2>
+  <p class="sdesc">4-week strategy targeting CTOs and startup founders. Bold, insight-led content designed to move prospects through the sales cycle.</p>
+  <div class="ctabs">
+    <button class="ctab active" onclick="switchWeek(1)">Week 1 — Hook</button>
+    <button class="ctab" onclick="switchWeek(2)">Week 2 — Educate</button>
+    <button class="ctab" onclick="switchWeek(3)">Week 3 — Proof</button>
+    <button class="ctab" onclick="switchWeek(4)">Week 4 — Convert</button>
+  </div>
+  <div class="wthm active" id="t1">🎯 Theme: Hook with a hard truth. Open with a provocation that makes CTOs stop scrolling.</div>
+  <div class="wthm" id="t2">💡 Theme: Educate with insight. Share what competitors already know — and your audience doesn't yet.</div>
+  <div class="wthm" id="t3">🏆 Theme: Social proof. Let Vaultly's results do the talking. Real numbers, real story.</div>
+  <div class="wthm" id="t4">📞 Theme: Convert. Move prospects from awareness to a discovery call with urgency and specificity.</div>
+  <div class="cwk active" id="w1">
+    <div class="cpost"><div class="cday">Monday</div><div class="cfmt">Text post</div><h4>"Your cloud spend doubled this year. Your output didn't. Here's why — and how Proplr fixes it."</h4></div>
+    <div class="cpost"><div class="cday">Wednesday</div><div class="cfmt">Process map</div><h4>"The 6 stages of an AI transformation — which one is your company stuck in?"</h4></div>
+    <div class="cpost"><div class="cday">Friday</div><div class="cfmt">Case study teaser</div><h4>"We saved a fintech startup 62% of their ops time in 12 weeks. Here's exactly how."</h4></div>
+  </div>
+  <div class="cwk" id="w2">
+    <div class="cpost"><div class="cday">Monday</div><div class="cfmt">List post</div><h4>"5 Google Cloud tools your competitors are using that you're not."</h4></div>
+    <div class="cpost"><div class="cday">Wednesday</div><div class="cfmt">Behind the scenes</div><h4>"What actually happens in week 1 of a Proplr engagement (most people are surprised)."</h4></div>
+    <div class="cpost"><div class="cday">Friday</div><div class="cfmt">Myth-bust</div><h4>"'AI transformation takes 18 months.' We did it in 12 weeks. Here's the framework."</h4></div>
+  </div>
+  <div class="cwk" id="w3">
+    <div class="cpost"><div class="cday">Monday</div><div class="cfmt">Client story</div><h4>Full Vaultly case study as a LinkedIn article with the 62%, 3×, $180K stats graphic.</h4></div>
+    <div class="cpost"><div class="cday">Wednesday</div><div class="cfmt">Quote card</div><h4>"We shipped more in 12 weeks than the previous year." — Vaultly CTO, as a designed image.</h4></div>
+    <div class="cpost"><div class="cday">Friday</div><div class="cfmt">Team post</div><h4>"The thing nobody tells you about fractional cloud work — what we've learned from 50+ engagements."</h4></div>
+  </div>
+  <div class="cwk" id="w4">
+    <div class="cpost"><div class="cday">Monday</div><div class="cfmt">Offer post</div><h4>"We have 2 fractional spots open in June. If your cloud stack needs a reset, let's talk."</h4></div>
+    <div class="cpost"><div class="cday">Wednesday</div><div class="cfmt">FAQ post</div><h4>"The 5 questions every CTO asks before working with Proplr — answered."</h4></div>
+    <div class="cpost"><div class="cday">Friday</div><div class="cfmt">CTA post</div><h4>"Book a free 30-min cloud audit. No pitch, just answers." + booking link.</h4></div>
+  </div>
+</div>
+</div>
+
+<!-- COMPANY VALUES -->
+<section class="sec" style="border-top:1px solid rgba(255,255,255,0.04);">
+  <div class="stag">Company Values · Brand Truth</div>
+  <h2 class="stitle">Proplr brand values</h2>
+  <p class="sdesc">Every deliverable in this portfolio was crafted to align with Proplr's core operating principles — not just their services.</p>
+  <div class="vals-grid">
+    <div class="val-card"><span class="val-icon">🔩</span><h4>Delivery over decks</h4><p>Proplr's value is in shipping, not slides. Every message is grounded in what the team actually builds, not what they promise.</p></div>
+    <div class="val-card"><span class="val-icon">🎯</span><h4>Precision over volume</h4><p>Fractional by design — the model demands specificity. No bloat, no padding. Every hour and every word earns its place.</p></div>
+    <div class="val-card"><span class="val-icon">📐</span><h4>Outcomes over outputs</h4><p>ROI isn't a promise, it's a starting point. Vaultly's $180K in savings is the floor, not the ceiling — and it's tracked, reported, and disclosed transparently.</p></div>
+    <div class="val-card"><span class="val-icon">🤝</span><h4>Embedded, not external</h4><p>Proplr doesn't consult from afar. They join the team, learn the codebase, and ship alongside the client — more like a hire than an agency.</p></div>
+    <div class="val-card"><span class="val-icon">🔁</span><h4>Continuous improvement</h4><p>Every engagement is iterated. QA cycles, feedback loops, and post-handoff check-ins mean the work gets better after it ships, not just before.</p></div>
+    <div class="val-card"><span class="val-icon">💡</span><h4>Clarity as a service</h4><p>Technical complexity is only valuable if stakeholders understand it. Proplr translates cloud architecture into language that boards, founders, and sales teams can act on.</p></div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<div class="sec-w" id="tools" style="background:rgba(255,255,255,0.01);">
+<div class="inner">
+  <div class="stag">AI Pipeline Design · Marketing Technology · Usability · Analytics</div>
+  <h2 class="stitle">How the AI pipeline<br>was built</h2>
+  <p class="sdesc">Documenting the prompt engineering, tool selection, and iteration process behind this portfolio — showing the work, not just the output.</p>
+
+  <div class="tgrid">
+
+    <!-- CARD 1: PROMPT ENGINEERING PROCESS -->
+    <div class="tcard">
+      <div class="thead">
+        <div class="tbadge ai">⚡ Prompt Engineering · Claude</div>
+        <h3>Content pipeline design</h3>
+        <p>How Claude was integrated into Proplr's content workflow — the prompt structure, constraints, and iteration process that produced brand-aligned output.</p>
+      </div>
+      <div class="tbody" style="gap:16px;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--silver);margin-bottom:8px;">SYSTEM PROMPT STRUCTURE</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;">
+            <span style="color:var(--accent);">Role:</span> Senior brand consultant at Proplr<br>
+            <span style="color:var(--accent);">Tone:</span> Confident, direct, no fluff<br>
+            <span style="color:var(--accent);">Audience:</span> CTOs and startup founders<br>
+            <span style="color:var(--accent);">Constraint:</span> Max 350 words, end with hashtags<br>
+            <span style="color:var(--accent);">Output:</span> Post only — no preamble
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--silver);margin-bottom:8px;">ITERATION LOG</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:8px;font-size:12px;"><span style="color:var(--accent2);">v1</span><span style="color:rgba(255,255,255,0.5);">Too generic — no Proplr voice. Added brand brief to system prompt.</span></div>
+            <div style="display:flex;gap:8px;font-size:12px;"><span style="color:#F59E0B;">v2</span><span style="color:rgba(255,255,255,0.5);">Tone improved but posts too long. Added word limit constraint.</span></div>
+            <div style="display:flex;gap:8px;font-size:12px;"><span style="color:var(--accent);">v3</span><span style="color:rgba(255,255,255,0.5);">On-brand, right length. Added audience toggle for CTO vs founder.</span></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--silver);margin-bottom:8px;">TOOLS EVALUATED</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(0,212,170,0.1);color:var(--accent);border:1px solid rgba(0,212,170,0.2);">Claude ✓ selected</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--silver);border:1px solid rgba(255,255,255,0.08);">ChatGPT</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--silver);border:1px solid rgba(255,255,255,0.08);">Gemini</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--silver);border:1px solid rgba(255,255,255,0.08);">Perplexity</span>
+          </div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:8px;line-height:1.6;">Claude selected for tone consistency and instruction-following on brand constraints. Perplexity used for real-time market research inputs.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2: ROI CALCULATOR (live) -->
+    <div class="tcard">
+      <div class="thead">
+        <div class="tbadge calc">📊 Analytics · Reporting · Live</div>
+        <h3>Cloud ROI estimator</h3>
+        <p>Input team parameters and get a projected ROI from a Proplr engagement — the same model used in discovery calls.</p>
+      </div>
+      <div class="tbody">
+        <div><label class="tlbl">Engineering team size</label><div class="roi-sw"><div class="roi-sr"><span style="font-size:12px;color:var(--silver)">Headcount</span><span class="roi-v" id="ev">10</span></div><input type="range" min="2" max="100" value="10" id="es" oninput="upROI()"></div></div>
+        <div><label class="tlbl">% time on infrastructure maintenance</label><div class="roi-sw"><div class="roi-sr"><span style="font-size:12px;color:var(--silver)">Infra time</span><span class="roi-v" id="iv">35%</span></div><input type="range" min="5" max="80" value="35" id="is" oninput="upROI()"></div></div>
+        <div><label class="tlbl">Average engineer salary (CAD)</label><div class="roi-sw"><div class="roi-sr"><span style="font-size:12px;color:var(--silver)">Annual salary</span><span class="roi-v" id="sv">$110K</span></div><input type="range" min="60" max="200" value="110" id="ss" oninput="upROI()"></div></div>
+        <div><label class="tlbl">Monthly cloud spend (CAD)</label><div class="roi-sw"><div class="roi-sr"><span style="font-size:12px;color:var(--silver)">Cloud spend</span><span class="roi-v" id="cv">$8K/mo</span></div><input type="range" min="1" max="100" value="8" id="cs" oninput="upROI()"></div></div>
+        <button class="tbtn cb" onclick="calcROI()">Calculate ROI →</button>
+        <div class="rres" id="rr">
+          <div class="rgrid">
+            <div class="rbox"><div class="rbv" id="rts">—</div><div class="rbl">Hours recovered / year</div></div>
+            <div class="rbox"><div class="rbv" id="rcs">—</div><div class="rbl">Labour cost recovered</div></div>
+            <div class="rbox"><div class="rbv" id="rks">—</div><div class="rbl">Est. cloud savings / yr</div></div>
+            <div class="rbox hl"><div class="rbv" id="rt">—</div><div class="rbl">Total projected ROI</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3: AI TOOL COMPARISON -->
+    <div class="tcard">
+      <div class="thead">
+        <div class="tbadge gen">🔬 Tool Evaluation · Research</div>
+        <h3>AI tool comparison</h3>
+        <p>How Claude, ChatGPT, Gemini, and Perplexity were evaluated for this project — and which won each job.</p>
+      </div>
+      <div class="tbody" style="gap:12px;">
+        <div style="background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">Claude</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:3px;background:rgba(0,212,170,0.15);color:var(--accent);">Content pipeline</span>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">Best tone consistency and instruction-following. Strongest for brand-voice writing with complex constraints.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">Perplexity</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:3px;background:rgba(245,158,11,0.12);color:#F59E0B;">Market research</span>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">Best for real-time signals — competitor hiring data, keyword trends, and sourcing landscape research with live citations.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">Gemini</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:3px;background:rgba(26,86,219,0.15);color:#93C5FD;">Data & structured output</span>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">Strong for Google Workspace integration and structured data tasks. Natural fit for a Google Cloud partner context.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">ChatGPT</span>
+            <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:3px;background:rgba(255,255,255,0.06);color:var(--silver);">Brainstorming</span>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">Useful for ideation and broad first drafts. Less consistent on specific brand voice — better as a starting point than a finisher.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<!-- TALENT INTELLIGENCE -->
+<div class="sec-w" id="talent" style="background:rgba(26,86,219,0.03); border-top:1px solid rgba(255,255,255,0.04);">
+<div class="inner">
+  <div class="stag">Bonus · Workflow Design · Data Analytics · Intake Automation · Multi-source Research</div>
+  <h2 class="stitle">Talent Intelligence<br>Capability Demo</h2>
+  <p class="sdesc">Demonstrating data aggregation from multiple sources, audience-tailored reporting, workflow inefficiency identification, and a live research intake system — the core skills of a talent research function.</p>
+
+  <!-- DASHBOARD -->
+  <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Multi-source talent dashboard</h3>
+  <p style="font-size:13px;color:var(--silver);margin-bottom:20px;font-weight:300;">Aggregates signals across LinkedIn, job boards, internal ATS, and competitor filings. Toggle audience to see how the same data is framed differently for different stakeholders.</p>
+
+  <div class="aud-tabs" style="margin-bottom:20px;">
+    <button class="aud-tab active" onclick="switchAud('recruiter',this)">Recruiter view</button>
+    <button class="aud-tab" onclick="switchAud('vp',this)">VP / Director</button>
+    <button class="aud-tab" onclick="switchAud('exec',this)">Executive summary</button>
+  </div>
+
+  <!-- RECRUITER VIEW -->
+  <div class="aud-view active" id="aud-recruiter">
+    <div class="ti-grid3" style="margin-bottom:16px;">
+      <div class="ti-card">
+        <div class="ti-card-head"><h4>Emerging skills demand</h4><span>YoY posting growth</span></div>
+        <div class="ti-card-body">
+          <div class="ti-bar-row">
+            <div class="ti-bar-item"><div class="ti-bar-meta"><span class="ti-bar-label">AI/ML Engineering</span><span class="ti-bar-pct">+187%</span></div><div class="ti-bar-track"><div class="ti-bar-fill hot" style="width:95%"></div></div></div>
+            <div class="ti-bar-item"><div class="ti-bar-meta"><span class="ti-bar-label">Agentic AI / LLM Ops</span><span class="ti-bar-pct">+156%</span></div><div class="ti-bar-track"><div class="ti-bar-fill hot" style="width:80%"></div></div></div>
+            <div class="ti-bar-item"><div class="ti-bar-meta"><span class="ti-bar-label">Data Center Automation</span><span class="ti-bar-pct">+89%</span></div><div class="ti-bar-track"><div class="ti-bar-fill" style="width:58%"></div></div></div>
+            <div class="ti-bar-item"><div class="ti-bar-meta"><span class="ti-bar-label">Cloud Security (CSPM)</span><span class="ti-bar-pct">+72%</span></div><div class="ti-bar-track"><div class="ti-bar-fill" style="width:48%"></div></div></div>
+            <div class="ti-bar-item"><div class="ti-bar-meta"><span class="ti-bar-label">Kubernetes / Platform Eng</span><span class="ti-bar-pct">+58%</span></div><div class="ti-bar-track"><div class="ti-bar-fill" style="width:40%"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ti-card">
+        <div class="ti-card-head"><h4>Sourcing geography</h4><span>Active talent pools</span></div>
+        <div class="ti-card-body">
+          <div class="geo-rows">
+            <div class="geo-row"><span class="geo-label">Bay Area, US</span><div class="geo-track"><div class="geo-fill" style="width:88%"></div></div><span class="geo-val">88%</span></div>
+            <div class="geo-row"><span class="geo-label">Toronto, CA</span><div class="geo-track"><div class="geo-fill" style="width:71%"></div></div><span class="geo-val">71%</span></div>
+            <div class="geo-row"><span class="geo-label">London, UK</span><div class="geo-track"><div class="geo-fill" style="width:64%"></div></div><span class="geo-val">64%</span></div>
+            <div class="geo-row"><span class="geo-label">Singapore</span><div class="geo-track"><div class="geo-fill" style="width:52%"></div></div><span class="geo-val">52%</span></div>
+            <div class="geo-row"><span class="geo-label">Amsterdam</span><div class="geo-track"><div class="geo-fill" style="width:46%"></div></div><span class="geo-val">46%</span></div>
+            <div class="geo-row"><span class="geo-label">Sydney, AU</span><div class="geo-track"><div class="geo-fill" style="width:38%"></div></div><span class="geo-val">38%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ti-card">
+        <div class="ti-card-head"><h4>Competitor hiring</h4><span>Live sourcing landscape</span></div>
+        <div class="ti-card-body">
+          <div class="comp-rows">
+            <div class="comp-row"><span class="comp-name">AWS</span><div class="comp-right"><span class="comp-num">+284 roles</span><span class="comp-pill active">Surging</span></div></div>
+            <div class="comp-row"><span class="comp-name">Microsoft Azure</span><div class="comp-right"><span class="comp-num">+201 roles</span><span class="comp-pill active">Surging</span></div></div>
+            <div class="comp-row"><span class="comp-name">Digital Realty</span><div class="comp-right"><span class="comp-num">−12 roles</span><span class="comp-pill freeze">Frozen</span></div></div>
+            <div class="comp-row"><span class="comp-name">CyrusOne</span><div class="comp-right"><span class="comp-num">+44 roles</span><span class="comp-pill slow">Moderate</span></div></div>
+            <div class="comp-row"><span class="comp-name">Iron Mountain</span><div class="comp-right"><span class="comp-num">+67 roles</span><span class="comp-pill slow">Moderate</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ti-card" style="margin-bottom:0;">
+      <div class="ti-card-head"><h4>Hiring volume by category</h4><span>Last 6 months · all sources</span></div>
+      <div class="ti-card-body" style="height:220px;"><canvas id="hiringChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- VP VIEW -->
+  <div class="aud-view" id="aud-vp">
+    <div class="ti-grid2">
+      <div class="ti-card">
+        <div class="ti-card-head"><h4>Key signals this quarter</h4><span>Claude-synthesized · weekly</span></div>
+        <div class="ti-card-body">
+          <div class="insight-rows">
+            <div class="insight-row"><span class="dot red"></span>AWS opened 284 AI/ML roles in Q1 — highest competitor velocity in 18 months. Talent war risk elevated in cloud infra.</div>
+            <div class="insight-row"><span class="dot amber"></span>LLM Ops now listed in 34% of new data center postings — up from 8% in 2024. Recommend adding to sourcing brief immediately.</div>
+            <div class="insight-row"><span class="dot green"></span>Toronto cloud engineer pool grew 22% YoY — significantly underutilized relative to current US spend. Opportunity to reduce cost-per-hire.</div>
+            <div class="insight-row"><span class="dot amber"></span>Glassdoor sentiment declined 0.2pts this quarter in APAC. Retention risk warrants investigation before Q3 performance cycle.</div>
+            <div class="insight-row"><span class="dot green"></span>Digital Realty and QTS both in hiring freeze — potential opportunity to attract senior talent looking for stability.</div>
+          </div>
+        </div>
+      </div>
+      <div class="ti-card">
+        <div class="ti-card-head"><h4>Quarterly hiring performance</h4><span>vs plan</span></div>
+        <div class="ti-card-body" style="height:240px;"><canvas id="vpChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXEC VIEW -->
+  <div class="aud-view" id="aud-exec">
+    <div class="summary-cards" style="grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div class="sum-card" style="grid-column:span 2; padding:24px;">
+        <h5 style="font-size:15px;margin-bottom:10px;">Board-level summary · Q1 2026</h5>
+        <p style="font-size:14px;line-height:1.8;">Competitor hiring activity is at an 18-month high, led by AWS and Microsoft Azure. Equinix's talent positioning in AI/ML roles remains competitive but requires accelerated sourcing in Toronto and Singapore to offset Bay Area cost pressure. Two competitors (Digital Realty, QTS) are in hiring freeze — a 6-week window exists to attract senior talent. Recommend increasing AI/ML sourcing budget by 20% in Q2.</p>
+      </div>
+      <div class="sum-card">
+        <h5>Talent risk</h5>
+        <p>APAC retention concern. Glassdoor sentiment down. Recommend compensation review before Q3.</p>
+      </div>
+      <div class="sum-card">
+        <h5>Opportunity</h5>
+        <p>Toronto pool underutilized. 22% YoY growth. 30–40% lower cost-per-hire vs Bay Area.</p>
+      </div>
+      <div class="sum-card">
+        <h5>Market movement</h5>
+        <p>AWS surging at +284 roles. LLM Ops demand up 156% YoY. Act now on pipeline.</p>
+      </div>
+      <div class="sum-card">
+        <h5>Recommended action</h5>
+        <p>Approve expanded sourcing brief. Prioritize AI/ML, cloud security, and automation skills in Q2 requisitions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:48px;"></div>
+
+  <!-- WORKFLOW AUDIT -->
+  <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Workflow inefficiency audit</h3>
+  <p style="font-size:13px;color:var(--silver);margin-bottom:24px;font-weight:300;">Identifying where a talent research team loses time — and how AI, automation, and process redesign eliminates each bottleneck.</p>
+
+  <div class="bn-flow">
+    <div class="bn-step"><div class="bn-node ok">Request received</div><div class="bn-label">OK</div></div>
+    <div class="bn-arrow">→</div>
+    <div class="bn-step"><div class="bn-node block">Manual data collection</div><div class="bn-label">Bottleneck</div></div>
+    <div class="bn-arrow">→</div>
+    <div class="bn-step"><div class="bn-node block">Copy/paste aggregation</div><div class="bn-label">Bottleneck</div></div>
+    <div class="bn-arrow">→</div>
+    <div class="bn-step"><div class="bn-node warn">Analysis</div><div class="bn-label">Delayed</div></div>
+    <div class="bn-arrow">→</div>
+    <div class="bn-step"><div class="bn-node block">Manual formatting</div><div class="bn-label">Bottleneck</div></div>
+    <div class="bn-arrow">→</div>
+    <div class="bn-step"><div class="bn-node warn">Stakeholder delivery</div><div class="bn-label">Late</div></div>
+  </div>
+
+  <div class="wf-cols">
+    <div class="wf-col bad">
+      <h4>Before automation</h4>
+      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">Ad-hoc Slack research requests</div><div class="wf-desc">No structure, no priority, no tracking. Analyst spends time clarifying scope before any work begins.</div><div class="wf-time">~45 min lost per request</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">Manual job board scraping</div><div class="wf-desc">Copy-pasting role data from 4–6 sources into a spreadsheet. Error-prone and repetitive.</div><div class="wf-time">~6 hrs per competitive scan</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">Rebuilding reports from scratch</div><div class="wf-desc">Every stakeholder deck reformatted manually. No templates, no reuse across audiences.</div><div class="wf-time">~3 hrs per report</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">No centralized insight library</div><div class="wf-desc">Research lives in inboxes. Team re-does work completed months ago.</div><div class="wf-time">~2 hrs duplicate work/week</div></div></div>
+    </div>
+    <div class="wf-col good">
+      <h4>After redesign</h4>
+      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">Structured intake form with auto-routing</div><div class="wf-desc">Scope, priority, and deadline captured upfront. Auto-logged to tracker. Zero back-and-forth.</div><div class="wf-time">~5 min to submit</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">AI-assisted data aggregation</div><div class="wf-desc">Claude + Perplexity pull structured data from multiple sources. Analyst reviews instead of collects.</div><div class="wf-time">~45 min per competitive scan</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">Templatized audience-toggled outputs</div><div class="wf-desc">Dashboard components auto-populate. Recruiter, VP, and exec views generated from one dataset.</div><div class="wf-time">~20 min per report</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">Searchable insight library</div><div class="wf-desc">All research stored with tags. Claude-powered search finds relevant prior work in seconds.</div><div class="wf-time">~0 duplicate effort</div></div></div>
+    </div>
+  </div>
+
+  <div class="wf-savings">
+    <div class="wf-sav"><div class="wf-sav-val">14 hrs</div><div class="wf-sav-label">Saved per analyst per week</div></div>
+    <div class="wf-sav"><div class="wf-sav-val">87%</div><div class="wf-sav-label">Reduction in data collection time</div></div>
+    <div class="wf-sav"><div class="wf-sav-val">3×</div><div class="wf-sav-label">Faster stakeholder reporting</div></div>
+    <div class="wf-sav"><div class="wf-sav-val">~0</div><div class="wf-sav-label">Duplicate research requests</div></div>
+  </div>
+
+  <!-- INTAKE FORM -->
+  <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;">Research request intake system</h3>
+  <p style="font-size:13px;color:var(--silver);margin-bottom:24px;font-weight:300;">A structured intake form and live request tracker — eliminates ad-hoc Slack requests and gives the team full visibility into the research queue.</p>
+
+  <div class="intake-wrap">
+    <div class="intake-form">
+      <div class="intake-form-head"><h4>New Research Request</h4><span class="intake-badge">INTAKE FORM</span></div>
+      <div class="intake-body">
+        <div class="if-row">
+          <div><label class="if-label">Requestor name *</label><input class="if-input" id="if-name" placeholder="Your name" /></div>
+          <div><label class="if-label">Team *</label>
+            <select class="if-select" id="if-team">
+              <option value="">Select…</option>
+              <option>Talent Acquisition</option>
+              <option>HR Business Partners</option>
+              <option>Total Rewards</option>
+              <option>Workforce Planning</option>
+              <option>Executive Leadership</option>
+            </select>
+          </div>
+        </div>
+        <div><label class="if-label">Request title *</label><input class="if-input" id="if-title" placeholder="e.g. AI Engineer sourcing landscape — APAC Q3" /></div>
+        <div><label class="if-label">Request type</label>
+          <select class="if-select" id="if-type">
+            <option value="">Select…</option>
+            <option>Sourcing landscape analysis</option>
+            <option>Competitor talent mapping</option>
+            <option>Emerging skills / trend report</option>
+            <option>Compensation benchmarking</option>
+            <option>Geographic talent pool analysis</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div><label class="if-label">Research context *</label><textarea class="if-textarea" id="if-context" placeholder="What decision does this support? What do you already know? Any specific geographies or competitors to include?"></textarea></div>
+        <div class="if-row">
+          <div><label class="if-label">Deadline</label><input class="if-input" id="if-deadline" type="date" /></div>
+          <div><label class="if-label">Output audience</label>
+            <select class="if-select" id="if-aud">
+              <option value="">Select…</option>
+              <option>Recruiter / team</option>
+              <option>VP / Director</option>
+              <option>C-suite / Board</option>
+            </select>
+          </div>
+        </div>
+        <div><label class="if-label">Priority *</label>
+          <div class="pri-btns">
+            <button class="pri-b" id="pb-lo" onclick="setP('lo')">Low</button>
+            <button class="pri-b" id="pb-med" onclick="setP('med')">Medium</button>
+            <button class="pri-b" id="pb-hi" onclick="setP('hi')">High</button>
+          </div>
+        </div>
+        <button class="if-submit" onclick="submitIF()">Submit Request →</button>
+        <div class="if-toast" id="if-toast">✓ Request submitted — added to tracker. Estimated turnaround within 1 business day.</div>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="tracker-head"><h4>Request Tracker</h4><span class="tracker-count" id="tr-count">6 requests</span></div>
+      <div class="tracker-filters">
+        <button class="tf active" onclick="filterTR('all',this)">All</button>
+        <button class="tf" onclick="filterTR('new',this)">New</button>
+        <button class="tf" onclick="filterTR('progress',this)">In Progress</button>
+        <button class="tf" onclick="filterTR('done',this)">Done</button>
+      </div>
+      <div class="tracker-list" id="tr-list"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <p>Proplr × Vaultly · AI Transformation Portfolio · Built with Claude API · 2026</p>
+  <div class="ftag">Concept portfolio project · not affiliated with Proplr.io</div>
+</footer>
+
+<script>
+function togglePhase(el) {
+  document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+function switchWeek(n) {
+  document.querySelectorAll('.cwk,.wthm').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
+  document.getElementById('w'+n).classList.add('active');
+  document.getElementById('t'+n).classList.add('active');
+  document.querySelectorAll('.ctab')[n-1].classList.add('active');
+}
+
+function upROI() {
+  document.getElementById('ev').textContent = document.getElementById('es').value;
+  document.getElementById('iv').textContent = document.getElementById('is').value + '%';
+  document.getElementById('sv').textContent = '$' + document.getElementById('ss').value + 'K';
+  document.getElementById('cv').textContent = '$' + document.getElementById('cs').value + 'K/mo';
+}
+function calcROI() {
+  const eng = +document.getElementById('es').value;
+  const infra = +document.getElementById('is').value / 100;
+  const sal = +document.getElementById('ss').value * 1000;
+  const cloud = +document.getElementById('cs').value * 1000 * 12;
+  const hrs = Math.round(eng * 2080 * infra * 0.6);
+  const lab = Math.round(eng * sal * infra * 0.6);
+  const cld = Math.round(cloud * 0.28);
+  const tot = lab + cld;
+  const fmt = n => n >= 1000000 ? '$'+(n/1000000).toFixed(1)+'M' : '$'+Math.round(n/1000)+'K';
+  document.getElementById('rts').textContent = hrs.toLocaleString() + ' hrs';
+  document.getElementById('rcs').textContent = fmt(lab);
+  document.getElementById('rks').textContent = fmt(cld);
+  document.getElementById('rt').textContent = fmt(tot);
+  document.getElementById('rr').classList.add('show');
+}
+upROI();
+
+// ── AUDIENCE TOGGLE ──
+function switchAud(id, btn) {
+  document.querySelectorAll('.aud-view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.aud-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('aud-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── CHARTS ──
+let hiringChart, vpChart;
+function initCharts() {
+  const hCtx = document.getElementById('hiringChart');
+  if (hCtx && !hiringChart) {
+    hiringChart = new Chart(hCtx.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [
+          { label: 'Engineering', data: [142,158,201,187,234,268], backgroundColor: 'rgba(26,86,219,0.8)', borderRadius: 3 },
+          { label: 'Sales & GTM', data: [89,94,78,102,115,98], backgroundColor: 'rgba(26,86,219,0.35)', borderRadius: 3 },
+          { label: 'Operations', data: [54,61,58,72,68,81], backgroundColor: 'rgba(26,86,219,0.12)', borderRadius: 3 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 }, boxWidth: 10 } } },
+        scales: {
+          x: { stacked: true, grid: { display: false }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } },
+          y: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } }
+        }
+      }
+    });
+  }
+  const vCtx = document.getElementById('vpChart');
+  if (vCtx && !vpChart) {
+    vpChart = new Chart(vCtx.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [
+          { label: 'Actual hires', data: [28,34,31,42,48,52], borderColor: '#00D4AA', backgroundColor: 'rgba(0,212,170,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#00D4AA' },
+          { label: 'Plan', data: [30,30,35,40,45,50], borderColor: 'rgba(255,255,255,0.2)', borderDash: [4,4], tension: 0.4, pointRadius: 0 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 }, boxWidth: 10 } } },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } },
+          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } }
+        }
+      }
+    });
+  }
+}
+// init charts when section scrolls into view
+const talentSection = document.getElementById('talent');
+if (talentSection) {
+  const obs = new IntersectionObserver(entries => { if (entries[0].isIntersecting) { initCharts(); obs.disconnect(); } }, { threshold: 0.1 });
+  obs.observe(talentSection);
+}
+
+// ── INTAKE FORM ──
+let selP = '';
+function setP(p) {
+  selP = p;
+  ['lo','med','hi'].forEach(x => {
+    const b = document.getElementById('pb-' + x);
+    b.className = 'pri-b' + (x === p ? ' ' + p : '');
+  });
+}
+
+let trRequests = [];
+let trFilter = 'all';
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  }[char]));
+}
+
+function renderTR() {
+  const list = document.getElementById('tr-list');
+  if (!list) return;
+  const filtered = trFilter === 'all' ? trRequests : trRequests.filter(r => r.status === trFilter);
+  document.getElementById('tr-count').textContent = filtered.length + ' request' + (filtered.length !== 1 ? 's' : '');
+  list.innerHTML = filtered.map(r => `
+    <div class="tr-item">
+      <div class="tr-top">
+        <div class="tr-title">${escapeHTML(r.title)}</div>
+        <div class="tr-status ${r.status}">${r.status === 'progress' ? 'In Progress' : r.status.charAt(0).toUpperCase() + r.status.slice(1)}</div>
+      </div>
+      <div class="tr-meta">
+        <span>${escapeHTML(r.team)}</span>
+        <span><span class="tr-dot ${r.priority}"></span>${r.priority === 'hi' ? 'High' : r.priority === 'med' ? 'Medium' : 'Low'}</span>
+        <span>${escapeHTML(r.date)}</span>
+      </div>
+    </div>`).join('');
+}
+
+function filterTR(mode, btn) {
+  trFilter = mode;
+  document.querySelectorAll('.tf').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTR();
+}
+
+async function loadRequests() {
+  try {
+    const res = await fetch('/api/research-requests');
+    if (!res.ok) throw new Error('Could not load requests.');
+    const data = await res.json();
+    trRequests = data.requests || [];
+    renderTR();
+  } catch (error) {
+    console.error(error);
+    document.getElementById('tr-count').textContent = 'Offline';
+  }
+}
+
+async function submitIF() {
+  const name = document.getElementById('if-name').value.trim();
+  const team = document.getElementById('if-team').value;
+  const title = document.getElementById('if-title').value.trim();
+  const type = document.getElementById('if-type').value;
+  const context = document.getElementById('if-context').value.trim();
+  const deadline = document.getElementById('if-deadline').value;
+  const audience = document.getElementById('if-aud').value;
+  if (!name || !team || !title || !context || !selP) {
+    alert('Please fill in all required fields and select a priority.');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/research-requests', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, team, title, type, context, deadline, audience, priority: selP })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Could not submit request.');
+    trRequests.unshift(data.request);
+  } catch (error) {
+    alert(error.message);
+    return;
+  }
+
+  trFilter = 'all';
+  document.querySelectorAll('.tf').forEach((b, i) => b.classList.toggle('active', i === 0));
+  renderTR();
+  document.getElementById('if-toast').classList.add('show');
+  ['if-name','if-title','if-context'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('if-team').value = '';
+  document.getElementById('if-type').value = '';
+  document.getElementById('if-aud').value = '';
+  selP = '';
+  ['lo','med','hi'].forEach(x => document.getElementById('pb-' + x).className = 'pri-b');
+  setTimeout(() => document.getElementById('if-toast').classList.remove('show'), 5000);
+}
+
+loadRequests();
+</script>
+</body>
+</html>
