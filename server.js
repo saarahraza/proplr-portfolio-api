@@ -126,6 +126,61 @@ function validateRequest(input) {
   return { request };
 }
 
+function buildContentStrategy(input) {
+  const audience = cleanString(input.audience) || 'Startup founders';
+  const topic = cleanString(input.topic) || 'AI transformation';
+  const goal = cleanString(input.goal) || 'Education';
+  const tone = cleanString(input.tone) || 'Direct and practical';
+  const postCount = Math.min(Math.max(Number(input.postCount) || 3, 3), 7);
+
+  const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const postTypes = ['Pain point', 'Framework', 'Proof point', 'Contrarian take', 'Conversion'];
+  const goalCtas = {
+    Awareness: 'Save this before your next AI planning meeting.',
+    Education: 'Audit one workflow before choosing another AI tool.',
+    'Lead generation': 'Book a workflow audit before the next cloud sprint.',
+    Trust: 'Use this as a checklist for your next implementation review.'
+  };
+  const audiencePain = {
+    Founders: 'lost execution time',
+    CTOs: 'tool sprawl and fragile integrations',
+    'VP Engineering': 'slow delivery across platform and product teams',
+    'Startup Teams': 'manual work hiding inside daily operations'
+  };
+
+  const pain = audiencePain[audience] || 'manual work hiding inside daily operations';
+  const theme = `${topic} content sprint for ${audience}`;
+  const posts = Array.from({ length: postCount }, (_, index) => {
+    const type = postTypes[index % postTypes.length];
+    const day = dayNames[index];
+    const hookTemplates = [
+      `${audience} do not need more AI tools. They need a cleaner workflow around ${topic}.`,
+      `Most ${topic} projects stall because teams automate the wrong step first.`,
+      `The fastest AI win is not a new platform. It is removing ${pain}.`,
+      `If ${topic} takes six months to explain, the workflow is probably too vague.`,
+      `Before buying another AI product, map the handoff that slows the team down.`
+    ];
+
+    return {
+      day,
+      type,
+      hook: hookTemplates[index % hookTemplates.length],
+      summary: `Write a ${tone.toLowerCase()} LinkedIn post for ${audience} that connects ${topic} to a practical business outcome. Focus on one clear workflow problem, one insight, and one next step.`,
+      cta: goalCtas[goal] || goalCtas.Education
+    };
+  });
+
+  return {
+    agent: 'AI Content Strategy Agent',
+    theme,
+    audience,
+    topic,
+    goal,
+    tone,
+    posts
+  };
+}
+
 async function handleApi(req, res, url) {
   if (req.method === 'OPTIONS') {
     return sendJson(res, 204, {});
@@ -161,6 +216,11 @@ async function handleApi(req, res, url) {
     requests.unshift(request);
     await writeRequests(requests);
     return sendJson(res, 201, { request });
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/content-strategy') {
+    const body = await readBody(req);
+    return sendJson(res, 200, buildContentStrategy(body));
   }
 
   const statusMatch = url.pathname.match(/^\/api\/research-requests\/([^/]+)\/status$/);

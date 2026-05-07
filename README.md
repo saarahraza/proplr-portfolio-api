@@ -19,5 +19,8 @@ If you have `npm` installed, `npm start` works too.
 - `GET /api/research-requests?status=new`
 - `POST /api/research-requests`
 - `PATCH /api/research-requests/:id/status`
+- `POST /api/content-strategy`
 
 Submitted requests are saved in `data/research-requests.json`.
+
+The content strategy endpoint powers the AI Content Strategy Agent demo. It generates a Proplr-style LinkedIn content calendar from audience, topic, goal, tone, and post count inputs.

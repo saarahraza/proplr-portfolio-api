@@ -731,6 +731,58 @@
       </div>
     </div>
 
+    <!-- CARD 4: CONTENT STRATEGY AGENT -->
+    <div class="tcard">
+      <div class="thead">
+        <div class="tbadge ai">AI Agent · Content Strategy</div>
+        <h3>LinkedIn content agent</h3>
+        <p>Generate Proplr-style post hooks and a weekly content calendar for AI consulting audiences.</p>
+      </div>
+      <div class="tbody">
+        <div><label class="tlbl">Audience</label>
+          <select class="tsel" id="csa-audience">
+            <option>Founders</option>
+            <option>CTOs</option>
+            <option>VP Engineering</option>
+            <option>Startup Teams</option>
+          </select>
+        </div>
+        <div><label class="tlbl">Topic</label>
+          <select class="tsel" id="csa-topic">
+            <option>AI transformation</option>
+            <option>Google Cloud adoption</option>
+            <option>workflow automation</option>
+            <option>cloud cost savings</option>
+          </select>
+        </div>
+        <div><label class="tlbl">Goal</label>
+          <select class="tsel" id="csa-goal">
+            <option>Education</option>
+            <option>Awareness</option>
+            <option>Lead generation</option>
+            <option>Trust</option>
+          </select>
+        </div>
+        <div><label class="tlbl">Tone</label>
+          <select class="tsel" id="csa-tone">
+            <option>Direct and practical</option>
+            <option>Strategic and confident</option>
+            <option>Clear and educational</option>
+            <option>Bold but grounded</option>
+          </select>
+        </div>
+        <div><label class="tlbl">Number of posts</label>
+          <select class="tsel" id="csa-count">
+            <option value="3">3 posts</option>
+            <option value="5" selected>5 posts</option>
+            <option value="7">7 posts</option>
+          </select>
+        </div>
+        <button class="tbtn ab" onclick="generateContentStrategy()">Generate Content Calendar</button>
+        <div class="tout" id="csa-out"></div>
+      </div>
+    </div>
+
   </div>
 </div>
 </div>
@@ -1007,6 +1059,46 @@ function calcROI() {
   document.getElementById('rr').classList.add('show');
 }
 upROI();
+
+async function generateContentStrategy() {
+  const out = document.getElementById('csa-out');
+  out.className = 'tout show loading';
+  out.textContent = 'Generating content calendar...';
+
+  const payload = {
+    audience: document.getElementById('csa-audience').value,
+    topic: document.getElementById('csa-topic').value,
+    goal: document.getElementById('csa-goal').value,
+    tone: document.getElementById('csa-tone').value,
+    postCount: document.getElementById('csa-count').value
+  };
+
+  try {
+    const res = await fetch('/api/content-strategy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Could not generate content strategy.');
+
+    out.className = 'tout show';
+    out.innerHTML = `
+      <strong>${escapeHTML(data.agent)}</strong><br>
+      Theme: ${escapeHTML(data.theme)}<br>
+      Goal: ${escapeHTML(data.goal)}<br><br>
+      ${data.posts.map(post => `
+        <strong>${escapeHTML(post.day)} - ${escapeHTML(post.type)}</strong><br>
+        Hook: ${escapeHTML(post.hook)}<br>
+        Summary: ${escapeHTML(post.summary)}<br>
+        CTA: ${escapeHTML(post.cta)}
+      `).join('<br><br>')}
+    `;
+  } catch (error) {
+    out.className = 'tout show';
+    out.textContent = error.message;
+  }
+}
 
 // ── AUDIENCE TOGGLE ──
 function switchAud(id, btn) {
