@@ -34,7 +34,8 @@
   }
   body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.075; mix-blend-mode: screen; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 0 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.55) 0 1px, transparent 1px); background-size: 4px 4px, 7px 7px; }
   a, button, input, select { cursor: pointer; }
-  header { padding: 18px 32px; border-bottom: 1px solid var(--line); background: rgba(7,23,43,0.92); position: sticky; top: 0; z-index: 5; backdrop-filter: blur(14px); display: flex; justify-content: space-between; gap: 18px; align-items: center; }
+  header { padding: 18px 32px; border-bottom: 1px solid var(--line); background: rgba(7,23,43,0.82); position: sticky; top: 0; z-index: 5; backdrop-filter: blur(14px); display: flex; justify-content: space-between; gap: 18px; align-items: center; box-shadow: 0 12px 44px rgba(0,0,0,0.16); transition: padding 0.22s ease, background 0.22s ease, box-shadow 0.22s ease; }
+  header.scrolled { padding: 12px 32px; background: rgba(7,23,43,0.94); box-shadow: 0 20px 58px rgba(0,0,0,0.32); }
   .brand strong { display: block; font-family: 'Syne', sans-serif; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; }
   .brand span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; }
   .nav { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -52,7 +53,8 @@
   .proof-panel strong { display: block; font-family: 'Syne', sans-serif; font-size: 34px; line-height: 1; color: var(--teal); margin-bottom: 6px; }
   .proof-panel span { color: var(--muted); font-size: 13px; line-height: 1.5; }
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  .agent { background: rgba(13,32,56,0.94); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 22px 56px rgba(0,0,0,0.22); }
+  .agent { background: rgba(13,32,56,0.88); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 22px 56px rgba(0,0,0,0.22); backdrop-filter: blur(16px); transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+  .agent:hover { transform: translateY(-3px); border-color: rgba(0,212,170,0.22); box-shadow: 0 28px 72px rgba(0,0,0,0.3); }
   .agent.priority { grid-column: 1 / -1; display: grid; grid-template-columns: 0.82fr 1.18fr; min-height: 520px; border-color: rgba(0,212,170,0.32); }
   .agent-head { padding: 20px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.025); }
   .agent.priority .agent-head { border-bottom: none; border-right: 1px solid var(--line); padding: 26px; display: flex; flex-direction: column; justify-content: space-between; }
@@ -81,6 +83,8 @@
   .mini-metrics div { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: rgba(255,255,255,0.035); }
   .mini-metrics b { display: block; font-family: 'Syne', sans-serif; font-size: 18px; color: var(--teal); margin-bottom: 3px; }
   .mini-metrics span { display: block; color: var(--muted); font-size: 11px; line-height: 1.4; }
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
   @media (max-width: 900px) {
     header { position: static; align-items: flex-start; flex-direction: column; }
     .intro, .grid, .fields, .agent.priority { grid-template-columns: 1fr; }
@@ -241,10 +245,29 @@
 
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const headerEl = document.querySelector('header');
 if (!reduceMotion) {
   window.addEventListener('scroll', () => {
+    if (headerEl) headerEl.classList.toggle('scrolled', window.scrollY > 20);
     document.documentElement.style.setProperty('--parallax-y', `${window.scrollY * 0.12}px`);
   }, { passive: true });
+}
+if (headerEl) headerEl.classList.toggle('scrolled', window.scrollY > 20);
+
+const revealTargets = document.querySelectorAll('.intro, .agent, .proof-panel');
+revealTargets.forEach(el => el.classList.add('reveal'));
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealTargets.forEach(el => revealObserver.observe(el));
+} else {
+  revealTargets.forEach(el => el.classList.add('in-view'));
 }
 
 function escapeHTML(value) {
