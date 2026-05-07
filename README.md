@@ -26,3 +26,5 @@ If you have `npm` installed, `npm start` works too.
 Submitted requests are saved in `data/research-requests.json`.
 
 The content strategy endpoint powers the AI Content Strategy Agent demo. It generates a Proplr-style LinkedIn content calendar from audience, topic, goal, tone, and post count inputs.
+
+The agent is tuned around Proplr's public positioning: Google Cloud consulting, managed cloud services, fractional cloud expertise, secure cloud architecture, security and compliance, AI-powered FinOps, and generative AI on Google Cloud.

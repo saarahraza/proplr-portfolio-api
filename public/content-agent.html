@@ -294,7 +294,7 @@
 <header>
   <div class="brand">
     <strong>Proplr Content Strategy Agent</strong>
-    <span>LinkedIn calendars for AI consulting campaigns</span>
+    <span>LinkedIn calendars for Google Cloud and AI consulting campaigns</span>
   </div>
   <div class="top-actions">
     <a class="link-btn" href="/">Portfolio</a>
@@ -305,25 +305,29 @@
 <main>
   <section class="panel">
     <h1>Build a content sprint</h1>
-    <p>Choose the strategy inputs and generate a Proplr-style LinkedIn calendar with hooks, summaries, and calls to action.</p>
+    <p>Choose the strategy inputs and generate a Proplr-style LinkedIn calendar around Google Cloud, secure architecture, FinOps, managed services, and AI solutions.</p>
 
     <div class="field">
       <label for="audience">Audience</label>
       <select id="audience">
-        <option>Founders</option>
+        <option>Startup founders</option>
+        <option>Scaleup leaders</option>
         <option>CTOs</option>
-        <option>VP Engineering</option>
-        <option>Startup Teams</option>
+        <option>Platform leaders</option>
+        <option>Regulated industry teams</option>
       </select>
     </div>
 
     <div class="field">
       <label for="topic">Topic</label>
       <select id="topic">
-        <option>AI transformation</option>
-        <option>Google Cloud adoption</option>
-        <option>workflow automation</option>
-        <option>cloud cost savings</option>
+        <option>Google Cloud consulting</option>
+        <option>Managed cloud services</option>
+        <option>Fractional cloud expertise</option>
+        <option>Cloud architecture foundations</option>
+        <option>Security and compliance</option>
+        <option>AI-powered FinOps</option>
+        <option>Generative AI on Google Cloud</option>
       </select>
     </div>
 
@@ -445,8 +449,8 @@ async function generateCalendar() {
 }
 
 function loadSample() {
-  document.getElementById('audience').value = 'CTOs';
-  document.getElementById('topic').value = 'workflow automation';
+  document.getElementById('audience').value = 'Scaleup leaders';
+  document.getElementById('topic').value = 'Fractional cloud expertise';
   document.getElementById('goal').value = 'Lead generation';
   document.getElementById('tone').value = 'Strategic and confident';
   document.getElementById('postCount').value = '5';

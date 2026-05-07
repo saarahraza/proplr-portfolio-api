@@ -128,44 +128,63 @@ function validateRequest(input) {
 
 function buildContentStrategy(input) {
   const audience = cleanString(input.audience) || 'Startup founders';
-  const topic = cleanString(input.topic) || 'AI transformation';
+  const topic = cleanString(input.topic) || 'Google Cloud consulting';
   const goal = cleanString(input.goal) || 'Education';
   const tone = cleanString(input.tone) || 'Direct and practical';
   const postCount = Math.min(Math.max(Number(input.postCount) || 3, 3), 7);
 
   const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const postTypes = ['Pain point', 'Framework', 'Proof point', 'Contrarian take', 'Conversion'];
+  const postTypes = ['Pain point', 'Framework', 'Proof point', 'Industry angle', 'Conversion', 'Trust builder', 'Cost lens'];
   const goalCtas = {
-    Awareness: 'Save this before your next AI planning meeting.',
-    Education: 'Audit one workflow before choosing another AI tool.',
-    'Lead generation': 'Book a workflow audit before the next cloud sprint.',
-    Trust: 'Use this as a checklist for your next implementation review.'
+    Awareness: 'Save this before your next cloud planning session.',
+    Education: 'Use this as a checklist before your next Google Cloud decision.',
+    'Lead generation': 'Start with a focused cloud readiness conversation.',
+    Trust: 'Bring this to your next architecture, security, or cost review.'
   };
   const audiencePain = {
-    Founders: 'lost execution time',
+    'Startup founders': 'cloud decisions that slow product momentum',
+    'Scaleup leaders': 'growth creating fragile infrastructure and rising cloud spend',
     CTOs: 'tool sprawl and fragile integrations',
-    'VP Engineering': 'slow delivery across platform and product teams',
-    'Startup Teams': 'manual work hiding inside daily operations'
+    'Platform leaders': 'secure, scalable foundations that teams can actually ship on',
+    'Regulated industry teams': 'security, compliance, and customer trust requirements'
   };
+  const topicAngles = {
+    'Google Cloud consulting': 'seamless migration, optimized performance, and end-to-end support',
+    'Managed cloud services': 'reliable, available, secure infrastructure managed by senior cloud experts',
+    'Fractional cloud expertise': 'senior Google Cloud architects and engineers without full-time overhead',
+    'Cloud architecture foundations': 'secure, scalable, cost-efficient foundations built on Google Cloud',
+    'Security and compliance': 'cloud environments designed around protection, compliance, and peace of mind',
+    'AI-powered FinOps': 'technology, finance, and business teams aligned around cloud ROI',
+    'Generative AI on Google Cloud': 'custom AI solutions that improve efficiency and unlock new business capabilities'
+  };
+  const proofPoints = [
+    'position Proplr as a Google Cloud partner with senior engineering depth',
+    'connect the idea to secure, scalable, efficient cloud infrastructure',
+    'show how strong foundations help companies innovate, streamline, and outpace competitors',
+    'make the business value clear: efficiency, reliability, security, customer experience, and lean spend'
+  ];
 
-  const pain = audiencePain[audience] || 'manual work hiding inside daily operations';
-  const theme = `${topic} content sprint for ${audience}`;
+  const pain = audiencePain[audience] || 'cloud complexity slowing business execution';
+  const angle = topicAngles[topic] || topicAngles['Google Cloud consulting'];
+  const theme = `${topic} sprint for ${audience}`;
   const posts = Array.from({ length: postCount }, (_, index) => {
     const type = postTypes[index % postTypes.length];
     const day = dayNames[index];
     const hookTemplates = [
-      `${audience} do not need more AI tools. They need a cleaner workflow around ${topic}.`,
-      `Most ${topic} projects stall because teams automate the wrong step first.`,
-      `The fastest AI win is not a new platform. It is removing ${pain}.`,
-      `If ${topic} takes six months to explain, the workflow is probably too vague.`,
-      `Before buying another AI product, map the handoff that slows the team down.`
+      `${audience} do not need cloud complexity. They need a Google Cloud foundation that helps the business move faster.`,
+      `Most ${topic} conversations start with tools. The better question is what outcome the cloud needs to unlock.`,
+      `The hidden cost of ${pain} is not just spend. It is slower delivery, weaker reliability, and missed momentum.`,
+      `From startup to scaleup, cloud strategy has to evolve before the infrastructure becomes the bottleneck.`,
+      `Before the next migration, architecture review, or AI roadmap, align the cloud decision to business value.`,
+      `Secure and scalable does not have to mean slow. It means building the right foundation early.`,
+      `Cloud ROI improves when engineering, finance, and operations can see the same system clearly.`
     ];
 
     return {
       day,
       type,
       hook: hookTemplates[index % hookTemplates.length],
-      summary: `Write a ${tone.toLowerCase()} LinkedIn post for ${audience} that connects ${topic} to a practical business outcome. Focus on one clear workflow problem, one insight, and one next step.`,
+      summary: `Write a ${tone.toLowerCase()} LinkedIn post for ${audience} that connects ${topic} to ${angle}. The post should ${proofPoints[index % proofPoints.length]}.`,
       cta: goalCtas[goal] || goalCtas.Education
     };
   });
