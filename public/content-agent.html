@@ -431,6 +431,12 @@ async function generateCalendar() {
   button.disabled = true;
   setStatus('Generating calendar...');
 
+  if (window.location.protocol === 'file:') {
+    setStatus('Open http://localhost:3000/content-agent instead. The API does not run from a file:// page.');
+    button.disabled = false;
+    return;
+  }
+
   try {
     const response = await fetch('/api/content-strategy', {
       method: 'POST',
