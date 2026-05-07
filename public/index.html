@@ -15,7 +15,7 @@
   }
   html { scroll-behavior: smooth; cursor: crosshair; }
   body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
-  body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.075; mix-blend-mode: screen; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 0 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.55) 0 1px, transparent 1px); background-size: 4px 4px, 7px 7px; }
+  body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.045; mix-blend-mode: screen; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.55) 0 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.35) 0 1px, transparent 1px); background-size: 8px 8px, 13px 13px; }
   a, button, input, select, textarea, .phase { cursor: pointer; }
 
   /* NAV */
@@ -23,7 +23,7 @@
   nav.scrolled { padding: 12px 48px; background: rgba(8,20,38,0.9); box-shadow: 0 18px 52px rgba(0,0,0,0.28); }
   .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; }
   .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 28px; }
+  .nav-links { display: flex; gap: 22px; }
   .nav-links a { font-size: 13px; font-weight: 500; color: var(--silver); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
   .nav-badge { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 100px; background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); }
@@ -70,6 +70,25 @@
   .stag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--blue); }
   .stitle { font-family: 'Syne', sans-serif; font-size: clamp(38px, 5.4vw, 60px); font-weight: 800; line-height: 0.98; letter-spacing: 0; margin-bottom: 20px; text-transform: uppercase; }
   .sdesc { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 620px; margin-bottom: 54px; }
+
+  /* HOMEPAGE FLOW */
+  .audience-flow { display: grid; grid-template-columns: minmax(0, 1.35fr) 340px; gap: 24px; align-items: start; }
+  .audience-main { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .audience-card, .service-card, .trust-item, .flow-sidebar { border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(255,255,255,0.035); backdrop-filter: blur(14px); box-shadow: 0 20px 54px rgba(0,0,0,0.16); }
+  .audience-card { padding: 28px; min-height: 210px; }
+  .audience-card h3, .service-card h3, .flow-sidebar h3 { font-family: 'Syne', sans-serif; font-size: 18px; line-height: 1.15; text-transform: uppercase; margin-bottom: 12px; }
+  .audience-card p, .service-card p, .flow-sidebar p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.58); font-weight: 300; }
+  .flow-sidebar { position: sticky; top: 92px; padding: 24px; background: linear-gradient(145deg, rgba(26,86,219,0.18), rgba(0,212,170,0.06)); }
+  .sidebar-list { list-style: none; display: grid; gap: 12px; margin-top: 18px; }
+  .sidebar-list li { padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.64); }
+  .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .service-card { padding: 24px; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease; }
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,170,0.26); background: rgba(255,255,255,0.055); }
+  .service-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 36px; }
+  .trust-item { padding: 18px; }
+  .trust-item strong { display: block; font-family: 'Syne', sans-serif; font-size: 22px; color: var(--accent); margin-bottom: 5px; }
+  .trust-item span { display: block; font-size: 12px; color: rgba(255,255,255,0.54); line-height: 1.5; }
 
   /* VALUE PROP */
   .vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 24px 70px rgba(0,0,0,0.18); }
@@ -127,8 +146,8 @@
   .bac ul { list-style: none; }
   .bac ul li { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6); padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; }
   .bac ul li:last-child { border-bottom: none; }
-  .bef li::before { content: '✕'; color: var(--accent2); font-size: 11px; margin-top: 2px; }
-  .aft li::before { content: '✓'; color: var(--accent); font-size: 11px; margin-top: 2px; }
+  .bef li::before { content: 'Before'; color: var(--accent2); font-size: 10px; font-weight: 700; margin-top: 2px; min-width: 42px; }
+  .aft li::before { content: 'After'; color: var(--accent); font-size: 10px; font-weight: 700; margin-top: 2px; min-width: 42px; }
   .cqt { padding: 44px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; text-align: center; }
   .cqt blockquote { font-family: 'Syne', sans-serif; font-size: clamp(17px, 2vw, 22px); font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
   .cqt cite { font-size: 13px; color: var(--silver); font-style: normal; }
@@ -233,9 +252,12 @@
   .val-icon { font-size: 22px; margin-bottom: 14px; display: block; }
 
   /* FOOTER */
-  footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
-  footer p { font-size: 13px; color: var(--silver); }
-  .ftag { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+  footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 56px 48px; display: grid; grid-template-columns: 1.2fr repeat(3, minmax(140px, 1fr)); gap: 28px; background: rgba(4,14,28,0.48); }
+  footer h4 { font-family: 'Syne', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+  footer p, footer a { font-size: 13px; color: var(--silver); line-height: 1.7; text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: grid; gap: 8px; }
+  .ftag { margin-top: 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes gridDrift { from { background-position: 0 0, 0 0; } to { background-position: 60px 60px, 60px 60px; } }
@@ -384,11 +406,12 @@
   .agent-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; } .nav-links { display: none; }
+    nav { padding: 16px 24px; flex-wrap: wrap; align-items: flex-start; } .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 16px; padding-top: 10px; }
     .hero, .sec, .sec-w { padding-left: 24px; padding-right: 24px; }
     .hero-title { font-size: 44px; }
     .stats-strip, .vgrid, .csh, .pcols, .ba, .tgrid, .css, .metrics-grid, .vals-grid,
-    .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards, .agent-grid { grid-template-columns: 1fr; }
+    .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards, .agent-grid,
+    .audience-flow, .audience-main, .service-grid, .trust-row, footer { grid-template-columns: 1fr; }
     .vcard.feat { grid-column: span 1; }
     .cwk.active { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
@@ -401,6 +424,7 @@
   <div class="nav-logo">Proplr <span>×</span> Vaultly</div>
   <div class="nav-links">
     <a href="#value">Strategy</a>
+    <a href="#services">Services</a>
     <a href="#casestudy">Case Study</a>
     <a href="#analytics">Analytics</a>
     <a href="#calendar">Content</a>
@@ -427,8 +451,8 @@
   <div class="live-strip">
     <span class="live-dot"></span>
     <div class="ticker">
-      <span>AI agents online</span><span>Cloud readiness scoring active</span><span>SEO + QA workflows ready</span><span>Reporting insights live</span>
-      <span>AI agents online</span><span>Cloud readiness scoring active</span><span>SEO + QA workflows ready</span><span>Reporting insights live</span>
+      <span>Advisor active</span><span>Cloud readiness scoring online</span><span>SEO and QA workflows ready</span><span>Reporting insights available</span>
+      <span>Advisor active</span><span>Cloud readiness scoring online</span><span>SEO and QA workflows ready</span><span>Reporting insights available</span>
     </div>
   </div>
   <div class="skill-tags">
@@ -456,6 +480,70 @@
   <div class="stat-item"><div class="stat-value">12wk</div><div class="stat-label">Full transformation timeline</div></div>
 </div>
 
+<!-- WHO IT IS FOR -->
+<section class="sec" id="audience">
+  <div class="stag">Built For · Cloud Teams · Scaleups · Technical Leaders</div>
+  <h2 class="stitle">For teams that need cloud clarity before they scale.</h2>
+  <p class="sdesc">The site now works like a real consulting entry point: visitors can understand the services, test their cloud readiness, and see how the recommendations become marketing, SEO, QA, and reporting deliverables.</p>
+
+  <div class="audience-flow">
+    <div class="audience-main">
+      <div class="audience-card">
+        <h3>Startup and scaleup leaders</h3>
+        <p>For teams that are growing faster than their infrastructure, cloud spend, or internal expertise can comfortably support.</p>
+      </div>
+      <div class="audience-card">
+        <h3>CTOs and platform teams</h3>
+        <p>For technical leaders who need secure, scalable Google Cloud foundations without slowing product delivery.</p>
+      </div>
+      <div class="audience-card">
+        <h3>Marketing and revenue teams</h3>
+        <p>For teams that need service positioning, content, SEO, reporting, and campaign QA tied to measurable business outcomes.</p>
+      </div>
+      <div class="audience-card">
+        <h3>Regulated or cost-sensitive teams</h3>
+        <p>For organizations where security, compliance, reliability, and cloud cost visibility need to be part of the strategy from day one.</p>
+      </div>
+    </div>
+
+    <aside class="flow-sidebar">
+      <h3>Primary path</h3>
+      <p>Start with the Cloud Readiness Advisor, then use the agent toolkit to turn the result into execution-ready marketing and strategy outputs.</p>
+      <ul class="sidebar-list">
+        <li>Readiness score and maturity level</li>
+        <li>Best-fit Proplr-style service recommendation</li>
+        <li>Follow-up content, SEO, QA, and reporting deliverables</li>
+      </ul>
+      <a href="/agency-agents#readiness" class="btn-p" style="margin-top:18px;">Try the advisor</a>
+    </aside>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="sec-w" id="services" style="background:rgba(255,255,255,0.012);">
+<div class="inner">
+  <div class="stag">Service Model · Google Cloud · Managed Services · FinOps</div>
+  <h2 class="stitle">Service areas the agents understand.</h2>
+  <p class="sdesc">The toolkit is tuned around Proplr-style services so the outputs feel connected to real cloud consulting, not generic AI text generation.</p>
+
+  <div class="service-grid">
+    <div class="service-card"><span class="service-label">Consulting</span><h3>Google Cloud Consulting</h3><p>Migration, architecture, optimization, and implementation support for teams moving faster on Google Cloud.</p></div>
+    <div class="service-card"><span class="service-label">Operations</span><h3>Managed Cloud Services</h3><p>Ongoing reliability, availability, security, and operational support for cloud environments.</p></div>
+    <div class="service-card"><span class="service-label">Expertise</span><h3>Fractional Cloud Expertise</h3><p>Senior cloud architects and engineers without the overhead of a full-time hire.</p></div>
+    <div class="service-card"><span class="service-label">Governance</span><h3>Security and Compliance</h3><p>Cloud foundations designed around protection, compliance expectations, and customer trust.</p></div>
+    <div class="service-card"><span class="service-label">Performance</span><h3>AI-powered FinOps</h3><p>Cloud cost visibility and optimization recommendations that connect spend to business value.</p></div>
+    <div class="service-card"><span class="service-label">Innovation</span><h3>Generative AI on Google Cloud</h3><p>Practical AI use cases that improve efficiency, customer experience, and internal workflows.</p></div>
+  </div>
+
+  <div class="trust-row">
+    <div class="trust-item"><strong>Node</strong><span>API-backed interactive agents</span></div>
+    <div class="trust-item"><strong>GitHub</strong><span>Version-controlled project workflow</span></div>
+    <div class="trust-item"><strong>Render</strong><span>Deployment-ready web service</span></div>
+    <div class="trust-item"><strong>Proplr</strong><span>Inspired by public service positioning</span></div>
+  </div>
+</div>
+</div>
+
 <!-- VALUE PROP -->
 <section id="value" class="sec">
   <div class="stag">Deliverable 1 · Planning & Design · Business Outcomes</div>
@@ -471,7 +559,7 @@
   <div class="qblock"><p>"Most companies don't have a cloud problem. They have a clarity problem. Proplr fixes both."</p></div>
   <div class="vgrid">
     <div class="vcard feat">
-      <h3>⚡ Core positioning</h3>
+      <h3>Core positioning</h3>
       <p>Proplr embeds senior Google Cloud practitioners directly into your team — not as consultants who disappear after the deck, but as fractional operators who build, ship, and scale alongside you. Google Cloud architecture for your exact stage. AI tools in real workflows. Measurable ROI in 90 days.</p>
     </div>
     <div class="vcard">
@@ -479,13 +567,13 @@
       <p>"Your team is spending 40% of engineering time on infrastructure. Proplr gives you that time back — and a Google Cloud AI stack that actually works."</p>
     </div>
     <div class="vcard">
-      <h3>📊 Value proof point</h3>
+      <h3>Value proof point</h3>
       <p>Vaultly recovered 62% of manual operations time and $180K in annual costs within one 12-week Proplr engagement — without a single full-time cloud hire.</p>
     </div>
   </div>
   <div class="pcols">
-    <div class="pcol"><h4>↗ For CTOs</h4><ul><li>Fractional model = no full-time hiring risk</li><li>Senior practitioners, not junior staff</li><li>Hands-on delivery in 48–72 hours</li><li>Scales with your roadmap, not against it</li></ul></div>
-    <div class="pcol"><h4>↗ For Founders</h4><ul><li>AI transformation without the 6-month timeline</li><li>Google Cloud Partner expertise on demand</li><li>Fixed block-hour pricing — pay for what you use</li><li>ROI visible in the first sprint</li></ul></div>
+    <div class="pcol"><h4>For CTOs</h4><ul><li>Fractional model = no full-time hiring risk</li><li>Senior practitioners, not junior staff</li><li>Hands-on delivery in 48–72 hours</li><li>Scales with your roadmap, not against it</li></ul></div>
+    <div class="pcol"><h4>For Founders</h4><ul><li>AI transformation without the 6-month timeline</li><li>Google Cloud Partner expertise on demand</li><li>Fixed block-hour pricing — pay for what you use</li><li>ROI visible in the first sprint</li></ul></div>
   </div>
 </section>
 
@@ -532,28 +620,28 @@
 
   <div class="metrics-grid">
     <div class="mcard">
-      <h4>📈 Content performance KPIs</h4>
+      <h4>Content performance KPIs</h4>
       <p>Each LinkedIn post tracked against: impression rate, engagement rate, profile visits, and discovery call bookings. Weekly reporting cadence with iteration based on top-performing hooks.</p>
       <div class="kw-row">
         <span class="kw">Impressions</span><span class="kw">Engagement rate</span><span class="kw">CTR</span><span class="kw">Conversion</span>
       </div>
     </div>
     <div class="mcard">
-      <h4>🔍 SEO & keyword strategy</h4>
+      <h4>SEO and keyword strategy</h4>
       <p>Proplr content mapped to high-intent B2B search terms. Target keywords identified using Perplexity and Google Search Console signals, optimized for technical decision-makers.</p>
       <div class="kw-row">
         <span class="kw">fractional cloud engineers</span><span class="kw">google cloud partner canada</span><span class="kw">ai transformation consulting</span><span class="kw">vertex ai integration</span>
       </div>
     </div>
     <div class="mcard">
-      <h4>🤖 AI pipeline monitoring</h4>
+      <h4>AI pipeline monitoring</h4>
       <p>Claude-generated drafts reviewed for brand alignment before send. Accuracy and tone tracked per campaign. Feedback loop used to refine prompts and improve output quality over time.</p>
       <div class="kw-row">
         <span class="kw">Prompt QA</span><span class="kw">Output scoring</span><span class="kw">Iteration log</span>
       </div>
     </div>
     <div class="mcard">
-      <h4>🧩 CRM & sales pipeline integration</h4>
+      <h4>CRM and sales pipeline integration</h4>
       <p>Content strategy mapped to Proplr's sales cycle. LinkedIn outreach tracked as top-of-funnel. Discovery calls logged as qualified leads. ROI calculator used as a conversion tool for potential customers.</p>
       <div class="kw-row">
         <span class="kw">Lead scoring</span><span class="kw">Pipeline stage</span><span class="kw">Prospect tracking</span><span class="kw">CRM sync</span>
@@ -612,7 +700,7 @@
     <button class="ctab" onclick="switchWeek(3)">Week 3 — Proof</button>
     <button class="ctab" onclick="switchWeek(4)">Week 4 — Convert</button>
   </div>
-  <div class="wthm active" id="t1">🎯 Theme: Hook with a hard truth. Open with a provocation that makes CTOs stop scrolling.</div>
+  <div class="wthm active" id="t1">Theme: Hook with a hard truth. Open with a provocation that makes CTOs stop scrolling.</div>
   <div class="wthm" id="t2">💡 Theme: Educate with insight. Share what competitors already know — and your audience doesn't yet.</div>
   <div class="wthm" id="t3">🏆 Theme: Social proof. Let Vaultly's results do the talking. Real numbers, real story.</div>
   <div class="wthm" id="t4">📞 Theme: Convert. Move prospects from awareness to a discovery call with urgency and specificity.</div>
@@ -646,7 +734,7 @@
   <p class="sdesc">Every deliverable in this portfolio was crafted to align with Proplr's core operating principles — not just their services.</p>
   <div class="vals-grid">
     <div class="val-card"><span class="val-icon">🔩</span><h4>Delivery over decks</h4><p>Proplr's value is in shipping, not slides. Every message is grounded in what the team actually builds, not what they promise.</p></div>
-    <div class="val-card"><span class="val-icon">🎯</span><h4>Precision over volume</h4><p>Fractional by design — the model demands specificity. No bloat, no padding. Every hour and every word earns its place.</p></div>
+    <div class="val-card"><span class="val-icon">01</span><h4>Precision over volume</h4><p>Fractional by design — the model demands specificity. No bloat, no padding. Every hour and every word earns its place.</p></div>
     <div class="val-card"><span class="val-icon">📐</span><h4>Outcomes over outputs</h4><p>ROI isn't a promise, it's a starting point. Vaultly's $180K in savings is the floor, not the ceiling — and it's tracked, reported, and disclosed transparently.</p></div>
     <div class="val-card"><span class="val-icon">🤝</span><h4>Embedded, not external</h4><p>Proplr doesn't consult from afar. They join the team, learn the codebase, and ship alongside the client — more like a hire than an agency.</p></div>
     <div class="val-card"><span class="val-icon">🔁</span><h4>Continuous improvement</h4><p>Every engagement is iterated. QA cycles, feedback loops, and post-handoff check-ins mean the work gets better after it ships, not just before.</p></div>
@@ -666,7 +754,7 @@
     <!-- CARD 1: PROMPT ENGINEERING PROCESS -->
     <div class="tcard">
       <div class="thead">
-        <div class="tbadge ai">⚡ Prompt Engineering · Claude</div>
+        <div class="tbadge ai">Prompt Engineering · Claude</div>
         <h3>Content pipeline design</h3>
         <p>How Claude was integrated into Proplr's content workflow — the prompt structure, constraints, and iteration process that produced brand-aligned output.</p>
       </div>
@@ -692,7 +780,7 @@
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px;">
           <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--silver);margin-bottom:8px;">TOOLS EVALUATED</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(0,212,170,0.1);color:var(--accent);border:1px solid rgba(0,212,170,0.2);">Claude ✓ selected</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(0,212,170,0.1);color:var(--accent);border:1px solid rgba(0,212,170,0.2);">Claude selected</span>
             <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--silver);border:1px solid rgba(255,255,255,0.08);">ChatGPT</span>
             <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--silver);border:1px solid rgba(255,255,255,0.08);">Gemini</span>
             <span style="font-size:11px;padding:3px 9px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--silver);border:1px solid rgba(255,255,255,0.08);">Perplexity</span>
@@ -705,7 +793,7 @@
     <!-- CARD 2: ROI CALCULATOR (live) -->
     <div class="tcard">
       <div class="thead">
-        <div class="tbadge calc">📊 Analytics · Reporting · Live</div>
+        <div class="tbadge calc">Analytics · Reporting · Live</div>
         <h3>Cloud ROI estimator</h3>
         <p>Input team parameters and get a projected ROI from a Proplr engagement — the same model used in discovery calls.</p>
       </div>
@@ -729,7 +817,7 @@
     <!-- CARD 3: AI TOOL COMPARISON -->
     <div class="tcard">
       <div class="thead">
-        <div class="tbadge gen">🔬 Tool Evaluation · Research</div>
+        <div class="tbadge gen">Tool Evaluation · Research</div>
         <h3>AI tool comparison</h3>
         <p>How Claude, ChatGPT, Gemini, and Perplexity were evaluated for this project — and which won each job.</p>
       </div>
@@ -1015,17 +1103,17 @@
   <div class="wf-cols">
     <div class="wf-col bad">
       <h4>Before automation</h4>
-      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">Ad-hoc Slack research requests</div><div class="wf-desc">No structure, no priority, no tracking. Analyst spends time clarifying scope before any work begins.</div><div class="wf-time">~45 min lost per request</div></div></div>
-      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">Manual job board scraping</div><div class="wf-desc">Copy-pasting role data from 4–6 sources into a spreadsheet. Error-prone and repetitive.</div><div class="wf-time">~6 hrs per competitive scan</div></div></div>
-      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">Rebuilding reports from scratch</div><div class="wf-desc">Every stakeholder deck reformatted manually. No templates, no reuse across audiences.</div><div class="wf-time">~3 hrs per report</div></div></div>
-      <div class="wf-item bad"><span class="wf-icon">🔴</span><div><div class="wf-title">No centralized insight library</div><div class="wf-desc">Research lives in inboxes. Team re-does work completed months ago.</div><div class="wf-time">~2 hrs duplicate work/week</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">Before</span><div><div class="wf-title">Ad-hoc Slack research requests</div><div class="wf-desc">No structure, no priority, no tracking. Analyst spends time clarifying scope before any work begins.</div><div class="wf-time">~45 min lost per request</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">Before</span><div><div class="wf-title">Manual job board scraping</div><div class="wf-desc">Copy-pasting role data from 4–6 sources into a spreadsheet. Error-prone and repetitive.</div><div class="wf-time">~6 hrs per competitive scan</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">Before</span><div><div class="wf-title">Rebuilding reports from scratch</div><div class="wf-desc">Every stakeholder deck reformatted manually. No templates, no reuse across audiences.</div><div class="wf-time">~3 hrs per report</div></div></div>
+      <div class="wf-item bad"><span class="wf-icon">Before</span><div><div class="wf-title">No centralized insight library</div><div class="wf-desc">Research lives in inboxes. Team re-does work completed months ago.</div><div class="wf-time">~2 hrs duplicate work/week</div></div></div>
     </div>
     <div class="wf-col good">
       <h4>After redesign</h4>
-      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">Structured intake form with auto-routing</div><div class="wf-desc">Scope, priority, and deadline captured upfront. Auto-logged to tracker. Zero back-and-forth.</div><div class="wf-time">~5 min to submit</div></div></div>
-      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">AI-assisted data aggregation</div><div class="wf-desc">Claude + Perplexity pull structured data from multiple sources. Analyst reviews instead of collects.</div><div class="wf-time">~45 min per competitive scan</div></div></div>
-      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">Templatized audience-toggled outputs</div><div class="wf-desc">Dashboard components auto-populate. Recruiter, VP, and exec views generated from one dataset.</div><div class="wf-time">~20 min per report</div></div></div>
-      <div class="wf-item good"><span class="wf-icon">🟢</span><div><div class="wf-title">Searchable insight library</div><div class="wf-desc">All research stored with tags. Claude-powered search finds relevant prior work in seconds.</div><div class="wf-time">~0 duplicate effort</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">After</span><div><div class="wf-title">Structured intake form with auto-routing</div><div class="wf-desc">Scope, priority, and deadline captured upfront. Auto-logged to tracker. Zero back-and-forth.</div><div class="wf-time">~5 min to submit</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">After</span><div><div class="wf-title">AI-assisted data aggregation</div><div class="wf-desc">Claude + Perplexity pull structured data from multiple sources. Analyst reviews instead of collects.</div><div class="wf-time">~45 min per competitive scan</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">After</span><div><div class="wf-title">Templatized audience-toggled outputs</div><div class="wf-desc">Dashboard components auto-populate. Recruiter, VP, and exec views generated from one dataset.</div><div class="wf-time">~20 min per report</div></div></div>
+      <div class="wf-item good"><span class="wf-icon">After</span><div><div class="wf-title">Searchable insight library</div><div class="wf-desc">All research stored with tags. Claude-powered search finds relevant prior work in seconds.</div><div class="wf-time">~0 duplicate effort</div></div></div>
     </div>
   </div>
 
@@ -1089,7 +1177,7 @@
           </div>
         </div>
         <button class="if-submit" onclick="submitIF()">Submit Request →</button>
-        <div class="if-toast" id="if-toast">✓ Request submitted — added to tracker. Estimated turnaround within 1 business day.</div>
+        <div class="if-toast" id="if-toast">Request submitted — added to tracker. Estimated turnaround within 1 business day.</div>
       </div>
     </div>
 
@@ -1109,8 +1197,38 @@
 </div>
 
 <footer>
-  <p>Proplr × Vaultly · AI Transformation Portfolio · Built with Claude API · 2026</p>
-  <div class="ftag">Concept portfolio project · not affiliated with Proplr.io</div>
+  <div>
+    <h4>Proplr-inspired portfolio</h4>
+    <p>A concept website and AI agent toolkit built around Google Cloud consulting, managed services, FinOps, content strategy, SEO, QA, and reporting workflows.</p>
+    <div class="ftag">Concept portfolio project · not affiliated with Proplr.io</div>
+  </div>
+  <div>
+    <h4>Explore</h4>
+    <div class="footer-links">
+      <a href="#audience">Who it is for</a>
+      <a href="#services">Services</a>
+      <a href="#casestudy">Case study</a>
+      <a href="#agents">AI agents</a>
+    </div>
+  </div>
+  <div>
+    <h4>Tools</h4>
+    <div class="footer-links">
+      <a href="/agency-agents#readiness">Cloud Readiness Advisor</a>
+      <a href="/agency-agents#content">Content Strategy Agent</a>
+      <a href="/agency-agents#seo">SEO Opportunity Agent</a>
+      <a href="#talent">Research Intake Demo</a>
+    </div>
+  </div>
+  <div>
+    <h4>Build</h4>
+    <div class="footer-links">
+      <a href="https://github.com/saarahraza/proplr-portfolio-api">GitHub repository</a>
+      <a href="/api/health">API health</a>
+      <a href="#tools">Live tools</a>
+      <a href="#analytics">Analytics plan</a>
+    </div>
+  </div>
 </footer>
 
 <script>

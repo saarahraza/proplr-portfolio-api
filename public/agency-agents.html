@@ -143,7 +143,7 @@
           <div class="field"><label>AI interest</label><select id="cr-aiInterest"><option>Not yet</option><option selected>Exploring AI use cases</option><option>Planning first pilot</option><option>Active AI/automation roadmap</option></select></div>
         </div>
         <div class="run-row"><button class="primary" onclick="runCloudReadiness()">Get Readiness Score</button><span class="status" id="cr-status"></span></div>
-        <div class="output" id="cr-output">Cloud readiness output will appear here.</div>
+        <div class="output" id="cr-output">Sample preview: readiness score, maturity level, top risks, recommended next steps, and best-fit Proplr-style service will appear here.</div>
       </div>
     </article>
 
@@ -162,7 +162,7 @@
           <div class="field full"><label>Posts</label><select id="cs-postCount"><option value="3">3 posts</option><option value="5" selected>5 posts</option><option value="7">7 posts</option></select></div>
         </div>
         <div class="run-row"><button class="primary" onclick="runContentStrategy()">Generate Calendar</button><span class="status" id="cs-status"></span></div>
-        <div class="output" id="cs-output">Content output will appear here.</div>
+        <div class="output" id="cs-output">Sample preview: weekly hooks, post summaries, and calls to action will appear here.</div>
       </div>
     </article>
 
@@ -182,7 +182,7 @@
           <div class="field"><label>Timeline</label><input id="pb-timeline" value="4 weeks"></div>
         </div>
         <div class="run-row"><button class="primary" onclick="runPerformanceBrief()">Generate Brief</button><span class="status" id="pb-status"></span></div>
-        <div class="output" id="pb-output">Brief output will appear here.</div>
+        <div class="output" id="pb-output">Sample preview: objective, audience, key message, metrics, risks, and next steps will appear here.</div>
       </div>
     </article>
 
@@ -200,7 +200,7 @@
           <div class="field"><label>Goal</label><input id="seo-goal" value="Improve organic visibility and qualified traffic"></div>
         </div>
         <div class="run-row"><button class="primary" onclick="runSeoOpportunity()">Generate SEO Plan</button><span class="status" id="seo-status"></span></div>
-        <div class="output" id="seo-output">SEO output will appear here.</div>
+        <div class="output" id="seo-output">Sample preview: keywords, metadata, H1, content sections, and internal link ideas will appear here.</div>
       </div>
     </article>
 
@@ -218,7 +218,7 @@
           <div class="field"><label>Tracking needs</label><input id="qa-trackingNeeds" value="Form submits, CTA clicks, scroll depth, source tracking"></div>
         </div>
         <div class="run-row"><button class="primary" onclick="runCampaignQa()">Generate QA Checklist</button><span class="status" id="qa-status"></span></div>
-        <div class="output" id="qa-output">QA output will appear here.</div>
+        <div class="output" id="qa-output">Sample preview: message, CTA, tracking, UX, SEO, and analytics QA checks will appear here.</div>
       </div>
     </article>
 
@@ -237,7 +237,7 @@
           <div class="field full"><label>Goal %</label><input id="ri-goal" type="number" step="0.1" value="3.5"></div>
         </div>
         <div class="run-row"><button class="primary" onclick="runReportingInsight()">Generate Insight</button><span class="status" id="ri-status"></span></div>
-        <div class="output" id="ri-output">Reporting output will appear here.</div>
+        <div class="output" id="ri-output">Sample preview: what changed, why it matters, recommended action, and client summary will appear here.</div>
       </div>
     </article>
   </section>
@@ -288,8 +288,8 @@ async function callAgent(endpoint, payload, statusId, outputId, formatter) {
     return;
   }
 
-  status.textContent = 'Generating...';
-  output.textContent = '';
+  status.textContent = 'Analyzing inputs...';
+  output.textContent = 'Reviewing context, matching service fit, and preparing the recommendation...';
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
