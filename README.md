@@ -10,9 +10,7 @@ node server.js
 
 Open `http://localhost:3000`.
 
-The standalone Content Strategy Agent page is available at `http://localhost:3000/content-agent`.
-
-The AI Agency Toolkit page is available at `http://localhost:3000/agency-agents`.
+The combined AI Agency Toolkit page is available at `http://localhost:3000/agency-agents`.
 
 If you have `npm` installed, `npm start` works too.
 
@@ -31,8 +29,8 @@ If you have `npm` installed, `npm start` works too.
 
 Submitted requests are saved in `data/research-requests.json`.
 
-The content strategy endpoint powers the AI Content Strategy Agent demo. It generates a Proplr-style LinkedIn content calendar from audience, topic, goal, tone, and post count inputs.
+The content strategy endpoint powers the Content Strategy Agent inside the AI Agency Toolkit. It generates a Proplr-style LinkedIn content calendar from audience, topic, goal, tone, and post count inputs.
 
 The agent is tuned around Proplr's public positioning: Google Cloud consulting, managed cloud services, fractional cloud expertise, secure cloud architecture, security and compliance, AI-powered FinOps, and generative AI on Google Cloud.
 
-The AI Agency Toolkit adds practical internship-aligned agents for performance briefs, SEO recommendations, campaign QA, and reporting insights.
+The AI Agency Toolkit adds practical internship-aligned agents for content strategy, performance briefs, SEO recommendations, campaign QA, and reporting insights.

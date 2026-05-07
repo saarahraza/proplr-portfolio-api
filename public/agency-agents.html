@@ -55,11 +55,11 @@
 <header>
   <div class="brand">
     <strong>Proplr AI Agency Toolkit</strong>
-    <span>Practical agents for strategy, SEO, QA, and reporting</span>
+    <span>Practical agents for content, strategy, SEO, QA, and reporting</span>
   </div>
   <div class="nav">
     <a href="/">Portfolio</a>
-    <a href="/content-agent">Content Agent</a>
+    <a href="#content">Content</a>
   </div>
 </header>
 
@@ -67,10 +67,29 @@
   <section class="intro">
     <div class="eyebrow">AI-powered performance marketing toolkit</div>
     <h1>Agency agents built for real intern work.</h1>
-    <p>These agents turn Proplr-style cloud and AI consulting inputs into practical deliverables: briefs, SEO recommendations, QA checks, and reporting insights. They map directly to strategy, SEO, client service, martech, analytics, and digital experience work.</p>
+    <p>These agents turn Proplr-style cloud and AI consulting inputs into practical deliverables: content calendars, briefs, SEO recommendations, QA checks, and reporting insights. They map directly to creative, strategy, SEO, client service, martech, analytics, and digital experience work.</p>
   </section>
 
   <section class="grid">
+    <article class="agent" id="content">
+      <div class="agent-head">
+        <span class="tag">Creative · Strategy</span>
+        <h2>Content Strategy Agent</h2>
+        <p>Generates Proplr-style LinkedIn content calendars with hooks, summaries, and CTAs for cloud and AI consulting campaigns.</p>
+      </div>
+      <div class="agent-body">
+        <div class="fields">
+          <div class="field"><label>Audience</label><select id="cs-audience"><option>Startup founders</option><option>Scaleup leaders</option><option>CTOs</option><option>Platform leaders</option><option>Regulated industry teams</option></select></div>
+          <div class="field"><label>Topic</label><select id="cs-topic"><option>Google Cloud consulting</option><option>Managed cloud services</option><option>Fractional cloud expertise</option><option>Cloud architecture foundations</option><option>Security and compliance</option><option>AI-powered FinOps</option><option>Generative AI on Google Cloud</option></select></div>
+          <div class="field"><label>Goal</label><select id="cs-goal"><option>Education</option><option>Awareness</option><option>Lead generation</option><option>Trust</option></select></div>
+          <div class="field"><label>Tone</label><select id="cs-tone"><option>Direct and practical</option><option>Strategic and confident</option><option>Clear and educational</option><option>Bold but grounded</option></select></div>
+          <div class="field full"><label>Posts</label><select id="cs-postCount"><option value="3">3 posts</option><option value="5" selected>5 posts</option><option value="7">7 posts</option></select></div>
+        </div>
+        <div class="run-row"><button class="primary" onclick="runContentStrategy()">Generate Calendar</button><span class="status" id="cs-status"></span></div>
+        <div class="output" id="cs-output">Content output will appear here.</div>
+      </div>
+    </article>
+
     <article class="agent" id="performance">
       <div class="agent-head">
         <span class="tag">Strategy · Clients</span>
@@ -187,6 +206,23 @@ async function callAgent(endpoint, payload, statusId, outputId, formatter) {
 
 function list(items) {
   return items.map(item => `- ${escapeHTML(typeof item === 'string' ? item : `${item.area}: ${item.item} (${item.priority})`)}`).join('\n');
+}
+
+function runContentStrategy() {
+  callAgent('/api/content-strategy', {
+    audience: value('cs-audience'), topic: value('cs-topic'), goal: value('cs-goal'),
+    tone: value('cs-tone'), postCount: value('cs-postCount')
+  }, 'cs-status', 'cs-output', data => `<strong>${escapeHTML(data.agent)}</strong>
+
+Theme: ${escapeHTML(data.theme)}
+Audience: ${escapeHTML(data.audience)}
+Topic: ${escapeHTML(data.topic)}
+Goal: ${escapeHTML(data.goal)}
+
+Posts:
+${data.posts.map(post => `- ${escapeHTML(post.day)} / ${escapeHTML(post.type)}: ${escapeHTML(post.hook)}
+  Summary: ${escapeHTML(post.summary)}
+  CTA: ${escapeHTML(post.cta)}`).join('\n\n')}`);
 }
 
 function runPerformanceBrief() {
