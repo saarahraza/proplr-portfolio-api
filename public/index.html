@@ -12,6 +12,7 @@
     --blue: #1A56DB; --blue-dark: #0F3898;
     --navy: #0D1F3C; --silver: #A8B8C8; --white: #FFFFFF;
     --accent: #00D4AA; --accent2: #FF6B35;
+    --paper: #F5F8FC; --ink: #102033; --muted-ink: #5D6B7A;
   }
   html { scroll-behavior: smooth; cursor: crosshair; }
   body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
@@ -63,32 +64,56 @@
   .stat-label { font-size: 12px; color: var(--silver); }
 
   /* LAYOUT */
-  .sec { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
-  .sec-w { padding: 100px 48px; border-top: 1px solid rgba(255,255,255,0.04); }
+  .sec { padding: 82px 48px; max-width: 1200px; margin: 0 auto; }
+  .sec-w { padding: 82px 48px; border-top: 1px solid rgba(255,255,255,0.04); }
   .sec-w .inner { max-width: 1200px; margin: 0 auto; }
   .stag { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .stag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--blue); }
   .stitle { font-family: 'Syne', sans-serif; font-size: clamp(38px, 5.4vw, 60px); font-weight: 800; line-height: 0.98; letter-spacing: 0; margin-bottom: 20px; text-transform: uppercase; }
   .sdesc { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 620px; margin-bottom: 54px; }
+  .light-section { max-width: none; background: var(--paper); color: var(--ink); border-top: 1px solid rgba(16,32,51,0.08); }
+  .light-section > .inner, section.light-section { max-width: none; }
+  .light-section .inner, section.light-section > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .light-section .stag { color: var(--blue); }
+  .light-section .stag::before { background: var(--blue); }
+  .light-section .stitle { color: var(--ink); }
+  .light-section .sdesc { color: var(--muted-ink); }
+  .light-section .btn-g { color: var(--ink); border-color: rgba(16,32,51,0.18); }
+  .light-section .btn-g:hover { border-color: rgba(16,32,51,0.35); color: var(--ink); }
+
+  /* EXPERIENCE GUIDE */
+  .journey-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .journey-nav a { padding: 22px 24px; color: rgba(255,255,255,0.62); text-decoration: none; background: rgba(255,255,255,0.025); transition: background 0.2s, color 0.2s; }
+  .journey-nav a:hover { background: rgba(0,212,170,0.08); color: var(--white); }
+  .journey-nav strong { display: block; font-family: 'Syne', sans-serif; color: var(--white); font-size: 14px; text-transform: uppercase; margin-bottom: 5px; }
+  .journey-nav span { display: block; font-size: 12px; line-height: 1.5; }
+  .section-break { position: relative; overflow: hidden; padding: 56px 48px; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); background: linear-gradient(135deg, rgba(8,20,38,0.98), rgba(16,41,72,0.92)); }
+  .section-break.light { background: linear-gradient(135deg, #FFFFFF, #EEF4FB); color: var(--ink); border-color: rgba(16,32,51,0.08); }
+  .section-break .inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: center; }
+  .section-break h2 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 46px); line-height: 1; text-transform: uppercase; margin-bottom: 12px; }
+  .section-break p { color: rgba(255,255,255,0.58); line-height: 1.7; font-size: 14px; }
+  .section-break.light p { color: var(--muted-ink); }
+  .visual-panel { min-height: 190px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; background: linear-gradient(145deg, rgba(26,86,219,0.22), rgba(0,212,170,0.08)), repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 34px); opacity: 0.92; box-shadow: 0 26px 70px rgba(0,0,0,0.24); }
+  .section-break.light .visual-panel { border-color: rgba(16,32,51,0.1); background: linear-gradient(145deg, rgba(26,86,219,0.12), rgba(0,212,170,0.09)), repeating-linear-gradient(90deg, rgba(16,32,51,0.08) 0 1px, transparent 1px 34px); box-shadow: 0 22px 58px rgba(16,32,51,0.12); }
 
   /* HOMEPAGE FLOW */
   .audience-flow { display: grid; grid-template-columns: minmax(0, 1.35fr) 340px; gap: 24px; align-items: start; }
   .audience-main { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .audience-card, .service-card, .trust-item, .flow-sidebar { border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; background: rgba(255,255,255,0.035); backdrop-filter: blur(14px); box-shadow: 0 20px 54px rgba(0,0,0,0.16); }
+  .audience-card, .service-card, .trust-item, .flow-sidebar { border: 1px solid rgba(16,32,51,0.1); border-radius: 8px; background: rgba(255,255,255,0.76); backdrop-filter: blur(14px); box-shadow: 0 20px 54px rgba(16,32,51,0.08); }
   .audience-card { padding: 28px; min-height: 210px; }
   .audience-card h3, .service-card h3, .flow-sidebar h3 { font-family: 'Syne', sans-serif; font-size: 18px; line-height: 1.15; text-transform: uppercase; margin-bottom: 12px; }
-  .audience-card p, .service-card p, .flow-sidebar p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.58); font-weight: 300; }
-  .flow-sidebar { position: sticky; top: 92px; padding: 24px; background: linear-gradient(145deg, rgba(26,86,219,0.18), rgba(0,212,170,0.06)); }
+  .audience-card p, .service-card p, .flow-sidebar p { font-size: 14px; line-height: 1.7; color: var(--muted-ink); font-weight: 400; }
+  .flow-sidebar { position: sticky; top: 92px; padding: 24px; background: linear-gradient(145deg, rgba(26,86,219,0.11), rgba(0,212,170,0.08)); }
   .sidebar-list { list-style: none; display: grid; gap: 12px; margin-top: 18px; }
-  .sidebar-list li { padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.64); }
+  .sidebar-list li { padding: 12px 0; border-top: 1px solid rgba(16,32,51,0.1); font-size: 13px; line-height: 1.55; color: var(--muted-ink); }
   .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .service-card { padding: 24px; transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease; }
-  .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,170,0.26); background: rgba(255,255,255,0.055); }
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,170,0.26); background: rgba(255,255,255,0.95); }
   .service-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
   .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 36px; }
   .trust-item { padding: 18px; }
   .trust-item strong { display: block; font-family: 'Syne', sans-serif; font-size: 22px; color: var(--accent); margin-bottom: 5px; }
-  .trust-item span { display: block; font-size: 12px; color: rgba(255,255,255,0.54); line-height: 1.5; }
+  .trust-item span { display: block; font-size: 12px; color: var(--muted-ink); line-height: 1.5; }
 
   /* VALUE PROP */
   .vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 24px 70px rgba(0,0,0,0.18); }
@@ -411,7 +436,9 @@
     .hero-title { font-size: 44px; }
     .stats-strip, .vgrid, .csh, .pcols, .ba, .tgrid, .css, .metrics-grid, .vals-grid,
     .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards, .agent-grid,
-    .audience-flow, .audience-main, .service-grid, .trust-row, footer { grid-template-columns: 1fr; }
+    .audience-flow, .audience-main, .service-grid, .trust-row, .journey-nav, .section-break .inner, footer { grid-template-columns: 1fr; }
+    .section-break { padding-left: 24px; padding-right: 24px; }
+    .visual-panel { min-height: 130px; }
     .vcard.feat { grid-column: span 1; }
     .cwk.active { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
@@ -480,8 +507,16 @@
   <div class="stat-item"><div class="stat-value">12wk</div><div class="stat-label">Full transformation timeline</div></div>
 </div>
 
+<!-- JOURNEY NAV -->
+<div class="journey-nav" aria-label="Portfolio journey">
+  <a href="#audience"><strong>01 · Audience</strong><span>Who the concept serves</span></a>
+  <a href="#services"><strong>02 · Services</strong><span>Cloud consulting focus areas</span></a>
+  <a href="#casestudy"><strong>03 · Case Study</strong><span>Vaultly transformation story</span></a>
+  <a href="#agents"><strong>04 · Agent Toolkit</strong><span>Interactive AI workflows</span></a>
+</div>
+
 <!-- WHO IT IS FOR -->
-<section class="sec" id="audience">
+<section class="sec light-section" id="audience">
   <div class="stag">Built For · Cloud Teams · Scaleups · Technical Leaders</div>
   <h2 class="stitle">For teams that need cloud clarity before they scale.</h2>
   <p class="sdesc">The site now works like a real consulting entry point: visitors can understand the services, test their cloud readiness, and see how the recommendations become marketing, SEO, QA, and reporting deliverables.</p>
@@ -520,7 +555,7 @@
 </section>
 
 <!-- SERVICES -->
-<div class="sec-w" id="services" style="background:rgba(255,255,255,0.012);">
+<div class="sec-w light-section" id="services">
 <div class="inner">
   <div class="stag">Service Model · Google Cloud · Managed Services · FinOps</div>
   <h2 class="stitle">Service areas the agents understand.</h2>
@@ -563,7 +598,7 @@
       <p>Proplr embeds senior Google Cloud practitioners directly into your team — not as consultants who disappear after the deck, but as fractional operators who build, ship, and scale alongside you. Google Cloud architecture for your exact stage. AI tools in real workflows. Measurable ROI in 90 days.</p>
     </div>
     <div class="vcard">
-      <h3>📣 LinkedIn hook</h3>
+      <h3>LinkedIn hook</h3>
       <p>"Your team is spending 40% of engineering time on infrastructure. Proplr gives you that time back — and a Google Cloud AI stack that actually works."</p>
     </div>
     <div class="vcard">
@@ -577,8 +612,20 @@
   </div>
 </section>
 
+<!-- CASE STUDY MODULE BREAK -->
+<div class="section-break">
+  <div class="inner">
+    <div>
+      <span class="stag">Case Study Module</span>
+      <h2>From service promise to business proof.</h2>
+      <p>This section is separated from the agent toolkit so the story reads like a focused client transformation: problem, engagement, measurable impact, and handoff.</p>
+    </div>
+    <div class="visual-panel" aria-hidden="true"></div>
+  </div>
+</div>
+
 <!-- CASE STUDY -->
-<div class="sec-w" id="casestudy" style="background:rgba(255,255,255,0.01);">
+<div class="sec-w" id="casestudy">
 <div class="inner">
   <div class="stag">Deliverable 2 · Product Development · Training & Development · Adaptive Project Management</div>
   <div class="csh">
@@ -701,9 +748,9 @@
     <button class="ctab" onclick="switchWeek(4)">Week 4 — Convert</button>
   </div>
   <div class="wthm active" id="t1">Theme: Hook with a hard truth. Open with a provocation that makes CTOs stop scrolling.</div>
-  <div class="wthm" id="t2">💡 Theme: Educate with insight. Share what competitors already know — and your audience doesn't yet.</div>
-  <div class="wthm" id="t3">🏆 Theme: Social proof. Let Vaultly's results do the talking. Real numbers, real story.</div>
-  <div class="wthm" id="t4">📞 Theme: Convert. Move prospects from awareness to a discovery call with urgency and specificity.</div>
+  <div class="wthm" id="t2">Theme: Educate with insight. Share what competitors already know — and your audience doesn't yet.</div>
+  <div class="wthm" id="t3">Theme: Social proof. Let Vaultly's results do the talking. Real numbers, real story.</div>
+  <div class="wthm" id="t4">Theme: Convert. Move prospects from awareness to a discovery call with urgency and specificity.</div>
   <div class="cwk active" id="w1">
     <div class="cpost"><div class="cday">Monday</div><div class="cfmt">Text post</div><h4>"Your cloud spend doubled this year. Your output didn't. Here's why — and how Proplr fixes it."</h4></div>
     <div class="cpost"><div class="cday">Wednesday</div><div class="cfmt">Process map</div><h4>"The 6 stages of an AI transformation — which one is your company stuck in?"</h4></div>
@@ -733,12 +780,12 @@
   <h2 class="stitle">Proplr brand values</h2>
   <p class="sdesc">Every deliverable in this portfolio was crafted to align with Proplr's core operating principles — not just their services.</p>
   <div class="vals-grid">
-    <div class="val-card"><span class="val-icon">🔩</span><h4>Delivery over decks</h4><p>Proplr's value is in shipping, not slides. Every message is grounded in what the team actually builds, not what they promise.</p></div>
-    <div class="val-card"><span class="val-icon">01</span><h4>Precision over volume</h4><p>Fractional by design — the model demands specificity. No bloat, no padding. Every hour and every word earns its place.</p></div>
-    <div class="val-card"><span class="val-icon">📐</span><h4>Outcomes over outputs</h4><p>ROI isn't a promise, it's a starting point. Vaultly's $180K in savings is the floor, not the ceiling — and it's tracked, reported, and disclosed transparently.</p></div>
-    <div class="val-card"><span class="val-icon">🤝</span><h4>Embedded, not external</h4><p>Proplr doesn't consult from afar. They join the team, learn the codebase, and ship alongside the client — more like a hire than an agency.</p></div>
-    <div class="val-card"><span class="val-icon">🔁</span><h4>Continuous improvement</h4><p>Every engagement is iterated. QA cycles, feedback loops, and post-handoff check-ins mean the work gets better after it ships, not just before.</p></div>
-    <div class="val-card"><span class="val-icon">💡</span><h4>Clarity as a service</h4><p>Technical complexity is only valuable if stakeholders understand it. Proplr translates cloud architecture into language that boards, founders, and sales teams can act on.</p></div>
+    <div class="val-card"><span class="val-icon">01</span><h4>Delivery over decks</h4><p>Proplr's value is in shipping, not slides. Every message is grounded in what the team actually builds, not what they promise.</p></div>
+    <div class="val-card"><span class="val-icon">02</span><h4>Precision over volume</h4><p>Fractional by design — the model demands specificity. No bloat, no padding. Every hour and every word earns its place.</p></div>
+    <div class="val-card"><span class="val-icon">03</span><h4>Outcomes over outputs</h4><p>ROI isn't a promise, it's a starting point. Vaultly's $180K in savings is the floor, not the ceiling — and it's tracked, reported, and disclosed transparently.</p></div>
+    <div class="val-card"><span class="val-icon">04</span><h4>Embedded, not external</h4><p>Proplr doesn't consult from afar. They join the team, learn the codebase, and ship alongside the client — more like a hire than an agency.</p></div>
+    <div class="val-card"><span class="val-icon">05</span><h4>Continuous improvement</h4><p>Every engagement is iterated. QA cycles, feedback loops, and post-handoff check-ins mean the work gets better after it ships, not just before.</p></div>
+    <div class="val-card"><span class="val-icon">06</span><h4>Clarity as a service</h4><p>Technical complexity is only valuable if stakeholders understand it. Proplr translates cloud architecture into language that boards, founders, and sales teams can act on.</p></div>
   </div>
 </section>
 
@@ -914,8 +961,20 @@
 </div>
 
 
+<!-- AGENT TOOLKIT MODULE BREAK -->
+<div class="section-break light">
+  <div class="inner">
+    <div>
+      <span class="stag">Agent Toolkit Module</span>
+      <h2>Interactive tools, separated from the case study.</h2>
+      <p>The agents are presented as a practical browsing experience: first a cloud readiness advisor for any visitor, then specialized tools for content, SEO, QA, campaign planning, and reporting.</p>
+    </div>
+    <div class="visual-panel" aria-hidden="true"></div>
+  </div>
+</div>
+
 <!-- AI AGENTS -->
-<div class="sec-w" id="agents" style="background:rgba(255,255,255,0.015);">
+<div class="sec-w" id="agents">
 <div class="inner">
   <div class="stag">AI Agents · Google Cloud · Performance Marketing · SEO · QA · Analytics</div>
   <h2 class="stitle">Cloud readiness first.<br>Marketing execution next.</h2>
@@ -1264,7 +1323,7 @@ if (heroSub && !reduceMotion) {
   window.setTimeout(typeHero, 450);
 }
 
-const revealTargets = document.querySelectorAll('.sec, .sec-w, .vcard, .csi, .phase, .mcard, .cpost, .tcard, .agent-card');
+const revealTargets = document.querySelectorAll('.sec, .sec-w, .journey-nav a, .section-break, .visual-panel, .audience-card, .service-card, .trust-item, .vcard, .csi, .phase, .mcard, .cpost, .tcard, .agent-card');
 revealTargets.forEach(el => el.classList.add('reveal'));
 if ('IntersectionObserver' in window && !reduceMotion) {
   const revealObserver = new IntersectionObserver(entries => {
