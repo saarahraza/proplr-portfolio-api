@@ -359,12 +359,20 @@
   .tr-dot.med { background: #F59E0B; }
   .tr-dot.lo { background: var(--accent); }
 
+  /* AI AGENTS */
+  .agent-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 28px; }
+  .agent-card { padding: 26px; border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; background: rgba(255,255,255,0.025); }
+  .agent-card h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .agent-card p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.58); margin-bottom: 16px; font-weight: 300; }
+  .agent-fit { font-size: 12px; line-height: 1.55; color: var(--accent); }
+  .agent-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
   @media (max-width: 900px) {
     nav { padding: 16px 24px; } .nav-links { display: none; }
     .hero, .sec, .sec-w { padding-left: 24px; padding-right: 24px; }
     .hero-title { font-size: 44px; }
     .stats-strip, .vgrid, .csh, .pcols, .ba, .tgrid, .css, .metrics-grid, .vals-grid,
-    .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards { grid-template-columns: 1fr; }
+    .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards, .agent-grid { grid-template-columns: 1fr; }
     .vcard.feat { grid-column: span 1; }
     .cwk.active { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
@@ -381,6 +389,7 @@
     <a href="#analytics">Analytics</a>
     <a href="#calendar">Content</a>
     <a href="#tools">Live Tools</a>
+    <a href="#agents">AI Agents</a>
     <a href="#talent">Talent Intelligence</a>
     <a href="/content-agent">Content Agent</a>
   </div>
@@ -396,6 +405,7 @@
   <p class="hero-sub">A concept portfolio demonstrating AI workflow design, content strategy, performance analytics, and live tool development — built around Proplr's Google Cloud AI consultancy model.</p>
   <div class="hero-ctas">
     <a href="/content-agent" class="btn-p">Try Content Strategy Agent →</a>
+    <a href="/agency-agents" class="btn-g">Open AI Agent Toolkit</a>
     <a href="#casestudy" class="btn-p">View Case Study →</a>
     <a href="#tools" class="btn-g">Try Live AI Tools</a>
   </div>
@@ -789,6 +799,49 @@
       </div>
     </div>
 
+  </div>
+</div>
+</div>
+
+
+<!-- AI AGENTS -->
+<div class="sec-w" id="agents" style="background:rgba(255,255,255,0.015);">
+<div class="inner">
+  <div class="stag">AI Agents · Performance Marketing · SEO · QA · Analytics</div>
+  <h2 class="stitle">AI-powered agency toolkit</h2>
+  <p class="sdesc">A practical set of Proplr-aligned agents designed around real internship work: turning inputs into briefs, SEO recommendations, QA checks, content calendars, and reporting insights.</p>
+
+  <div class="agent-grid">
+    <div class="agent-card">
+      <h3>Content Strategy Agent</h3>
+      <p>Generates LinkedIn content calendars, hooks, summaries, and CTAs for Google Cloud, managed services, FinOps, and generative AI campaigns.</p>
+      <div class="agent-fit">Relevant tracks: Creative, Strategy, SEO, AI-assisted workflow.</div>
+    </div>
+    <div class="agent-card">
+      <h3>Performance Brief Agent</h3>
+      <p>Turns a campaign goal into a clear brief with objective, audience, key message, channels, success metrics, risks, and next steps.</p>
+      <div class="agent-fit">Relevant tracks: Strategy, Clients, Media, Sales.</div>
+    </div>
+    <div class="agent-card">
+      <h3>SEO Opportunity Agent</h3>
+      <p>Creates keyword, metadata, page structure, search intent, and internal link recommendations for Proplr-style service pages.</p>
+      <div class="agent-fit">Relevant tracks: SEO, Content, Analytics, Digital Experience.</div>
+    </div>
+    <div class="agent-card">
+      <h3>Campaign QA Agent</h3>
+      <p>Builds a pre-launch checklist for messaging, CTAs, tracking, UX, SEO basics, and analytics setup before campaign traffic goes live.</p>
+      <div class="agent-fit">Relevant tracks: Dev, Martech & Analytics, QA, Digital Experience.</div>
+    </div>
+    <div class="agent-card">
+      <h3>Reporting Insights Agent</h3>
+      <p>Turns sample performance numbers into plain-English insight, recommended action, and a client-ready summary.</p>
+      <div class="agent-fit">Relevant tracks: Martech & Analytics, Media, Clients, Strategy.</div>
+    </div>
+  </div>
+
+  <div class="agent-actions">
+    <a href="/agency-agents" class="btn-p">Open AI Agent Toolkit →</a>
+    <a href="/content-agent" class="btn-g">Open Content Agent</a>
   </div>
 </div>
 </div>

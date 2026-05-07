@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proplr AI Agency Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --ink: #102033; --muted: #5E6B7A; --line: #D9E2EC; --paper: #F7FAFC;
+    --white: #FFFFFF; --blue: #1A56DB; --teal: #008F78; --gold: #A66300; --rose: #BA3454;
+  }
+  body { margin: 0; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--paper); }
+  header { padding: 22px 28px; border-bottom: 1px solid var(--line); background: rgba(247,250,252,0.96); position: sticky; top: 0; z-index: 5; backdrop-filter: blur(12px); display: flex; justify-content: space-between; gap: 18px; align-items: center; }
+  .brand strong { display: block; font-family: 'Syne', sans-serif; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .brand span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; }
+  .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+  .nav a, button { min-height: 42px; border-radius: 7px; border: 1px solid var(--line); padding: 0 15px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 14px; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .nav a, .ghost { background: var(--white); color: var(--ink); }
+  .primary { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  main { width: min(1220px, calc(100% - 36px)); margin: 34px auto 64px; }
+  .intro { max-width: 760px; margin-bottom: 26px; }
+  .eyebrow { color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 6vw, 64px); line-height: 0.98; margin: 0 0 16px; letter-spacing: 0; }
+  .intro p { color: var(--muted); line-height: 1.7; font-size: 16px; margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .agent { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 16px 44px rgba(16,32,51,0.06); }
+  .agent-head { padding: 20px; border-bottom: 1px solid var(--line); }
+  .agent-head h2 { font-family: 'Syne', sans-serif; font-size: 22px; margin: 0 0 8px; letter-spacing: 0; }
+  .agent-head p { color: var(--muted); line-height: 1.55; margin: 0; font-size: 14px; }
+  .tag { display: inline-block; margin-bottom: 12px; padding: 5px 9px; border-radius: 999px; color: var(--blue); background: #EDF4FF; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+  .tag.teal { color: var(--teal); background: #E6FAF5; }
+  .tag.gold { color: var(--gold); background: #FFF4DD; }
+  .tag.rose { color: var(--rose); background: #FFF0F3; }
+  .agent-body { padding: 20px; }
+  .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  label { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  input, select { width: 100%; min-height: 42px; border: 1px solid var(--line); border-radius: 7px; padding: 0 12px; color: var(--ink); background: var(--white); font: inherit; outline: none; }
+  input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,219,0.12); }
+  .full { grid-column: 1 / -1; }
+  .run-row { margin-top: 16px; display: flex; align-items: center; gap: 12px; }
+  .status { color: var(--muted); font-size: 13px; min-height: 18px; }
+  .output { margin-top: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #FCFEFF; min-height: 140px; color: var(--muted); line-height: 1.55; font-size: 14px; white-space: pre-wrap; }
+  .output strong { color: var(--ink); }
+  @media (max-width: 900px) {
+    header { position: static; align-items: flex-start; flex-direction: column; }
+    .grid, .fields { grid-template-columns: 1fr; }
+    main { width: min(100% - 28px, 680px); margin-top: 24px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <strong>Proplr AI Agency Toolkit</strong>
+    <span>Practical agents for strategy, SEO, QA, and reporting</span>
+  </div>
+  <div class="nav">
+    <a href="/">Portfolio</a>
+    <a href="/content-agent">Content Agent</a>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="eyebrow">AI-powered performance marketing toolkit</div>
+    <h1>Agency agents built for real intern work.</h1>
+    <p>These agents turn Proplr-style cloud and AI consulting inputs into practical deliverables: briefs, SEO recommendations, QA checks, and reporting insights. They map directly to strategy, SEO, client service, martech, analytics, and digital experience work.</p>
+  </section>
+
+  <section class="grid">
+    <article class="agent" id="performance">
+      <div class="agent-head">
+        <span class="tag">Strategy · Clients</span>
+        <h2>Performance Brief Agent</h2>
+        <p>Turns a business goal into a clear campaign brief with objective, message, metrics, risks, and next steps.</p>
+      </div>
+      <div class="agent-body">
+        <div class="fields">
+          <div class="field"><label>Client type</label><input id="pb-clientType" value="B2B scaleup"></div>
+          <div class="field"><label>Service</label><select id="pb-service"><option>Google Cloud consulting</option><option>Managed cloud services</option><option>Fractional cloud expertise</option><option>AI-powered FinOps</option><option>Generative AI on Google Cloud</option></select></div>
+          <div class="field"><label>Audience</label><input id="pb-audience" value="CTOs and scaleup leaders"></div>
+          <div class="field"><label>Goal</label><input id="pb-goal" value="Generate qualified discovery calls"></div>
+          <div class="field"><label>Channel</label><input id="pb-channel" value="LinkedIn and search"></div>
+          <div class="field"><label>Timeline</label><input id="pb-timeline" value="4 weeks"></div>
+        </div>
+        <div class="run-row"><button class="primary" onclick="runPerformanceBrief()">Generate Brief</button><span class="status" id="pb-status"></span></div>
+        <div class="output" id="pb-output">Brief output will appear here.</div>
+      </div>
+    </article>
+
+    <article class="agent" id="seo">
+      <div class="agent-head">
+        <span class="tag teal">SEO · Research</span>
+        <h2>SEO Opportunity Agent</h2>
+        <p>Creates keyword, metadata, content section, and internal link recommendations for a service page.</p>
+      </div>
+      <div class="agent-body">
+        <div class="fields">
+          <div class="field"><label>Service page</label><select id="seo-service"><option>Google Cloud consulting</option><option>Managed cloud services</option><option>Fractional cloud services</option><option>AI-powered FinOps</option><option>Generative AI on Google Cloud</option></select></div>
+          <div class="field"><label>Audience</label><input id="seo-audience" value="Startup and scaleup leaders"></div>
+          <div class="field"><label>Keyword</label><input id="seo-keyword" value="google cloud consulting"></div>
+          <div class="field"><label>Goal</label><input id="seo-goal" value="Improve organic visibility and qualified traffic"></div>
+        </div>
+        <div class="run-row"><button class="primary" onclick="runSeoOpportunity()">Generate SEO Plan</button><span class="status" id="seo-status"></span></div>
+        <div class="output" id="seo-output">SEO output will appear here.</div>
+      </div>
+    </article>
+
+    <article class="agent" id="qa">
+      <div class="agent-head">
+        <span class="tag gold">QA · Digital Experience</span>
+        <h2>Campaign QA Agent</h2>
+        <p>Builds a practical pre-launch QA checklist for landing pages, tracking, CTAs, UX, and SEO basics.</p>
+      </div>
+      <div class="agent-body">
+        <div class="fields">
+          <div class="field"><label>Page goal</label><input id="qa-pageGoal" value="Drive discovery calls"></div>
+          <div class="field"><label>CTA</label><input id="qa-cta" value="Book a cloud readiness conversation"></div>
+          <div class="field"><label>Audience</label><input id="qa-audience" value="CTOs and scaleup leaders"></div>
+          <div class="field"><label>Tracking needs</label><input id="qa-trackingNeeds" value="Form submits, CTA clicks, scroll depth, source tracking"></div>
+        </div>
+        <div class="run-row"><button class="primary" onclick="runCampaignQa()">Generate QA Checklist</button><span class="status" id="qa-status"></span></div>
+        <div class="output" id="qa-output">QA output will appear here.</div>
+      </div>
+    </article>
+
+    <article class="agent" id="reporting">
+      <div class="agent-head">
+        <span class="tag rose">Martech · Analytics</span>
+        <h2>Reporting Insights Agent</h2>
+        <p>Turns sample performance numbers into a plain-English insight, recommendation, and client summary.</p>
+      </div>
+      <div class="agent-body">
+        <div class="fields">
+          <div class="field"><label>Metric</label><input id="ri-metric" value="Landing page conversion rate"></div>
+          <div class="field"><label>Channel</label><input id="ri-channel" value="LinkedIn campaign"></div>
+          <div class="field"><label>Previous %</label><input id="ri-previous" type="number" step="0.1" value="2.4"></div>
+          <div class="field"><label>Current %</label><input id="ri-current" type="number" step="0.1" value="3.1"></div>
+          <div class="field full"><label>Goal %</label><input id="ri-goal" type="number" step="0.1" value="3.5"></div>
+        </div>
+        <div class="run-row"><button class="primary" onclick="runReportingInsight()">Generate Insight</button><span class="status" id="ri-status"></span></div>
+        <div class="output" id="ri-output">Reporting output will appear here.</div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<script>
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  }[char]));
+}
+
+function value(id) {
+  return document.getElementById(id).value;
+}
+
+async function callAgent(endpoint, payload, statusId, outputId, formatter) {
+  const status = document.getElementById(statusId);
+  const output = document.getElementById(outputId);
+  if (window.location.protocol === 'file:') {
+    status.textContent = 'Open http://localhost:3000/agency-agents instead.';
+    return;
+  }
+
+  status.textContent = 'Generating...';
+  output.textContent = '';
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Agent failed.');
+    output.innerHTML = formatter(data);
+    status.textContent = 'Done.';
+  } catch (error) {
+    output.textContent = error.message;
+    status.textContent = 'Error.';
+  }
+}
+
+function list(items) {
+  return items.map(item => `- ${escapeHTML(typeof item === 'string' ? item : `${item.area}: ${item.item} (${item.priority})`)}`).join('\n');
+}
+
+function runPerformanceBrief() {
+  callAgent('/api/performance-brief', {
+    clientType: value('pb-clientType'), service: value('pb-service'), audience: value('pb-audience'),
+    goal: value('pb-goal'), channel: value('pb-channel'), timeline: value('pb-timeline')
+  }, 'pb-status', 'pb-output', data => `<strong>${escapeHTML(data.agent)}</strong>
+
+Objective: ${escapeHTML(data.objective)}
+Audience: ${escapeHTML(data.audience)}
+Key message: ${escapeHTML(data.keyMessage)}
+
+Success metrics:
+${list(data.successMetrics)}
+
+Risks:
+${list(data.risks)}
+
+Next steps:
+${list(data.nextSteps)}`);
+}
+
+function runSeoOpportunity() {
+  callAgent('/api/seo-opportunity', {
+    service: value('seo-service'), audience: value('seo-audience'), keyword: value('seo-keyword'), goal: value('seo-goal')
+  }, 'seo-status', 'seo-output', data => `<strong>${escapeHTML(data.agent)}</strong>
+
+Search intent: ${escapeHTML(data.searchIntent)}
+Primary keyword: ${escapeHTML(data.primaryKeyword)}
+Title tag: ${escapeHTML(data.titleTag)}
+Meta description: ${escapeHTML(data.metaDescription)}
+H1: ${escapeHTML(data.h1)}
+
+Secondary keywords:
+${list(data.secondaryKeywords)}
+
+Content sections:
+${list(data.contentSections)}
+
+Recommendation: ${escapeHTML(data.recommendation)}`);
+}
+
+function runCampaignQa() {
+  callAgent('/api/campaign-qa', {
+    pageGoal: value('qa-pageGoal'), cta: value('qa-cta'), audience: value('qa-audience'), trackingNeeds: value('qa-trackingNeeds')
+  }, 'qa-status', 'qa-output', data => `<strong>${escapeHTML(data.agent)}</strong>
+
+Launch readiness: ${escapeHTML(data.launchReadiness)}
+
+Checks:
+${list(data.checks)}
+
+Risks:
+${list(data.risks)}`);
+}
+
+function runReportingInsight() {
+  callAgent('/api/reporting-insight', {
+    metric: value('ri-metric'), channel: value('ri-channel'), previous: value('ri-previous'),
+    current: value('ri-current'), goal: value('ri-goal')
+  }, 'ri-status', 'ri-output', data => `<strong>${escapeHTML(data.agent)}</strong>
+
+Headline: ${escapeHTML(data.headline)}
+What changed: ${escapeHTML(data.whatChanged)}
+Why it matters: ${escapeHTML(data.whyItMatters)}
+Recommended action: ${escapeHTML(data.recommendedAction)}
+Client summary: ${escapeHTML(data.clientSummary)}`);
+}
+</script>
+</body>
+</html>

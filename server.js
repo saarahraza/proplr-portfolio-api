@@ -200,6 +200,119 @@ function buildContentStrategy(input) {
   };
 }
 
+function buildPerformanceBrief(input) {
+  const clientType = cleanString(input.clientType) || 'B2B scaleup';
+  const service = cleanString(input.service) || 'Google Cloud consulting';
+  const audience = cleanString(input.audience) || 'CTOs and scaleup leaders';
+  const goal = cleanString(input.goal) || 'Generate qualified discovery calls';
+  const channel = cleanString(input.channel) || 'LinkedIn and search';
+  const timeline = cleanString(input.timeline) || '4 weeks';
+  const timelineLabel = timeline
+    .replace(/^(\d+)\s+weeks?$/i, '$1-week')
+    .replace(/^(\d+)\s+days?$/i, '$1-day');
+
+  return {
+    agent: 'Performance Brief Agent',
+    objective: `Help ${clientType} understand why ${service} matters now and move them toward a measurable action: ${goal.toLowerCase()}.`,
+    audience,
+    keyMessage: `Proplr helps teams build secure, scalable Google Cloud foundations without slowing product momentum.`,
+    channels: [channel, 'Landing page', 'Retargeting-ready content', 'Sales follow-up notes'],
+    successMetrics: ['Qualified leads', 'Discovery calls booked', 'Landing page conversion rate', 'Content engagement', 'Cost per lead'],
+    risks: [
+      'Message may become too technical for business buyers.',
+      'Cloud value needs to connect to cost, speed, security, and reliability.',
+      'Campaign needs clear tracking before launch.'
+    ],
+    nextSteps: [
+      `Build a ${timelineLabel} content and landing page sprint.`,
+      'Create one primary offer and one clear call to action.',
+      'QA tracking, form flow, and page copy before promotion.'
+    ]
+  };
+}
+
+function buildSeoOpportunity(input) {
+  const service = cleanString(input.service) || 'Google Cloud consulting';
+  const audience = cleanString(input.audience) || 'Startup and scaleup leaders';
+  const keyword = cleanString(input.keyword) || service.toLowerCase();
+  const goal = cleanString(input.goal) || 'Improve organic visibility and qualified traffic';
+
+  return {
+    agent: 'SEO Opportunity Agent',
+    searchIntent: `${audience} comparing cloud partners, implementation support, cost control, and secure cloud foundations.`,
+    primaryKeyword: keyword,
+    secondaryKeywords: [
+      `${service.toLowerCase()} partner`,
+      'Google Cloud partner Canada',
+      'fractional cloud engineers',
+      'cloud cost optimization',
+      'secure cloud architecture'
+    ],
+    titleTag: `${service} for Startups and Scaleups | Proplr`,
+    metaDescription: `Explore ${service} support from Proplr for teams that need secure, scalable cloud foundations, senior expertise, and measurable business impact.`,
+    h1: `${service} Built for Secure Scale`,
+    contentSections: [
+      'Who this service is for',
+      'Common cloud growth problems',
+      'How Proplr supports strategy, implementation, and optimization',
+      'Security, reliability, and cost considerations',
+      'Recommended next step'
+    ],
+    internalLinks: ['Content Strategy Agent', 'Cloud ROI estimator', 'Talent Intelligence demo'],
+    recommendation: `Prioritize copy that connects ${service} to ${goal.toLowerCase()}, not just technical features.`
+  };
+}
+
+function buildCampaignQa(input) {
+  const pageGoal = cleanString(input.pageGoal) || 'Drive discovery calls';
+  const cta = cleanString(input.cta) || 'Book a cloud readiness conversation';
+  const audience = cleanString(input.audience) || 'CTOs and scaleup leaders';
+  const trackingNeeds = cleanString(input.trackingNeeds) || 'Form submits, CTA clicks, scroll depth, source tracking';
+
+  return {
+    agent: 'Campaign QA Agent',
+    launchReadiness: 'Ready after tracking and message checks are confirmed.',
+    checks: [
+      { area: 'Message', item: `Page clearly explains the value for ${audience}.`, priority: 'High' },
+      { area: 'CTA', item: `Primary CTA is consistent: ${cta}.`, priority: 'High' },
+      { area: 'Tracking', item: `Validate ${trackingNeeds}.`, priority: 'High' },
+      { area: 'UX', item: 'Confirm forms, links, mobile layout, and loading states.', priority: 'Medium' },
+      { area: 'SEO', item: 'Check title, meta description, one H1, headings, and indexable copy.', priority: 'Medium' },
+      { area: 'Analytics', item: 'Confirm campaign naming and UTM consistency before launch.', priority: 'High' }
+    ],
+    risks: [
+      'Traffic without tracking will make performance hard to learn from.',
+      'Too many CTAs can weaken conversion intent.',
+      'Technical language needs a business outcome attached.'
+    ]
+  };
+}
+
+function buildReportingInsight(input) {
+  const metric = cleanString(input.metric) || 'Landing page conversion rate';
+  const previous = Number(input.previous) || 2.4;
+  const current = Number(input.current) || 3.1;
+  const goal = Number(input.goal) || 3.5;
+  const channel = cleanString(input.channel) || 'LinkedIn campaign';
+  const delta = current - previous;
+  const direction = delta >= 0 ? 'increased' : 'decreased';
+  const percentDelta = previous ? Math.round((delta / previous) * 100) : 0;
+  const gap = goal - current;
+
+  return {
+    agent: 'Reporting Insights Agent',
+    headline: `${metric} ${direction} by ${Math.abs(percentDelta)}% on ${channel}.`,
+    whatChanged: `${metric} moved from ${previous}% to ${current}% against a ${goal}% goal.`,
+    whyItMatters: gap <= 0
+      ? 'Performance is meeting or beating goal, so the next move is to protect quality while scaling.'
+      : `Performance is improving but still ${gap.toFixed(1)} points below goal, so iteration should stay focused.`,
+    recommendedAction: delta >= 0
+      ? 'Document the winning message, keep the same CTA, and test one new audience or creative angle.'
+      : 'Review traffic quality, page-message match, CTA clarity, and tracking before increasing spend.',
+    clientSummary: `The ${channel} is showing ${delta >= 0 ? 'positive movement' : 'a performance drop'} for ${metric}. Next step: use the data to decide one focused test instead of changing everything at once.`
+  };
+}
+
 async function handleApi(req, res, url) {
   if (req.method === 'OPTIONS') {
     return sendJson(res, 204, {});
@@ -242,6 +355,26 @@ async function handleApi(req, res, url) {
     return sendJson(res, 200, buildContentStrategy(body));
   }
 
+  if (req.method === 'POST' && url.pathname === '/api/performance-brief') {
+    const body = await readBody(req);
+    return sendJson(res, 200, buildPerformanceBrief(body));
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/seo-opportunity') {
+    const body = await readBody(req);
+    return sendJson(res, 200, buildSeoOpportunity(body));
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/campaign-qa') {
+    const body = await readBody(req);
+    return sendJson(res, 200, buildCampaignQa(body));
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/reporting-insight') {
+    const body = await readBody(req);
+    return sendJson(res, 200, buildReportingInsight(body));
+  }
+
   const statusMatch = url.pathname.match(/^\/api\/research-requests\/([^/]+)\/status$/);
   if (req.method === 'PATCH' && statusMatch) {
     const body = await readBody(req);
@@ -269,6 +402,8 @@ async function serveStatic(req, res, url) {
     ? '/index.html'
     : url.pathname === '/content-agent'
       ? '/content-agent.html'
+      : url.pathname === '/agency-agents'
+        ? '/agency-agents.html'
       : decodeURIComponent(url.pathname);
   const normalizedPath = path.normalize(requestedPath).replace(/^(\.\.[/\\])+/, '');
   const filePath = path.join(PUBLIC_DIR, normalizedPath);
