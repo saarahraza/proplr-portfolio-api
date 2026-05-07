@@ -246,7 +246,11 @@ async function handleApi(req, res, url) {
 }
 
 async function serveStatic(req, res, url) {
-  const requestedPath = url.pathname === '/' ? '/index.html' : decodeURIComponent(url.pathname);
+  const requestedPath = url.pathname === '/'
+    ? '/index.html'
+    : url.pathname === '/content-agent'
+      ? '/content-agent.html'
+      : decodeURIComponent(url.pathname);
   const normalizedPath = path.normalize(requestedPath).replace(/^(\.\.[/\\])+/, '');
   const filePath = path.join(PUBLIC_DIR, normalizedPath);
 

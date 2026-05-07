@@ -10,6 +10,8 @@ node server.js
 
 Open `http://localhost:3000`.
 
+The standalone Content Strategy Agent page is available at `http://localhost:3000/content-agent`.
+
 If you have `npm` installed, `npm start` works too.
 
 ## Endpoints

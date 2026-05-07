@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proplr Content Strategy Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --ink: #102033;
+    --muted: #5E6B7A;
+    --line: #D9E2EC;
+    --paper: #F7FAFC;
+    --white: #FFFFFF;
+    --blue: #1A56DB;
+    --blue-dark: #0F3898;
+    --teal: #00A88A;
+    --gold: #B7791F;
+    --rose: #C2415D;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 28px;
+    background: rgba(247,250,252,0.94);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(14px);
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .brand strong {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .brand span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .top-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .link-btn, .primary-btn, .ghost-btn {
+    border-radius: 7px;
+    border: 1px solid var(--line);
+    min-height: 42px;
+    padding: 0 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  .link-btn, .ghost-btn {
+    color: var(--ink);
+    background: var(--white);
+  }
+  .primary-btn {
+    color: var(--white);
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .primary-btn:hover { background: var(--blue-dark); }
+  .ghost-btn:hover, .link-btn:hover { border-color: #B9C6D4; }
+  main {
+    width: min(1180px, calc(100% - 40px));
+    margin: 32px auto 60px;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .panel, .output {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 50px rgba(16,32,51,0.07);
+  }
+  .panel {
+    padding: 22px;
+  }
+  .panel h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 30px;
+    line-height: 1.05;
+    margin: 0 0 10px;
+    letter-spacing: 0;
+  }
+  .panel p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0 0 22px;
+    font-size: 14px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+  label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  select, input {
+    min-height: 44px;
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: var(--ink);
+    background: var(--white);
+    padding: 0 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+  }
+  select:focus, input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,86,219,0.12);
+  }
+  .button-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .output {
+    min-height: 680px;
+    overflow: hidden;
+  }
+  .output-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .output-title h2 {
+    margin: 0;
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+  .output-title span {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .badge {
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #EDF4FF;
+    color: var(--blue-dark);
+  }
+  .badge.teal { background: #E6FAF5; color: #007A65; }
+  .badge.gold { background: #FFF7E6; color: var(--gold); }
+  .calendar {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .post-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px;
+    background: #FCFEFF;
+  }
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 13px;
+  }
+  .post-day {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+  }
+  .post-type {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--rose);
+    background: #FFF0F3;
+    padding: 5px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .post-card h3 {
+    margin: 0 0 12px;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+  .post-card p {
+    margin: 0 0 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    font-size: 14px;
+  }
+  .cta {
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .empty-state {
+    min-height: 580px;
+    display: grid;
+    place-items: center;
+    padding: 40px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .empty-state strong {
+    display: block;
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .status {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 20px;
+    margin-top: 12px;
+  }
+  @media (max-width: 860px) {
+    header {
+      position: static;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .top-actions { width: 100%; }
+    .link-btn { flex: 1; }
+    main {
+      grid-template-columns: 1fr;
+      width: min(100% - 28px, 680px);
+      margin-top: 20px;
+    }
+    .calendar { grid-template-columns: 1fr; }
+    .output { min-height: 0; }
+  }
+  @media (max-width: 520px) {
+    .button-row { grid-template-columns: 1fr; }
+    .output-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .badge-row { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <strong>Proplr Content Strategy Agent</strong>
+    <span>LinkedIn calendars for AI consulting campaigns</span>
+  </div>
+  <div class="top-actions">
+    <a class="link-btn" href="/">Portfolio</a>
+    <a class="link-btn" href="/api/health">API Health</a>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <h1>Build a content sprint</h1>
+    <p>Choose the strategy inputs and generate a Proplr-style LinkedIn calendar with hooks, summaries, and calls to action.</p>
+
+    <div class="field">
+      <label for="audience">Audience</label>
+      <select id="audience">
+        <option>Founders</option>
+        <option>CTOs</option>
+        <option>VP Engineering</option>
+        <option>Startup Teams</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="topic">Topic</label>
+      <select id="topic">
+        <option>AI transformation</option>
+        <option>Google Cloud adoption</option>
+        <option>workflow automation</option>
+        <option>cloud cost savings</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="goal">Goal</label>
+      <select id="goal">
+        <option>Education</option>
+        <option>Awareness</option>
+        <option>Lead generation</option>
+        <option>Trust</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="tone">Tone</label>
+      <select id="tone">
+        <option>Direct and practical</option>
+        <option>Strategic and confident</option>
+        <option>Clear and educational</option>
+        <option>Bold but grounded</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="postCount">Posts</label>
+      <select id="postCount">
+        <option value="3">3 posts</option>
+        <option value="5" selected>5 posts</option>
+        <option value="7">7 posts</option>
+      </select>
+    </div>
+
+    <div class="button-row">
+      <button class="primary-btn" id="generateBtn">Generate Calendar</button>
+      <button class="ghost-btn" id="sampleBtn">Sample</button>
+    </div>
+    <div class="status" id="status"></div>
+  </section>
+
+  <section class="output">
+    <div class="output-head">
+      <div class="output-title">
+        <h2 id="theme">Content calendar</h2>
+        <span id="summary">Ready for a campaign brief.</span>
+      </div>
+      <div class="badge-row">
+        <span class="badge" id="audienceBadge">Audience</span>
+        <span class="badge teal" id="topicBadge">Topic</span>
+        <span class="badge gold" id="goalBadge">Goal</span>
+      </div>
+    </div>
+    <div id="calendar" class="empty-state">
+      <div>
+        <strong>No calendar yet</strong>
+        Select inputs and generate the first sprint.
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const fields = ['audience', 'topic', 'goal', 'tone', 'postCount'];
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  }[char]));
+}
+
+function getPayload() {
+  return Object.fromEntries(fields.map(id => [id, document.getElementById(id).value]));
+}
+
+function setStatus(message) {
+  document.getElementById('status').textContent = message;
+}
+
+function renderStrategy(data) {
+  document.getElementById('theme').textContent = data.theme;
+  document.getElementById('summary').textContent = `${data.tone} posts for ${data.goal.toLowerCase()}.`;
+  document.getElementById('audienceBadge').textContent = data.audience;
+  document.getElementById('topicBadge').textContent = data.topic;
+  document.getElementById('goalBadge').textContent = data.goal;
+
+  document.getElementById('calendar').className = 'calendar';
+  document.getElementById('calendar').innerHTML = data.posts.map(post => `
+    <article class="post-card">
+      <div class="post-meta">
+        <span class="post-day">${escapeHTML(post.day)}</span>
+        <span class="post-type">${escapeHTML(post.type)}</span>
+      </div>
+      <h3>${escapeHTML(post.hook)}</h3>
+      <p>${escapeHTML(post.summary)}</p>
+      <div class="cta">${escapeHTML(post.cta)}</div>
+    </article>
+  `).join('');
+}
+
+async function generateCalendar() {
+  const button = document.getElementById('generateBtn');
+  button.disabled = true;
+  setStatus('Generating calendar...');
+
+  try {
+    const response = await fetch('/api/content-strategy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(getPayload())
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Calendar generation failed.');
+    renderStrategy(data);
+    setStatus('Calendar generated.');
+  } catch (error) {
+    setStatus(error.message);
+  } finally {
+    button.disabled = false;
+  }
+}
+
+function loadSample() {
+  document.getElementById('audience').value = 'CTOs';
+  document.getElementById('topic').value = 'workflow automation';
+  document.getElementById('goal').value = 'Lead generation';
+  document.getElementById('tone').value = 'Strategic and confident';
+  document.getElementById('postCount').value = '5';
+  generateCalendar();
+}
+
+document.getElementById('generateBtn').addEventListener('click', generateCalendar);
+document.getElementById('sampleBtn').addEventListener('click', loadSample);
+</script>
+</body>
+</html>
