@@ -48,8 +48,19 @@
   .hero-scroll { position: absolute; bottom: 80px; right: 48px; writing-mode: vertical-rl; font-size: 11px; letter-spacing: 0.2em; color: var(--silver); text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
   .hero-scroll::after { content: ''; display: block; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--silver), transparent); }
   .live-strip { position: relative; margin-top: 22px; display: inline-flex; align-items: center; gap: 14px; padding: 10px 14px; border: 1px solid rgba(0,212,170,0.2); border-radius: 8px; background: rgba(255,255,255,0.045); backdrop-filter: blur(16px); box-shadow: 0 18px 50px rgba(0,0,0,0.18); color: rgba(255,255,255,0.68); font-size: 12px; overflow: hidden; animation: fadeUp 0.6s 0.35s ease both; }
+  .hero .live-strip { width: min(920px, 100%); }
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 18px var(--accent); animation: pulse 1.6s ease-in-out infinite; flex-shrink: 0; }
-  .ticker { display: inline-flex; gap: 18px; white-space: nowrap; animation: ticker 16s linear infinite; }
+  .ticker { min-width: max-content; display: inline-flex; gap: 18px; white-space: nowrap; animation: ticker 24s linear infinite; }
+  .project-context { position: relative; max-width: 760px; margin-bottom: 18px; padding: 14px 18px; border: 1px solid rgba(255,255,255,0.11); border-radius: 8px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.72); font-size: 14px; line-height: 1.65; animation: fadeUp 0.6s 0.05s ease both; }
+  .project-context a { color: var(--accent); font-weight: 700; text-decoration: none; }
+  .project-context a:hover { text-decoration: underline; }
+  .brand-strip { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; animation: fadeUp 0.6s 0.06s ease both; }
+  .logo-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 30px; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.72); font-size: 12px; font-weight: 700; text-decoration: none; }
+  .logo-mark { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--white); font-size: 10px; font-weight: 800; letter-spacing: 0; flex-shrink: 0; }
+  .logo-mark.node { background: rgba(0,212,170,0.16); color: var(--accent); }
+  .logo-mark.github { background: rgba(255,255,255,0.13); color: var(--white); }
+  .logo-mark.render { background: rgba(139,92,246,0.18); color: #D8B4FE; }
+  .logo-mark.proplr { background: rgba(26,86,219,0.18); color: #BFD2FF; }
 
   /* SKILL TAGS */
   .skill-tags { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; animation: fadeUp 0.6s 0.4s ease both; }
@@ -101,6 +112,8 @@
   .audience-main { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .audience-card, .service-card, .trust-item, .flow-sidebar { border: 1px solid rgba(16,32,51,0.1); border-radius: 8px; background: rgba(255,255,255,0.76); backdrop-filter: blur(14px); box-shadow: 0 20px 54px rgba(16,32,51,0.08); }
   .audience-card { padding: 28px; min-height: 210px; }
+  .audience-card, .service-card, .flow-sidebar, .vcard, .mcard, .qa-card, .cpost, .val-card, .tcard, .agent-card, .pcol, .phase, .ti-card, .intake-form, .tracker, .cqt, .bac, .csi, .trust-item { will-change: transform, border-color, background; }
+  .audience-card:hover, .flow-sidebar:hover, .vcard:hover, .mcard:hover, .qa-card:hover, .cpost:hover, .tcard:hover, .pcol:hover, .phase:hover, .ti-card:hover, .intake-form:hover, .tracker:hover, .cqt:hover, .bac:hover, .csi:hover, .trust-item:hover { transform: translateY(-3px); border-color: rgba(139,92,246,0.28); }
   .audience-card h3, .service-card h3, .flow-sidebar h3 { font-family: 'Inter', sans-serif; font-size: 19px; line-height: 1.2; text-transform: none; margin-bottom: 12px; }
   .audience-card p, .service-card p, .flow-sidebar p { font-size: 14px; line-height: 1.7; color: var(--muted-ink); font-weight: 400; }
   .flow-sidebar { position: sticky; top: 92px; padding: 24px; background: linear-gradient(145deg, rgba(26,86,219,0.11), rgba(0,212,170,0.08)); }
@@ -112,7 +125,7 @@
   .service-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
   .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 36px; }
   .trust-item { padding: 18px; }
-  .trust-item strong { display: block; font-family: 'Inter', sans-serif; font-size: 22px; color: var(--accent); margin-bottom: 5px; }
+  .trust-item strong { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 22px; color: var(--accent); margin-bottom: 5px; }
   .trust-item span { display: block; font-size: 12px; color: var(--muted-ink); line-height: 1.5; }
 
   /* VALUE PROP */
@@ -121,7 +134,9 @@
   .vcard:hover { background: rgba(255,255,255,0.055); transform: translateY(-3px); box-shadow: 0 18px 50px rgba(0,0,0,0.18); }
   .vcard.feat { background: linear-gradient(135deg, rgba(26,86,219,0.18), rgba(0,212,170,0.06)); border: 1px solid rgba(26,86,219,0.25); grid-column: span 2; }
   .vcard h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-  .vcard p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.55); font-weight: 300; }
+  .vcard p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.62); font-weight: 400; }
+  .vcard.proof { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .vcard.proof p { max-width: 440px; font-size: 16px; color: rgba(255,255,255,0.72); }
   .qblock { padding: 36px 44px; border-left: 3px solid var(--blue); background: rgba(26,86,219,0.06); border-radius: 0 12px 12px 0; margin-bottom: 48px; }
   .qblock p { font-family: 'Inter', sans-serif; font-size: clamp(18px, 2.2vw, 24px); font-weight: 600; line-height: 1.4; }
   .pcols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -220,11 +235,13 @@
   .ctab.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
   .cwk { display: none; }
   .cwk.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .cpost { padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); transition: all 0.3s; }
+  .cpost { padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.025); transition: all 0.3s; }
   .cpost:hover { background: rgba(255,255,255,0.04); transform: translateY(-2px); }
   .cday { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
   .cfmt { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--silver); margin-bottom: 14px; }
   .cpost h4 { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.5; }
+  .cpost .linkedin-post { margin-top: 0; box-shadow: none; }
+  .cpost .linkedin-visual { min-height: 90px; font-size: 14px; }
   .wthm { font-size: 13px; color: var(--silver); margin-bottom: 24px; padding: 12px 20px; border-radius: 8px; background: rgba(255,255,255,0.03); border-left: 2px solid var(--blue); display: none; }
   .wthm.active { display: block; }
 
@@ -286,10 +303,14 @@
   .tool-row strong { font-size: 14px; }
   .tool-row p { font-size: 12px; line-height: 1.45; color: rgba(255,255,255,0.58); }
   .role-pill { justify-self: end; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 5px; color: var(--white); background: rgba(139,92,246,0.18); border: 1px solid rgba(139,92,246,0.28); }
-  .linkedin-mock { display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: stretch; margin-top: 18px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(10,102,194,0.18), rgba(139,92,246,0.12)); border: 1px solid rgba(96,165,250,0.22); }
-  .linkedin-preview { border-radius: 10px; min-height: 118px; background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)), repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0 1px, transparent 1px 18px); display: flex; align-items: end; padding: 10px; color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 700; }
-  .linkedin-copy h4 { font-size: 15px; margin-bottom: 8px; }
-  .linkedin-copy p { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.68); }
+  .linkedin-post { margin-top: 18px; border-radius: 12px; overflow: hidden; background: #F8FAFC; color: #1F2937; border: 1px solid rgba(10,102,194,0.24); box-shadow: 0 22px 60px rgba(0,0,0,0.18); }
+  .linkedin-head { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
+  .linkedin-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #0A66C2, var(--purple)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; flex-shrink: 0; }
+  .linkedin-name { font-weight: 800; font-size: 13px; }
+  .linkedin-meta { color: #667085; font-size: 11px; margin-top: 2px; }
+  .linkedin-body { padding: 0 16px 14px; font-size: 13px; line-height: 1.55; color: #1F2937; }
+  .linkedin-visual { min-height: 132px; margin: 0 16px 12px; border-radius: 10px; background: linear-gradient(135deg, #0D1F3C, #1A56DB 58%, #8B5CF6); display: flex; align-items: center; justify-content: center; text-align: center; padding: 18px; color: #fff; font-weight: 800; font-size: 18px; line-height: 1.25; }
+  .linkedin-actions { display: flex; justify-content: space-around; border-top: 1px solid #E5E7EB; color: #667085; font-size: 12px; font-weight: 700; padding: 9px 12px; }
 
   /* VALUES */
   .vals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -458,6 +479,11 @@
   .agent-card.qa { --agent-rgb: 255,107,53; }
   .agent-card.reporting { --agent-rgb: 96,165,250; }
   .agent-fit { font-size: 12px; line-height: 1.55; color: var(--accent); }
+  .agent-run { position: relative; margin-top: 16px; display: grid; gap: 10px; }
+  .agent-run button { justify-self: start; min-height: 38px; padding: 0 14px; border-radius: 8px; border: 1px solid rgba(var(--agent-rgb, 26,86,219),0.38); background: rgba(var(--agent-rgb, 26,86,219),0.16); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 800; font-size: 12px; }
+  .agent-run button:hover { background: rgba(var(--agent-rgb, 26,86,219),0.26); transform: translateY(-1px); }
+  .agent-output { display: none; padding: 13px; border-radius: 8px; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.76); font-size: 12px; line-height: 1.65; }
+  .agent-output.show { display: block; }
   .agent-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
@@ -468,7 +494,7 @@
     .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards, .agent-grid, .qa-grid, .pipeline-grid,
     .audience-flow, .audience-main, .service-grid, .trust-row, .journey-nav, .section-break .inner, footer { grid-template-columns: 1fr; }
     .tcard.featured { grid-column: span 1; }
-    .linkedin-mock, .tool-row { grid-template-columns: 1fr; }
+    .linkedin-post, .tool-row { grid-template-columns: 1fr; }
     .role-pill { justify-self: start; }
     .section-break { padding-left: 24px; padding-right: 24px; }
     .visual-panel { min-height: 130px; }
@@ -501,6 +527,15 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-tag">Digital Innovation & Brand · Proplr (Google Cloud Partner)</div>
+  <div class="project-context">
+    This portfolio concept is built around <a href="https://proplr.io" target="_blank" rel="noopener">proplr.io</a>. Proplr × Vaultly is a mock case study created to show how a Proplr-style cloud and AI engagement could be translated into strategy, content, reporting, and interactive agents.
+  </div>
+  <div class="brand-strip" aria-label="Project stack and brand references">
+    <a class="logo-chip" href="https://proplr.io" target="_blank" rel="noopener"><span class="logo-mark proplr">P</span>Proplr</a>
+    <span class="logo-chip"><span class="logo-mark node">N</span>Node</span>
+    <a class="logo-chip" href="https://github.com/saarahraza/proplr-portfolio-api" target="_blank" rel="noopener"><span class="logo-mark github">GH</span>GitHub</a>
+    <span class="logo-chip"><span class="logo-mark render">R</span>Render</span>
+  </div>
   <h1 class="hero-title">AI That<br><span class="outline">Actually</span><br><span class="green">Ships.</span></h1>
   <p class="hero-sub">A concept portfolio demonstrating AI workflow design, content strategy, performance analytics, and live tool development — built around Proplr's Google Cloud AI consultancy model.</p>
   <div class="hero-ctas">
@@ -511,6 +546,8 @@
   <div class="live-strip">
     <span class="live-dot"></span>
     <div class="ticker">
+      <span>Advisor active</span><span>Cloud readiness scoring online</span><span>SEO and QA workflows ready</span><span>Reporting insights available</span>
+      <span>Advisor active</span><span>Cloud readiness scoring online</span><span>SEO and QA workflows ready</span><span>Reporting insights available</span>
       <span>Advisor active</span><span>Cloud readiness scoring online</span><span>SEO and QA workflows ready</span><span>Reporting insights available</span>
       <span>Advisor active</span><span>Cloud readiness scoring online</span><span>SEO and QA workflows ready</span><span>Reporting insights available</span>
     </div>
@@ -604,10 +641,10 @@
   </div>
 
   <div class="trust-row">
-    <div class="trust-item"><strong>Node</strong><span>API-backed interactive agents</span></div>
-    <div class="trust-item"><strong>GitHub</strong><span>Version-controlled project workflow</span></div>
-    <div class="trust-item"><strong>Render</strong><span>Deployment-ready web service</span></div>
-    <div class="trust-item"><strong>Proplr</strong><span>Inspired by public service positioning</span></div>
+    <div class="trust-item"><strong><span class="logo-mark node">N</span>Node</strong><span>API-backed interactive agents</span></div>
+    <div class="trust-item"><strong><span class="logo-mark github">GH</span>GitHub</strong><span>Version-controlled project workflow</span></div>
+    <div class="trust-item"><strong><span class="logo-mark render">R</span>Render</strong><span>Deployment-ready web service</span></div>
+    <div class="trust-item"><strong><span class="logo-mark proplr">P</span>Proplr</strong><span>Based around <a href="https://proplr.io" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none;">proplr.io</a></span></div>
   </div>
 </div>
 </div>
@@ -633,15 +670,14 @@
     <div class="vcard">
       <h3>LinkedIn hook</h3>
       <p>"Your team is spending 40% of engineering time on infrastructure. Proplr gives you that time back — and a Google Cloud AI stack that actually works."</p>
-      <div class="linkedin-mock">
-        <div class="linkedin-preview">Post visual</div>
-        <div class="linkedin-copy">
-          <h4>Mock LinkedIn creative</h4>
-          <p>A post-ready background for uploading the hook as a designed carousel or single image: cloud cost, recovered time, and Proplr-style proof in one frame.</p>
-        </div>
+      <div class="linkedin-post">
+        <div class="linkedin-head"><div class="linkedin-avatar">P</div><div><div class="linkedin-name">Proplr</div><div class="linkedin-meta">Google Cloud AI consulting · Promoted concept</div></div></div>
+        <div class="linkedin-body">Your team is spending 40% of engineering time on infrastructure. Proplr gives you that time back — and a Google Cloud AI stack that actually works.</div>
+        <div class="linkedin-visual">62% manual ops time recovered<br>in 12 weeks</div>
+        <div class="linkedin-actions"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span></div>
       </div>
     </div>
-    <div class="vcard">
+    <div class="vcard proof">
       <h3>Value proof point</h3>
       <p>Vaultly recovered 62% of manual operations time and $180K in annual costs within one 12-week Proplr engagement — without a single full-time cloud hire.</p>
     </div>
@@ -996,31 +1032,37 @@
       <h3>Cloud Readiness Advisor Agent</h3>
       <p>Scores a visitor's cloud readiness and recommends next steps across Google Cloud, architecture, security, FinOps, and AI adoption.</p>
       <div class="agent-fit">Priority tool: useful for anyone browsing the website.</div>
+      <div class="agent-run"><button onclick="runHomepageAgent('readiness')">Run sample advisor</button><div class="agent-output" id="home-agent-readiness"></div></div>
     </div>
     <div class="agent-card content">
       <h3>Content Strategy Agent</h3>
       <p>Generates LinkedIn content calendars, hooks, summaries, and CTAs for Google Cloud, managed services, FinOps, and generative AI campaigns.</p>
       <div class="agent-fit">Relevant tracks: Creative, Strategy, SEO, AI-assisted workflow.</div>
+      <div class="agent-run"><button onclick="runHomepageAgent('content')">Generate sample posts</button><div class="agent-output" id="home-agent-content"></div></div>
     </div>
     <div class="agent-card brief">
       <h3>Performance Brief Agent</h3>
       <p>Turns a campaign goal into a clear brief with objective, audience, key message, channels, success metrics, risks, and next steps.</p>
       <div class="agent-fit">Relevant tracks: Strategy, Clients, Media, Sales.</div>
+      <div class="agent-run"><button onclick="runHomepageAgent('brief')">Create sample brief</button><div class="agent-output" id="home-agent-brief"></div></div>
     </div>
     <div class="agent-card seo">
       <h3>SEO Opportunity Agent</h3>
       <p>Creates keyword, metadata, page structure, search intent, and internal link recommendations for Proplr-style service pages.</p>
       <div class="agent-fit">Relevant tracks: SEO, Content, Analytics, Digital Experience.</div>
+      <div class="agent-run"><button onclick="runHomepageAgent('seo')">Generate SEO sample</button><div class="agent-output" id="home-agent-seo"></div></div>
     </div>
     <div class="agent-card qa">
       <h3>Campaign QA Agent</h3>
       <p>Builds a pre-launch checklist for messaging, CTAs, tracking, UX, SEO basics, and analytics setup before campaign traffic goes live.</p>
       <div class="agent-fit">Relevant tracks: Dev, Martech & Analytics, QA, Digital Experience.</div>
+      <div class="agent-run"><button onclick="runHomepageAgent('qa')">Run QA sample</button><div class="agent-output" id="home-agent-qa"></div></div>
     </div>
     <div class="agent-card reporting">
       <h3>Reporting Insights Agent</h3>
       <p>Turns sample performance numbers into plain-English insight, recommended action, and a client-ready summary.</p>
       <div class="agent-fit">Relevant tracks: Martech & Analytics, Media, Clients, Strategy.</div>
+      <div class="agent-run"><button onclick="runHomepageAgent('reporting')">Generate insight</button><div class="agent-output" id="home-agent-reporting"></div></div>
     </div>
   </div>
 
@@ -1453,6 +1495,95 @@ function buildLocalContentStrategy(payload) {
   };
 }
 
+function enhanceLinkedInCalendar() {
+  document.querySelectorAll('.cpost').forEach((card, index) => {
+    if (card.querySelector('.linkedin-post')) return;
+    const day = card.querySelector('.cday')?.textContent || 'Post';
+    const format = card.querySelector('.cfmt')?.textContent || 'LinkedIn post';
+    const text = card.querySelector('h4')?.textContent || '';
+    const visualText = index % 3 === 0
+      ? 'Cloud spend up. Output flat.'
+      : index % 3 === 1
+        ? 'A clearer cloud roadmap starts here.'
+        : 'Proof beats promise.';
+    card.innerHTML = `
+      <div class="linkedin-post">
+        <div class="linkedin-head">
+          <div class="linkedin-avatar">P</div>
+          <div><div class="linkedin-name">Proplr</div><div class="linkedin-meta">${escapeHTML(day)} · ${escapeHTML(format)}</div></div>
+        </div>
+        <div class="linkedin-body">${escapeHTML(text)}</div>
+        <div class="linkedin-visual">${escapeHTML(visualText)}</div>
+        <div class="linkedin-actions"><span>Like</span><span>Comment</span><span>Repost</span><span>Send</span></div>
+      </div>
+    `;
+  });
+}
+enhanceLinkedInCalendar();
+
+const homepageAgentConfig = {
+  readiness: {
+    endpoint: '/api/cloud-readiness',
+    payload: { stage: 'Scaleup', cloudSetup: 'Some Google Cloud usage', challenge: 'Scaling infrastructure', securityNeed: 'Moderate', costConcern: 'Growing concern', aiInterest: 'Exploring AI use cases' },
+    fallback: { score: 67, maturity: 'Ready for a focused cloud roadmap', bestFitService: 'Fractional Cloud Expertise + Cloud Architecture Foundations', recommendedSteps: ['Map the current cloud environment.', 'Identify one reliability, cost, or security bottleneck.', 'Choose one practical AI pilot after the foundation is clear.'] }
+  },
+  content: {
+    endpoint: '/api/content-strategy',
+    payload: { audience: 'CTOs', topic: 'Google Cloud consulting', goal: 'Lead generation', tone: 'Direct and practical', postCount: '3' },
+    fallback: buildLocalContentStrategy({ audience: 'CTOs', topic: 'Google Cloud consulting', goal: 'Lead generation', tone: 'Direct and practical', postCount: '3' })
+  },
+  brief: {
+    endpoint: '/api/performance-brief',
+    payload: { clientType: 'B2B scaleup', service: 'Google Cloud consulting', audience: 'CTOs and scaleup leaders', goal: 'Generate qualified discovery calls', channel: 'LinkedIn and search', timeline: '4 weeks' },
+    fallback: { objective: 'Help B2B scaleups understand why Google Cloud consulting matters now.', keyMessage: 'Secure, scalable cloud foundations without slowing product momentum.', successMetrics: ['Qualified leads', 'Discovery calls booked', 'Landing page conversion rate'] }
+  },
+  seo: {
+    endpoint: '/api/seo-opportunity',
+    payload: { service: 'Google Cloud consulting', audience: 'Startup and scaleup leaders', keyword: 'google cloud consulting partner', goal: 'Improve qualified organic traffic' },
+    fallback: { primaryKeyword: 'google cloud consulting partner', titleTag: 'Google Cloud Consulting for Startups and Scaleups | Proplr', recommendation: 'Connect technical service copy to business outcomes, not just features.' }
+  },
+  qa: {
+    endpoint: '/api/campaign-qa',
+    payload: { pageGoal: 'Drive discovery calls', cta: 'Book a cloud readiness conversation', audience: 'CTOs and scaleup leaders', trackingNeeds: 'Form submits, CTA clicks, scroll depth, source tracking' },
+    fallback: { launchReadiness: 'Ready after tracking and message checks are confirmed.', checks: [{ area: 'Message', item: 'Page explains value for CTOs.', priority: 'High' }, { area: 'Tracking', item: 'Validate CTA clicks and form submits.', priority: 'High' }] }
+  },
+  reporting: {
+    endpoint: '/api/reporting-insight',
+    payload: { metric: 'Landing page conversion rate', previous: 2.4, current: 3.1, goal: 3.5, channel: 'LinkedIn campaign' },
+    fallback: { headline: 'Landing page conversion rate increased by 29% on LinkedIn campaign.', recommendedAction: 'Document the winning message and test one new creative angle.', clientSummary: 'The campaign is improving, but should stay focused on one next test.' }
+  }
+};
+
+async function runHomepageAgent(type) {
+  const config = homepageAgentConfig[type];
+  const out = document.getElementById('home-agent-' + type);
+  if (!config || !out) return;
+  out.className = 'agent-output show';
+  out.textContent = 'Running sample...';
+  try {
+    const res = await fetch(config.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(config.payload)
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Agent unavailable.');
+    out.innerHTML = formatHomepageAgentOutput(type, data);
+  } catch {
+    out.innerHTML = formatHomepageAgentOutput(type, config.fallback) + '<br><span style="color:var(--silver);">Local preview shown. Use http://localhost:3000 for live API output.</span>';
+  }
+}
+
+function formatHomepageAgentOutput(type, data) {
+  if (type === 'readiness') return `<strong>${escapeHTML(data.maturity)}</strong><br>Score: ${escapeHTML(data.score)}<br>Best fit: ${escapeHTML(data.bestFitService)}<br>${(data.recommendedSteps || []).slice(0, 2).map(step => '- ' + escapeHTML(step)).join('<br>')}`;
+  if (type === 'content') return `<strong>${escapeHTML(data.theme)}</strong><br>${(data.posts || []).slice(0, 2).map(post => `${escapeHTML(post.day)}: ${escapeHTML(post.hook)}`).join('<br><br>')}`;
+  if (type === 'brief') return `<strong>Objective</strong><br>${escapeHTML(data.objective)}<br><br><strong>Key message</strong><br>${escapeHTML(data.keyMessage)}`;
+  if (type === 'seo') return `<strong>${escapeHTML(data.primaryKeyword)}</strong><br>${escapeHTML(data.titleTag)}<br><br>${escapeHTML(data.recommendation)}`;
+  if (type === 'qa') return `<strong>${escapeHTML(data.launchReadiness)}</strong><br>${(data.checks || []).slice(0, 3).map(check => `${escapeHTML(check.priority)}: ${escapeHTML(check.area)} - ${escapeHTML(check.item)}`).join('<br>')}`;
+  if (type === 'reporting') return `<strong>${escapeHTML(data.headline)}</strong><br>${escapeHTML(data.recommendedAction)}<br><br>${escapeHTML(data.clientSummary)}`;
+  return escapeHTML(JSON.stringify(data, null, 2));
+}
+
 // ── AUDIENCE TOGGLE ──
 function switchAud(id, btn) {
   document.querySelectorAll('.aud-view').forEach(v => v.classList.remove('active'));
@@ -1478,10 +1609,10 @@ function initCharts() {
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom', labels: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 }, boxWidth: 10 } } },
+        plugins: { legend: { position: 'bottom', labels: { color: '#A8B8C8', font: { family: 'Inter', size: 11 }, boxWidth: 10 } } },
         scales: {
-          x: { stacked: true, grid: { display: false }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } },
-          y: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } }
+          x: { stacked: true, grid: { display: false }, ticks: { color: '#A8B8C8', font: { family: 'Inter', size: 11 } } },
+          y: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#A8B8C8', font: { family: 'Inter', size: 11 } } }
         }
       }
     });
@@ -1499,10 +1630,10 @@ function initCharts() {
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom', labels: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 }, boxWidth: 10 } } },
+        plugins: { legend: { position: 'bottom', labels: { color: '#A8B8C8', font: { family: 'Inter', size: 11 }, boxWidth: 10 } } },
         scales: {
-          x: { grid: { display: false }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } },
-          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#A8B8C8', font: { family: 'DM Sans', size: 11 } } }
+          x: { grid: { display: false }, ticks: { color: '#A8B8C8', font: { family: 'Inter', size: 11 } } },
+          y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#A8B8C8', font: { family: 'Inter', size: 11 } } }
         }
       }
     });
