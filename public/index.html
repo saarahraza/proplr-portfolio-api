@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Proplr × Vaultly — AI Transformation Portfolio</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -30,16 +30,17 @@
   .nav-badge { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 100px; background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); }
 
   /* HERO */
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; position: relative; overflow: hidden; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 118px 48px 56px; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: -8%; background: radial-gradient(ellipse 80% 60% at 60% 30%, rgba(26,86,219,0.25) 0%, transparent 70%), radial-gradient(ellipse 44% 40% at 28% 72%, rgba(139,92,246,0.16) 0%, transparent 62%), radial-gradient(ellipse 50% 40% at 20% 70%, rgba(0,212,170,0.12) 0%, transparent 60%), var(--navy); will-change: transform; }
   .hero-grid { position: absolute; inset: -8%; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%); will-change: transform; animation: gridDrift 18s linear infinite; }
-  .hero-tag { position: relative; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; animation: fadeUp 0.6s ease both; }
+  .hero-tag { position: relative; font-size: 12px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; animation: fadeUp 0.6s ease both; }
   .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
-  .hero-title { position: relative; font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(50px, 7vw, 88px); line-height: 0.98; letter-spacing: 0; margin-bottom: 28px; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-title { position: relative; font-family: 'Inter', sans-serif; font-weight: 800; font-size: clamp(48px, 6.7vw, 84px); line-height: 0.98; letter-spacing: 0; margin-bottom: 20px; animation: fadeUp 0.6s 0.1s ease both; }
   .hero-title .outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
   .hero-title .green { color: var(--accent); }
-  .hero-sub { position: relative; max-width: 620px; min-height: 74px; font-size: 18px; font-weight: 400; line-height: 1.65; color: rgba(255,255,255,0.68); margin-bottom: 34px; animation: fadeUp 0.6s 0.2s ease both; }
-  .hero-sub.typing::after { content: ''; display: inline-block; width: 8px; height: 1.05em; margin-left: 4px; transform: translateY(2px); background: var(--accent); animation: blink 0.9s steps(2,end) infinite; }
+  .hero-sub { position: relative; max-width: 720px; font-size: 19px; font-weight: 500; line-height: 1.55; color: rgba(255,255,255,0.72); margin-bottom: 26px; animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-sub strong { color: var(--white); font-weight: 800; }
+  .hero-sub .blue { color: #93C5FD; font-weight: 800; }
   .hero-ctas { position: relative; display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
   .btn-p { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; background: var(--blue); color: var(--white); font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
   .btn-p:hover { background: var(--blue-dark); transform: translateY(-1px); }
@@ -51,37 +52,36 @@
   .hero .live-strip { width: min(920px, 100%); }
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 18px var(--accent); animation: pulse 1.6s ease-in-out infinite; flex-shrink: 0; }
   .ticker { min-width: max-content; display: inline-flex; gap: 18px; white-space: nowrap; animation: ticker 24s linear infinite; }
-  .project-context { position: relative; max-width: 760px; margin-bottom: 18px; padding: 14px 18px; border: 1px solid rgba(255,255,255,0.11); border-radius: 8px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.72); font-size: 14px; line-height: 1.65; animation: fadeUp 0.6s 0.05s ease both; }
+  .project-context { position: relative; max-width: 830px; margin-bottom: 14px; padding: 13px 17px; border: 1px solid rgba(255,255,255,0.13); border-radius: 8px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.76); font-size: 15px; line-height: 1.55; animation: fadeUp 0.6s 0.05s ease both; }
   .project-context a { color: var(--accent); font-weight: 700; text-decoration: none; }
   .project-context a:hover { text-decoration: underline; }
-  .brand-strip { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; animation: fadeUp 0.6s 0.06s ease both; }
-  .logo-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 30px; padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.72); font-size: 12px; font-weight: 700; text-decoration: none; }
-  .logo-mark { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--white); font-size: 10px; font-weight: 800; letter-spacing: 0; flex-shrink: 0; }
-  .logo-mark.node { background: rgba(0,212,170,0.16); color: var(--accent); }
-  .logo-mark.github { background: rgba(255,255,255,0.13); color: var(--white); }
-  .logo-mark.render { background: rgba(139,92,246,0.18); color: #D8B4FE; }
-  .logo-mark.proplr { background: rgba(26,86,219,0.18); color: #BFD2FF; }
+  .project-context strong { color: #D8B4FE; font-weight: 800; }
 
   /* SKILL TAGS */
-  .skill-tags { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; animation: fadeUp 0.6s 0.4s ease both; }
+  .skill-tags { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; animation: fadeUp 0.6s 0.4s ease both; }
   .stag-pill { font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.08); letter-spacing: 0.04em; }
   .stag-pill.hi { background: rgba(0,212,170,0.08); color: rgba(0,212,170,0.7); border-color: rgba(0,212,170,0.2); }
 
   /* STATS */
-  .stats-strip { background: rgba(26,86,219,0.08); border-top: 1px solid rgba(26,86,219,0.2); border-bottom: 1px solid rgba(139,92,246,0.18); padding: 32px 48px; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stats-strip { background: rgba(26,86,219,0.08); border-top: 1px solid rgba(26,86,219,0.2); border-bottom: 1px solid rgba(139,92,246,0.18); padding: 24px 48px; display: grid; grid-template-columns: repeat(4, 1fr); }
   .stat-item { text-align: center; padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.06); }
   .stat-item:last-child { border-right: none; }
   .stat-value { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
   .stat-label { font-size: 12px; color: var(--silver); }
 
   /* LAYOUT */
-  .sec { padding: 72px 48px; max-width: 1200px; margin: 0 auto; }
-  .sec-w { padding: 72px 48px; border-top: 1px solid rgba(255,255,255,0.04); }
+  .sec { padding: 58px 48px; max-width: 1200px; margin: 0 auto; }
+  .sec-w { padding: 58px 48px; border-top: 1px solid rgba(255,255,255,0.04); }
   .sec-w .inner { max-width: 1200px; margin: 0 auto; }
   .stag { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .stag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--blue); }
   .stitle { font-family: 'Inter', sans-serif; font-size: clamp(36px, 4.5vw, 56px); font-weight: 750; line-height: 1.05; letter-spacing: 0; margin-bottom: 18px; text-transform: none; }
-  .sdesc { font-size: 16px; font-weight: 400; line-height: 1.75; color: rgba(255,255,255,0.62); max-width: 700px; margin-bottom: 38px; }
+  .sdesc { font-size: 17px; font-weight: 500; line-height: 1.65; color: rgba(255,255,255,0.66); max-width: 740px; margin-bottom: 30px; }
+  .sdesc strong, p strong { color: var(--white); font-weight: 800; }
+  .light-section .sdesc strong, .light-section p strong { color: var(--ink); }
+  .text-accent { color: var(--accent); font-weight: 800; }
+  .text-blue { color: #93C5FD; font-weight: 800; }
+  .text-purple { color: #D8B4FE; font-weight: 800; }
   .light-section { max-width: none; background: linear-gradient(180deg, #F3F6FA, #EAF0F7); color: var(--ink); border-top: 1px solid rgba(16,32,51,0.08); }
   .light-section > .inner, section.light-section { max-width: none; }
   .light-section .inner, section.light-section > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
@@ -98,7 +98,7 @@
   .journey-nav a:hover { background: rgba(0,212,170,0.08); color: var(--white); }
   .journey-nav strong { display: block; font-family: 'Inter', sans-serif; color: var(--white); font-size: 14px; text-transform: uppercase; margin-bottom: 5px; }
   .journey-nav span { display: block; font-size: 12px; line-height: 1.5; }
-  .section-break { position: relative; overflow: hidden; padding: 56px 48px; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); background: linear-gradient(135deg, rgba(8,20,38,0.98), rgba(16,41,72,0.92)); }
+  .section-break { position: relative; overflow: hidden; padding: 42px 48px; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); background: linear-gradient(135deg, rgba(8,20,38,0.98), rgba(16,41,72,0.92)); }
   .section-break.light { background: linear-gradient(135deg, #F7F9FC, #EAF0F7); color: var(--ink); border-color: rgba(16,32,51,0.08); }
   .section-break .inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: center; }
   .section-break h2 { font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.08; text-transform: none; margin-bottom: 12px; }
@@ -130,14 +130,14 @@
 
   /* VALUE PROP */
   .vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 24px 70px rgba(0,0,0,0.18); }
-  .vcard { padding: 40px; background: rgba(255,255,255,0.035); backdrop-filter: blur(14px); transition: transform 0.25s ease, background 0.3s, box-shadow 0.25s ease; }
+  .vcard { padding: 32px; background: rgba(255,255,255,0.035); backdrop-filter: blur(14px); transition: transform 0.25s ease, background 0.3s, box-shadow 0.25s ease; }
   .vcard:hover { background: rgba(255,255,255,0.055); transform: translateY(-3px); box-shadow: 0 18px 50px rgba(0,0,0,0.18); }
   .vcard.feat { background: linear-gradient(135deg, rgba(26,86,219,0.18), rgba(0,212,170,0.06)); border: 1px solid rgba(26,86,219,0.25); grid-column: span 2; }
   .vcard h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
   .vcard p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.62); font-weight: 400; }
   .vcard.proof { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
   .vcard.proof p { max-width: 440px; font-size: 16px; color: rgba(255,255,255,0.72); }
-  .qblock { padding: 36px 44px; border-left: 3px solid var(--blue); background: rgba(26,86,219,0.06); border-radius: 0 12px 12px 0; margin-bottom: 48px; }
+  .qblock { padding: 28px 36px; border-left: 3px solid var(--blue); background: rgba(26,86,219,0.06); border-radius: 0 12px 12px 0; margin-bottom: 32px; }
   .qblock p { font-family: 'Inter', sans-serif; font-size: clamp(18px, 2.2vw, 24px); font-weight: 600; line-height: 1.4; }
   .pcols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .pcol { padding: 28px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
@@ -157,14 +157,14 @@
   .ai-chip.perplexity .dot { background: #F59E0B; }
 
   /* CASE STUDY */
-  .csh { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 60px; }
-  .css { display: grid; grid-template-columns: 1.35fr 1fr 1fr; grid-auto-rows: minmax(132px, auto); gap: 16px; margin-bottom: 60px; }
+  .csh { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: end; margin-bottom: 42px; }
+  .css { display: grid; grid-template-columns: 1.35fr 1fr 1fr; grid-auto-rows: minmax(132px, auto); gap: 16px; margin-bottom: 42px; }
   .csi { padding: 28px 24px; border-radius: 8px; background: linear-gradient(145deg, rgba(26,86,219,0.15), rgba(255,255,255,0.035)); border: 1px solid rgba(255,255,255,0.09); text-align: center; box-shadow: 0 22px 58px rgba(0,0,0,0.18); backdrop-filter: blur(14px); transition: transform 0.25s ease, border-color 0.25s ease; }
   .csi:first-child { grid-row: span 2; display: flex; flex-direction: column; justify-content: center; }
   .csi:hover { transform: translateY(-4px); border-color: rgba(0,212,170,0.26); }
   .csv { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
   .csl { font-size: 12px; color: var(--silver); }
-  .phases { display: flex; flex-direction: column; gap: 2px; margin-bottom: 60px; }
+  .phases { display: flex; flex-direction: column; gap: 2px; margin-bottom: 42px; }
   .phase { padding: 24px 28px; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; cursor: pointer; transition: all 0.3s; display: grid; grid-template-columns: 44px 1fr; gap: 20px; align-items: start; backdrop-filter: blur(12px); }
   .phase:hover { background: rgba(26,86,219,0.08); border-color: rgba(26,86,219,0.2); }
   .phase.active { background: rgba(26,86,219,0.12); border-color: rgba(26,86,219,0.3); }
@@ -176,7 +176,7 @@
   .phase.active .pitems { display: block; }
   .pitems li { font-size: 13px; color: rgba(255,255,255,0.6); padding: 5px 0; display: flex; gap: 10px; }
   .pitems li::before { content: '↳'; color: var(--accent); flex-shrink: 0; }
-  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; margin-bottom: 48px; }
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; margin-bottom: 34px; }
   .bac { padding: 32px; }
   .bac.bef { background: rgba(255,107,53,0.06); }
   .bac.aft { background: rgba(0,212,170,0.06); }
@@ -209,7 +209,7 @@
   .fsp p { font-size: 12px; color: var(--silver); }
 
   /* SEO / ANALYTICS SECTION */
-  .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 48px; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 34px; }
   .mcard { padding: 28px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; background: rgba(255,255,255,0.02); }
   .mcard h4 { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--accent); }
   .mcard p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; font-weight: 300; }
@@ -528,16 +528,10 @@
   <div class="hero-grid"></div>
   <div class="hero-tag">Digital Innovation & Brand · Proplr (Google Cloud Partner)</div>
   <div class="project-context">
-    This portfolio concept is built around <a href="https://proplr.io" target="_blank" rel="noopener">proplr.io</a>. Proplr × Vaultly is a mock case study created to show how a Proplr-style cloud and AI engagement could be translated into strategy, content, reporting, and interactive agents.
-  </div>
-  <div class="brand-strip" aria-label="Project stack and brand references">
-    <a class="logo-chip" href="https://proplr.io" target="_blank" rel="noopener"><span class="logo-mark proplr">P</span>Proplr</a>
-    <span class="logo-chip"><span class="logo-mark node">N</span>Node</span>
-    <a class="logo-chip" href="https://github.com/saarahraza/proplr-portfolio-api" target="_blank" rel="noopener"><span class="logo-mark github">GH</span>GitHub</a>
-    <span class="logo-chip"><span class="logo-mark render">R</span>Render</span>
+    Built around <a href="https://proplr.io" target="_blank" rel="noopener">proplr.io</a>. <strong>Proplr × Vaultly</strong> is a mock case study showing how a Proplr-style cloud and AI engagement can become strategy, content, reporting, and interactive agents.
   </div>
   <h1 class="hero-title">AI That<br><span class="outline">Actually</span><br><span class="green">Ships.</span></h1>
-  <p class="hero-sub">A concept portfolio demonstrating AI workflow design, content strategy, performance analytics, and live tool development — built around Proplr's Google Cloud AI consultancy model.</p>
+  <p class="hero-sub">A publication-ready concept portfolio demonstrating <strong>AI workflow design</strong>, <span class="blue">content strategy</span>, performance analytics, and live tool development for a Google Cloud consulting model.</p>
   <div class="hero-ctas">
     <a href="/agency-agents#readiness" class="btn-p">Try Cloud Readiness Advisor →</a>
     <a href="#casestudy" class="btn-p">View Case Study →</a>
@@ -589,7 +583,7 @@
 <section class="sec light-section" id="audience">
   <div class="stag">Built For · Cloud Teams · Scaleups · Technical Leaders</div>
   <h2 class="stitle">For teams that need cloud clarity before they scale.</h2>
-  <p class="sdesc">The site now works like a real consulting entry point: visitors can understand the services, test their cloud readiness, and see how the recommendations become marketing, SEO, QA, and reporting deliverables.</p>
+  <p class="sdesc">The site now works like a real consulting entry point: visitors can understand the services, test <strong>cloud readiness</strong>, and see how recommendations become <span class="text-blue">marketing</span>, SEO, QA, and reporting deliverables.</p>
 
   <div class="audience-flow">
     <div class="audience-main">
@@ -629,7 +623,7 @@
 <div class="inner">
   <div class="stag">Service Model · Google Cloud · Managed Services · FinOps</div>
   <h2 class="stitle">Service areas the agents understand.</h2>
-  <p class="sdesc">The toolkit is tuned around Proplr-style services so the outputs feel connected to real cloud consulting, not generic AI text generation.</p>
+  <p class="sdesc">The toolkit is tuned around <strong>Proplr-style services</strong> so the outputs feel connected to real cloud consulting, not generic AI text generation.</p>
 
   <div class="service-grid">
     <div class="service-card"><span class="service-label">Consulting</span><h3>Google Cloud Consulting</h3><p>Migration, architecture, optimization, and implementation support for teams moving faster on Google Cloud.</p></div>
@@ -641,10 +635,10 @@
   </div>
 
   <div class="trust-row">
-    <div class="trust-item"><strong><span class="logo-mark node">N</span>Node</strong><span>API-backed interactive agents</span></div>
-    <div class="trust-item"><strong><span class="logo-mark github">GH</span>GitHub</strong><span>Version-controlled project workflow</span></div>
-    <div class="trust-item"><strong><span class="logo-mark render">R</span>Render</strong><span>Deployment-ready web service</span></div>
-    <div class="trust-item"><strong><span class="logo-mark proplr">P</span>Proplr</strong><span>Based around <a href="https://proplr.io" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none;">proplr.io</a></span></div>
+    <div class="trust-item"><strong>Node</strong><span>API-backed interactive agents</span></div>
+    <div class="trust-item"><strong>GitHub</strong><span>Version-controlled project workflow</span></div>
+    <div class="trust-item"><strong>Render</strong><span>Deployment-ready web service</span></div>
+    <div class="trust-item"><strong>Proplr</strong><span>Based around <a href="https://proplr.io" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none;">proplr.io</a></span></div>
   </div>
 </div>
 </div>
@@ -653,7 +647,7 @@
 <section id="value" class="sec">
   <div class="stag">Deliverable 1 · Planning & Design · Business Outcomes</div>
   <h2 class="stitle">Value Proposition & Brand Strategy</h2>
-  <p class="sdesc">Translating Proplr's AI roadmap into stakeholder messaging that aligns with company values and converts decision-makers.</p>
+  <p class="sdesc">Translating Proplr's AI roadmap into <strong>stakeholder messaging</strong> that aligns with company values and converts decision-makers.</p>
 
   <div class="ai-tools-row">
     <div class="ai-chip claude"><span class="dot"></span>Claude by Anthropic — drafting & refinement</div>
@@ -665,7 +659,7 @@
   <div class="vgrid">
     <div class="vcard feat">
       <h3>Core positioning</h3>
-      <p>Proplr embeds senior Google Cloud practitioners directly into your team — not as consultants who disappear after the deck, but as fractional operators who build, ship, and scale alongside you. Google Cloud architecture for your exact stage. AI tools in real workflows. Measurable ROI in 90 days.</p>
+      <p>Proplr embeds senior Google Cloud practitioners directly into your team — not as consultants who disappear after the deck, but as <strong>fractional operators</strong> who build, ship, and scale alongside you. <span class="text-accent">Measurable ROI in 90 days.</span></p>
     </div>
     <div class="vcard">
       <h3>LinkedIn hook</h3>
@@ -679,7 +673,7 @@
     </div>
     <div class="vcard proof">
       <h3>Value proof point</h3>
-      <p>Vaultly recovered 62% of manual operations time and $180K in annual costs within one 12-week Proplr engagement — without a single full-time cloud hire.</p>
+      <p>Vaultly recovered <span class="text-accent">62% of manual operations time</span> and <span class="text-purple">$180K in annual costs</span> within one 12-week Proplr engagement — without a single full-time cloud hire.</p>
     </div>
   </div>
   <div class="pcols">
@@ -1353,24 +1347,6 @@ if (!reduceMotion) {
   }, { passive: true });
 }
 if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 24);
-
-const heroSub = document.querySelector('.hero-sub');
-if (heroSub && !reduceMotion) {
-  const fullText = heroSub.textContent.trim();
-  heroSub.textContent = '';
-  heroSub.classList.add('typing');
-  let i = 0;
-  const typeHero = () => {
-    heroSub.textContent = fullText.slice(0, i);
-    i += 1;
-    if (i <= fullText.length) {
-      window.setTimeout(typeHero, 18);
-    } else {
-      heroSub.classList.remove('typing');
-    }
-  };
-  window.setTimeout(typeHero, 450);
-}
 
 const revealTargets = document.querySelectorAll('.sec, .sec-w, .journey-nav a, .section-break, .visual-panel, .audience-card, .service-card, .trust-item, .vcard, .csi, .phase, .mcard, .cpost, .tcard, .agent-card');
 revealTargets.forEach(el => el.classList.add('reveal'));
