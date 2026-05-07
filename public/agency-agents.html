@@ -91,6 +91,31 @@
     .agent.priority .agent-head { border-right: none; border-bottom: 1px solid var(--line); }
     main { width: min(100% - 28px, 680px); margin-top: 24px; }
   }
+  @media (max-width: 640px) {
+    body::before, body::after { opacity: 0.035; }
+    header { padding: 14px 16px; gap: 12px; }
+    .brand strong { font-size: 13px; }
+    .brand span { font-size: 12px; line-height: 1.45; }
+    .nav { width: 100%; gap: 8px; }
+    .nav a { flex: 1; min-width: 96px; min-height: 38px; padding: 0 10px; font-size: 12px; }
+    main { width: calc(100% - 24px); margin: 20px auto 44px; }
+    .intro { gap: 16px; margin-bottom: 16px; }
+    h1 { font-size: 34px; line-height: 1.02; margin-bottom: 12px; }
+    .intro p { font-size: 14px; line-height: 1.6; }
+    .proof-panel { padding: 14px; }
+    .proof-panel strong { font-size: 26px; }
+    .grid { gap: 12px; }
+    .agent.priority { min-height: 0; }
+    .agent-head, .agent.priority .agent-head, .agent-body, .agent.priority .agent-body { padding: 16px; }
+    .agent.priority h2 { font-size: 30px; }
+    .agent-head h2 { font-size: 20px; }
+    .fields { gap: 10px; }
+    input, select { min-height: 40px; font-size: 14px; }
+    .run-row { flex-direction: column; align-items: stretch; gap: 8px; }
+    .run-row button { width: 100%; }
+    .output, .agent.priority .output { min-height: 120px; font-size: 13px; }
+    .mini-metrics { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -100,7 +125,7 @@
     <span>Try the Cloud Readiness Advisor, then explore marketing agents</span>
   </div>
   <div class="nav">
-    <a href="/">Portfolio</a>
+    <a href="index.html">Portfolio</a>
     <a href="#readiness">Cloud Readiness</a>
     <a href="#content">Content</a>
   </div>
@@ -284,7 +309,7 @@ async function callAgent(endpoint, payload, statusId, outputId, formatter) {
   const status = document.getElementById(statusId);
   const output = document.getElementById(outputId);
   if (window.location.protocol === 'file:') {
-    status.textContent = 'Open http://localhost:3000/agency-agents instead.';
+    status.textContent = 'Open http://localhost:3000/agency-agents.html instead.';
     return;
   }
 

@@ -479,17 +479,17 @@
   .agent-card.qa { --agent-rgb: 255,107,53; }
   .agent-card.reporting { --agent-rgb: 96,165,250; }
   .agent-fit { font-size: 12px; line-height: 1.55; color: var(--accent); }
-  .agent-run { position: relative; margin-top: 16px; display: grid; gap: 10px; }
-  .agent-run button { justify-self: start; min-height: 38px; padding: 0 14px; border-radius: 8px; border: 1px solid rgba(var(--agent-rgb, 26,86,219),0.38); background: rgba(var(--agent-rgb, 26,86,219),0.16); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 800; font-size: 12px; }
-  .agent-run button:hover { background: rgba(var(--agent-rgb, 26,86,219),0.26); transform: translateY(-1px); }
-  .agent-output { display: none; padding: 13px; border-radius: 8px; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.76); font-size: 12px; line-height: 1.65; }
-  .agent-output.show { display: block; }
+  .agent-link { position: relative; display: inline-flex; align-items: center; justify-content: center; width: fit-content; min-height: 38px; margin-top: 16px; padding: 0 14px; border-radius: 8px; border: 1px solid rgba(var(--agent-rgb, 26,86,219),0.38); background: rgba(var(--agent-rgb, 26,86,219),0.16); color: var(--white); font-weight: 800; font-size: 12px; text-decoration: none; }
+  .agent-link:hover { background: rgba(var(--agent-rgb, 26,86,219),0.26); transform: translateY(-1px); }
   .agent-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; flex-wrap: wrap; align-items: flex-start; } .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 16px; padding-top: 10px; }
-    .hero, .sec, .sec-w { padding-left: 24px; padding-right: 24px; }
+    nav { padding: 14px 22px; flex-wrap: wrap; align-items: flex-start; position: sticky; } .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 16px; padding-top: 10px; }
+    .hero, .sec, .sec-w { padding-left: 22px; padding-right: 22px; }
+    .hero { min-height: auto; padding-top: 68px; padding-bottom: 44px; }
     .hero-title { font-size: 44px; }
+    .hero-sub { font-size: 17px; line-height: 1.55; }
+    .project-context { font-size: 14px; }
     .stats-strip, .vgrid, .csh, .pcols, .ba, .tgrid, .css, .metrics-grid, .vals-grid,
     .ti-grid3, .ti-grid2, .wf-cols, .wf-savings, .intake-wrap, .summary-cards, .agent-grid, .qa-grid, .pipeline-grid,
     .audience-flow, .audience-main, .service-grid, .trust-row, .journey-nav, .section-break .inner, footer { grid-template-columns: 1fr; }
@@ -501,6 +501,38 @@
     .vcard.feat { grid-column: span 1; }
     .cwk.active { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 12px 16px; }
+    .nav-logo { font-size: 13px; }
+    .nav-badge { display: none; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 12px; white-space: nowrap; }
+    .hero, .sec, .sec-w { padding-left: 16px; padding-right: 16px; }
+    .hero { padding-top: 44px; padding-bottom: 34px; }
+    .hero-tag { font-size: 10px; line-height: 1.5; margin-bottom: 12px; }
+    .hero-title { font-size: 38px; margin-bottom: 16px; }
+    .hero-sub { font-size: 16px; min-height: 0; margin-bottom: 20px; }
+    .project-context { padding: 12px 14px; font-size: 13px; line-height: 1.55; }
+    .hero-ctas { gap: 10px; }
+    .btn-p, .btn-g { width: 100%; justify-content: center; padding: 13px 16px; }
+    .skill-tags { margin-top: 16px; }
+    .stats-strip { grid-template-columns: 1fr 1fr; padding: 20px 16px; gap: 14px; }
+    .stat-item { border-right: none; padding: 0; }
+    .stat-value { font-size: 34px; }
+    .sec, .sec-w { padding-top: 42px; padding-bottom: 42px; }
+    .stitle { font-size: 31px; line-height: 1.08; }
+    .sdesc { font-size: 15px; margin-bottom: 22px; }
+    .audience-card, .service-card, .flow-sidebar, .vcard, .mcard, .qa-card, .tcard, .agent-card, .val-card, .pcol { padding: 20px; }
+    .journey-nav a { padding: 16px; }
+    .qblock { padding: 22px; margin-bottom: 24px; }
+    .qblock p { font-size: 18px; }
+    .section-break { padding-top: 34px; padding-bottom: 34px; }
+    .linkedin-visual { min-height: 104px; font-size: 15px; }
+    .agent-card h3 { font-size: 18px; max-width: none; padding-right: 44px; }
+    .agent-card p { font-size: 14px; }
+    .agent-link { width: 100%; }
+    .hero-scroll { display: none; }
   }
 </style>
 </head>
@@ -517,7 +549,7 @@
     <a href="#tools">Live Tools</a>
     <a href="#agents">AI Agents</a>
     <a href="#talent">Talent Intelligence</a>
-    <a href="/agency-agents">Agent Toolkit</a>
+    <a href="agency-agents.html">Agent Toolkit</a>
   </div>
   <div class="nav-badge">Portfolio Project · 2026</div>
 </nav>
@@ -533,7 +565,7 @@
   <h1 class="hero-title">AI That<br><span class="outline">Actually</span><br><span class="green">Ships.</span></h1>
   <p class="hero-sub">A publication-ready concept portfolio demonstrating <strong>AI workflow design</strong>, <span class="blue">content strategy</span>, performance analytics, and live tool development for a Google Cloud consulting model.</p>
   <div class="hero-ctas">
-    <a href="/agency-agents#readiness" class="btn-p">Try Cloud Readiness Advisor →</a>
+    <a href="agency-agents.html#readiness" class="btn-p">Try Cloud Readiness Advisor →</a>
     <a href="#casestudy" class="btn-p">View Case Study →</a>
     <a href="#tools" class="btn-g">Try Live AI Tools</a>
   </div>
@@ -613,7 +645,7 @@
         <li>Best-fit Proplr-style service recommendation</li>
         <li>Follow-up content, SEO, QA, and reporting deliverables</li>
       </ul>
-      <a href="/agency-agents#readiness" class="btn-p" style="margin-top:18px;">Try the advisor</a>
+      <a href="agency-agents.html#readiness" class="btn-p" style="margin-top:18px;">Try the advisor</a>
     </aside>
   </div>
 </section>
@@ -1026,43 +1058,43 @@
       <h3>Cloud Readiness Advisor Agent</h3>
       <p>Scores a visitor's cloud readiness and recommends next steps across Google Cloud, architecture, security, FinOps, and AI adoption.</p>
       <div class="agent-fit">Priority tool: useful for anyone browsing the website.</div>
-      <div class="agent-run"><button onclick="runHomepageAgent('readiness')">Run sample advisor</button><div class="agent-output" id="home-agent-readiness"></div></div>
+      <a class="agent-link" href="agency-agents.html#readiness">Open advisor options</a>
     </div>
     <div class="agent-card content">
       <h3>Content Strategy Agent</h3>
       <p>Generates LinkedIn content calendars, hooks, summaries, and CTAs for Google Cloud, managed services, FinOps, and generative AI campaigns.</p>
       <div class="agent-fit">Relevant tracks: Creative, Strategy, SEO, AI-assisted workflow.</div>
-      <div class="agent-run"><button onclick="runHomepageAgent('content')">Generate sample posts</button><div class="agent-output" id="home-agent-content"></div></div>
+      <a class="agent-link" href="agency-agents.html#content">Open content options</a>
     </div>
     <div class="agent-card brief">
       <h3>Performance Brief Agent</h3>
       <p>Turns a campaign goal into a clear brief with objective, audience, key message, channels, success metrics, risks, and next steps.</p>
       <div class="agent-fit">Relevant tracks: Strategy, Clients, Media, Sales.</div>
-      <div class="agent-run"><button onclick="runHomepageAgent('brief')">Create sample brief</button><div class="agent-output" id="home-agent-brief"></div></div>
+      <a class="agent-link" href="agency-agents.html#performance">Open brief options</a>
     </div>
     <div class="agent-card seo">
       <h3>SEO Opportunity Agent</h3>
       <p>Creates keyword, metadata, page structure, search intent, and internal link recommendations for Proplr-style service pages.</p>
       <div class="agent-fit">Relevant tracks: SEO, Content, Analytics, Digital Experience.</div>
-      <div class="agent-run"><button onclick="runHomepageAgent('seo')">Generate SEO sample</button><div class="agent-output" id="home-agent-seo"></div></div>
+      <a class="agent-link" href="agency-agents.html#seo">Open SEO options</a>
     </div>
     <div class="agent-card qa">
       <h3>Campaign QA Agent</h3>
       <p>Builds a pre-launch checklist for messaging, CTAs, tracking, UX, SEO basics, and analytics setup before campaign traffic goes live.</p>
       <div class="agent-fit">Relevant tracks: Dev, Martech & Analytics, QA, Digital Experience.</div>
-      <div class="agent-run"><button onclick="runHomepageAgent('qa')">Run QA sample</button><div class="agent-output" id="home-agent-qa"></div></div>
+      <a class="agent-link" href="agency-agents.html#qa">Open QA options</a>
     </div>
     <div class="agent-card reporting">
       <h3>Reporting Insights Agent</h3>
       <p>Turns sample performance numbers into plain-English insight, recommended action, and a client-ready summary.</p>
       <div class="agent-fit">Relevant tracks: Martech & Analytics, Media, Clients, Strategy.</div>
-      <div class="agent-run"><button onclick="runHomepageAgent('reporting')">Generate insight</button><div class="agent-output" id="home-agent-reporting"></div></div>
+      <a class="agent-link" href="agency-agents.html#reporting">Open reporting options</a>
     </div>
   </div>
 
   <div class="agent-actions">
-    <a href="/agency-agents#readiness" class="btn-p">Try Cloud Readiness Advisor →</a>
-    <a href="/agency-agents" class="btn-g">Open Full Agent Toolkit</a>
+    <a href="agency-agents.html#readiness" class="btn-p">Try Cloud Readiness Advisor →</a>
+    <a href="agency-agents.html" class="btn-g">Open Full Agent Toolkit</a>
   </div>
 </div>
 </div>
@@ -1316,9 +1348,9 @@
   <div>
     <h4>Tools</h4>
     <div class="footer-links">
-      <a href="/agency-agents#readiness">Cloud Readiness Advisor</a>
-      <a href="/agency-agents#content">Content Strategy Agent</a>
-      <a href="/agency-agents#seo">SEO Opportunity Agent</a>
+      <a href="agency-agents.html#readiness">Cloud Readiness Advisor</a>
+      <a href="agency-agents.html#content">Content Strategy Agent</a>
+      <a href="agency-agents.html#seo">SEO Opportunity Agent</a>
       <a href="#talent">Research Intake Demo</a>
     </div>
   </div>
@@ -1496,69 +1528,6 @@ function enhanceLinkedInCalendar() {
   });
 }
 enhanceLinkedInCalendar();
-
-const homepageAgentConfig = {
-  readiness: {
-    endpoint: '/api/cloud-readiness',
-    payload: { stage: 'Scaleup', cloudSetup: 'Some Google Cloud usage', challenge: 'Scaling infrastructure', securityNeed: 'Moderate', costConcern: 'Growing concern', aiInterest: 'Exploring AI use cases' },
-    fallback: { score: 67, maturity: 'Ready for a focused cloud roadmap', bestFitService: 'Fractional Cloud Expertise + Cloud Architecture Foundations', recommendedSteps: ['Map the current cloud environment.', 'Identify one reliability, cost, or security bottleneck.', 'Choose one practical AI pilot after the foundation is clear.'] }
-  },
-  content: {
-    endpoint: '/api/content-strategy',
-    payload: { audience: 'CTOs', topic: 'Google Cloud consulting', goal: 'Lead generation', tone: 'Direct and practical', postCount: '3' },
-    fallback: buildLocalContentStrategy({ audience: 'CTOs', topic: 'Google Cloud consulting', goal: 'Lead generation', tone: 'Direct and practical', postCount: '3' })
-  },
-  brief: {
-    endpoint: '/api/performance-brief',
-    payload: { clientType: 'B2B scaleup', service: 'Google Cloud consulting', audience: 'CTOs and scaleup leaders', goal: 'Generate qualified discovery calls', channel: 'LinkedIn and search', timeline: '4 weeks' },
-    fallback: { objective: 'Help B2B scaleups understand why Google Cloud consulting matters now.', keyMessage: 'Secure, scalable cloud foundations without slowing product momentum.', successMetrics: ['Qualified leads', 'Discovery calls booked', 'Landing page conversion rate'] }
-  },
-  seo: {
-    endpoint: '/api/seo-opportunity',
-    payload: { service: 'Google Cloud consulting', audience: 'Startup and scaleup leaders', keyword: 'google cloud consulting partner', goal: 'Improve qualified organic traffic' },
-    fallback: { primaryKeyword: 'google cloud consulting partner', titleTag: 'Google Cloud Consulting for Startups and Scaleups | Proplr', recommendation: 'Connect technical service copy to business outcomes, not just features.' }
-  },
-  qa: {
-    endpoint: '/api/campaign-qa',
-    payload: { pageGoal: 'Drive discovery calls', cta: 'Book a cloud readiness conversation', audience: 'CTOs and scaleup leaders', trackingNeeds: 'Form submits, CTA clicks, scroll depth, source tracking' },
-    fallback: { launchReadiness: 'Ready after tracking and message checks are confirmed.', checks: [{ area: 'Message', item: 'Page explains value for CTOs.', priority: 'High' }, { area: 'Tracking', item: 'Validate CTA clicks and form submits.', priority: 'High' }] }
-  },
-  reporting: {
-    endpoint: '/api/reporting-insight',
-    payload: { metric: 'Landing page conversion rate', previous: 2.4, current: 3.1, goal: 3.5, channel: 'LinkedIn campaign' },
-    fallback: { headline: 'Landing page conversion rate increased by 29% on LinkedIn campaign.', recommendedAction: 'Document the winning message and test one new creative angle.', clientSummary: 'The campaign is improving, but should stay focused on one next test.' }
-  }
-};
-
-async function runHomepageAgent(type) {
-  const config = homepageAgentConfig[type];
-  const out = document.getElementById('home-agent-' + type);
-  if (!config || !out) return;
-  out.className = 'agent-output show';
-  out.textContent = 'Running sample...';
-  try {
-    const res = await fetch(config.endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(config.payload)
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Agent unavailable.');
-    out.innerHTML = formatHomepageAgentOutput(type, data);
-  } catch {
-    out.innerHTML = formatHomepageAgentOutput(type, config.fallback) + '<br><span style="color:var(--silver);">Local preview shown. Use http://localhost:3000 for live API output.</span>';
-  }
-}
-
-function formatHomepageAgentOutput(type, data) {
-  if (type === 'readiness') return `<strong>${escapeHTML(data.maturity)}</strong><br>Score: ${escapeHTML(data.score)}<br>Best fit: ${escapeHTML(data.bestFitService)}<br>${(data.recommendedSteps || []).slice(0, 2).map(step => '- ' + escapeHTML(step)).join('<br>')}`;
-  if (type === 'content') return `<strong>${escapeHTML(data.theme)}</strong><br>${(data.posts || []).slice(0, 2).map(post => `${escapeHTML(post.day)}: ${escapeHTML(post.hook)}`).join('<br><br>')}`;
-  if (type === 'brief') return `<strong>Objective</strong><br>${escapeHTML(data.objective)}<br><br><strong>Key message</strong><br>${escapeHTML(data.keyMessage)}`;
-  if (type === 'seo') return `<strong>${escapeHTML(data.primaryKeyword)}</strong><br>${escapeHTML(data.titleTag)}<br><br>${escapeHTML(data.recommendation)}`;
-  if (type === 'qa') return `<strong>${escapeHTML(data.launchReadiness)}</strong><br>${(data.checks || []).slice(0, 3).map(check => `${escapeHTML(check.priority)}: ${escapeHTML(check.area)} - ${escapeHTML(check.item)}`).join('<br>')}`;
-  if (type === 'reporting') return `<strong>${escapeHTML(data.headline)}</strong><br>${escapeHTML(data.recommendedAction)}<br><br>${escapeHTML(data.clientSummary)}`;
-  return escapeHTML(JSON.stringify(data, null, 2));
-}
 
 // ── AUDIENCE TOGGLE ──
 function switchAud(id, btn) {
